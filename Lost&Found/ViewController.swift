@@ -13,7 +13,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
+    @IBAction func Connexion(_ sender: UIButton) {
+    }
+    
 
     @IBAction func CreateAccountB(_ sender: UIButton) {
         performSegue(withIdentifier: "CreateAccount", sender: nil)
