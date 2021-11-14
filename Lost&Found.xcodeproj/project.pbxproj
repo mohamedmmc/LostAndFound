@@ -13,6 +13,7 @@
 		851AB3AE27402ED3005606AC /* AssociationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3AD27402ED3005606AC /* AssociationsController.swift */; };
 		851AB3B027402EDE005606AC /* LostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3AF27402EDE005606AC /* LostController.swift */; };
 		851AB3B227402EEA005606AC /* FoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3B127402EEA005606AC /* FoundController.swift */; };
+		851AB3B427410C2D005606AC /* MySubclassedTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3B327410C2D005606AC /* MySubclassedTabBarController.swift */; };
 		85417DD927303088003F59CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85417DD827303088003F59CF /* AppDelegate.swift */; };
 		85417DDB27303088003F59CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85417DDA27303088003F59CF /* SceneDelegate.swift */; };
 		85417DDD27303088003F59CF /* ConnexionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85417DDC27303088003F59CF /* ConnexionController.swift */; };
@@ -31,6 +32,7 @@
 		851AB3AD27402ED3005606AC /* AssociationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssociationsController.swift; sourceTree = "<group>"; };
 		851AB3AF27402EDE005606AC /* LostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostController.swift; sourceTree = "<group>"; };
 		851AB3B127402EEA005606AC /* FoundController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundController.swift; sourceTree = "<group>"; };
+		851AB3B327410C2D005606AC /* MySubclassedTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySubclassedTabBarController.swift; sourceTree = "<group>"; };
 		85417DD527303088003F59CF /* Lost&Found.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lost&Found.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		85417DD827303088003F59CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85417DDA27303088003F59CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				851AB3AD27402ED3005606AC /* AssociationsController.swift */,
 				851AB3AF27402EDE005606AC /* LostController.swift */,
 				851AB3B127402EEA005606AC /* FoundController.swift */,
+				851AB3B327410C2D005606AC /* MySubclassedTabBarController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 				85B5B729273E986C0079E2FE /* User.swift in Sources */,
 				851AB3B027402EDE005606AC /* LostController.swift in Sources */,
 				85417DDB27303088003F59CF /* SceneDelegate.swift in Sources */,
+				851AB3B427410C2D005606AC /* MySubclassedTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
