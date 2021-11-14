@@ -22,5 +22,8 @@ class OTPController: UIViewController {
         let emailimg = UIImage(named: "password")
         Design.BorderButton(titre: Verifier, radius: 20, width: 1, Bordercolor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0))
         Design.addLeftIcon(txtField: numT, andImage: emailimg!)
+        
+        
+        
     }
 }
