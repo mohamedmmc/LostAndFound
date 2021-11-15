@@ -61,7 +61,7 @@ class Webservice{
         }.resume()
     }*/
     
-    func creationCompte(user: User) {
+    func creationCompte(user: User, callback: @escaping (Bool,String?)->Void){
         let params = [
             "nom":user.nom,
             "prenom":user.prenom,
@@ -78,14 +78,24 @@ class Webservice{
         request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
         let session = URLSession.shared.dataTask(with: request){
             data, response, error in
-            if error != nil{
-                print("there is error")
-            }else {
-                let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] )
-                print(jsonRes)
+            DispatchQueue.main.async {
+                if error != nil{
+                    print("there is error")
+                }else {
+                    if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
+                       if var reponse = jsonRes["nom"] as? String{
+                        callback(true,reponse)
+                       }
+                       else{
+                        callback(false,nil)
+                       }
+                    }else{
+                        callback(false,nil)
+                    }
+                }
             }
+            
         }.resume()
-        
     }
     
     func getUser(){

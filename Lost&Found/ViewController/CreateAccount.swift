@@ -29,7 +29,15 @@ class CreateAccount: UIViewController {
 
     }
     @IBAction func validation(_ sender: UIButton) {
-
+        let user = User(nom: nom.text!, prenom: prenom.text!, email: usernameT.text!, mdp: mdpT.text!, numtel: numT.text!)
+        Webservice().creationCompte(user: user) { (succes,quotes) in
+            if succes, let quotes = quotes{
+                self.propmt(title: "saul goodman", message: quotes)
+            }
+            else{
+                self.propmt(title: "Fuck", message: "here we go again")
+            }
+        }
         performSegue(withIdentifier: "otpsegue", sender: nil)
     }
     
@@ -40,6 +48,13 @@ class CreateAccount: UIViewController {
             destination.numero = numT.text
         }
           
+    }
+    
+    func propmt(title:String, message:String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .destructive , handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func back(_ sender: UIButton) {
