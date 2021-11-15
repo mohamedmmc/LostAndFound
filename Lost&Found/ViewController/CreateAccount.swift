@@ -29,7 +29,7 @@ class CreateAccount: UIViewController {
 
     }
     @IBAction func validation(_ sender: UIButton) {
-        let user = User(nom: nom.text!, prenom: prenom.text!, email: usernameT.text!, mdp: mdpT.text!, numtel: numT.text!)
+        let user = User(id:"",nom: nom.text!, prenom: prenom.text!, email: usernameT.text!, mdp: mdpT.text!, numtel: numT.text!, token: "")
         Webservice().creationCompte(user: user) { (succes,quotes) in
             if succes, let quotes = quotes{
                 self.propmt(title: "saul goodman", message: quotes)
@@ -45,6 +45,7 @@ class CreateAccount: UIViewController {
         if segue.identifier == "otpsegue" {
             
             let destination = segue.destination as! OTPController
+            
             destination.numero = numT.text
         }
           
@@ -60,4 +61,6 @@ class CreateAccount: UIViewController {
     @IBAction func back(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+   
 }
