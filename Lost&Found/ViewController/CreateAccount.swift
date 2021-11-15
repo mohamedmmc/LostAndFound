@@ -18,11 +18,10 @@ class CreateAccount: UIViewController {
     @IBOutlet weak var prenom: UITextField!
     @IBOutlet weak var titre: UILabel!
     @IBOutlet weak var valider: UIButton!
-    let UserVM = UserModelView()
     let Design = DesignUi()
     override func viewDidLoad() {
-        Design.BorderLabel(titre: titre, radius: 20, width: 1, Bordercolor: UIColor.init(red: 255, green: 255, blue: 255, alpha: 1))
-        Design.BorderButton(titre: valider, radius: 20, width: 1, Bordercolor: UIColor.init(red: 255, green: 255, blue: 255, alpha: 1))
+        Design.BorderLabel(titre: titre, radius: 20, width: 2, Bordercolor: UIColor.init(red: 255, green: 255, blue: 255, alpha: 1))
+        Design.BorderButton(titre: valider, radius: 20, width: 2, Bordercolor: UIColor.init(red: 255, green: 255, blue: 255, alpha: 2))
         let passord = UIImage(named: "password")
         let numphoto = UIImage(named: "phone")
         Design.addLeftIcon(txtField: numT, andImage: numphoto!)
@@ -30,8 +29,7 @@ class CreateAccount: UIViewController {
 
     }
     @IBAction func validation(_ sender: UIButton) {
-        
-        UserVM.createAccount(nom: nom.text!, prenom: prenom.text!, email: usernameT.text!, mdp: mdpT.text!, numtel: numT.text!)
+
         performSegue(withIdentifier: "otpsegue", sender: nil)
     }
     

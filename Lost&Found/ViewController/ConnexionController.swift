@@ -10,7 +10,6 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var Connexin: UIButton!
-    private var userVM = UserModelView()
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
     override func viewDidLoad() {
@@ -26,7 +25,14 @@ class ViewController: UIViewController {
     @IBAction func Connexion(_ sender: UIButton) {
         let email = username.text!
         let pass = password.text!
-        UserModelView().login(username: email, mdp: pass)
+        Webservice.login(username: email,mdp: pass) { (succes,quotes) in
+            if succes, let quotes = quotes{
+                self.propmt(title: "saul goodman", message: quotes)
+            }
+            else{
+                self.propmt(title: "Fuck", message: "here we go again")
+            }
+        }
     }
     
 
@@ -34,6 +40,11 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: "test", sender: nil)
     }
 
-    
+    func propmt(title:String, message:String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .destructive , handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 

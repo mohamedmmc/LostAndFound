@@ -15,7 +15,6 @@
 		851AB3B227402EEA005606AC /* FoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3B127402EEA005606AC /* FoundController.swift */; };
 		851AB3B427410C2D005606AC /* MySubclassedTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3B327410C2D005606AC /* MySubclassedTabBarController.swift */; };
 		851AB3B7274142B9005606AC /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3B6274142B9005606AC /* WebService.swift */; };
-		851AB3BA27414DF0005606AC /* UserModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3B927414DF0005606AC /* UserModelView.swift */; };
 		851AB3BC2741920B005606AC /* Utilis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3BB2741920B005606AC /* Utilis.swift */; };
 		85417DD927303088003F59CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85417DD827303088003F59CF /* AppDelegate.swift */; };
 		85417DDB27303088003F59CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85417DDA27303088003F59CF /* SceneDelegate.swift */; };
@@ -37,7 +36,6 @@
 		851AB3B127402EEA005606AC /* FoundController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundController.swift; sourceTree = "<group>"; };
 		851AB3B327410C2D005606AC /* MySubclassedTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySubclassedTabBarController.swift; sourceTree = "<group>"; };
 		851AB3B6274142B9005606AC /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
-		851AB3B927414DF0005606AC /* UserModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModelView.swift; sourceTree = "<group>"; };
 		851AB3BB2741920B005606AC /* Utilis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilis.swift; sourceTree = "<group>"; };
 		85417DD527303088003F59CF /* Lost&Found.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lost&Found.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		85417DD827303088003F59CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,7 +72,6 @@
 		851AB3B5274142A5005606AC /* ModelView */ = {
 			isa = PBXGroup;
 			children = (
-				851AB3B927414DF0005606AC /* UserModelView.swift */,
 			);
 			path = ModelView;
 			sourceTree = "<group>";
@@ -216,7 +213,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				851AB3BA27414DF0005606AC /* UserModelView.swift in Sources */,
 				851AB3BC2741920B005606AC /* Utilis.swift in Sources */,
 				85417DE327303088003F59CF /* Lost_Found.xcdatamodeld in Sources */,
 				851AB3AE27402ED3005606AC /* AssociationsController.swift in Sources */,
