@@ -36,7 +36,6 @@ class Webservice{
                     
                     if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
                         if let reponse = jsonRes["reponse"] as? String{
-                            
                             if (reponse == "good") {
                                 callback(true,reponse)
                             }

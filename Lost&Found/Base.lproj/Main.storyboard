@@ -38,7 +38,7 @@
                 <navigationController id="uG5-G1-on3" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Found" image="location.fill" catalog="system" id="4vl-wr-6Us"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PGk-tJ-TCZ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -65,7 +65,7 @@
                                 <rect key="frame" x="33" y="507" width="345" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bz7-6w-itR">
                                 <rect key="frame" x="27" y="327" width="94" height="47"/>
@@ -153,7 +153,7 @@
                         <outlet property="Connexin" destination="mcN-a9-AiV" id="FyL-Ke-Q7F"/>
                         <outlet property="password" destination="thC-sI-pTl" id="Uf3-jD-Sa5"/>
                         <outlet property="username" destination="ppX-MH-j8r" id="Tql-gx-htE"/>
-                        <segue destination="mb5-Kn-gtg" kind="presentation" identifier="connexion" id="dF7-3y-jyc"/>
+                        <segue destination="mb5-Kn-gtg" kind="presentation" identifier="connexion" modalPresentationStyle="fullScreen" id="dF7-3y-jyc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -364,7 +364,7 @@
                 <navigationController id="SIE-me-Tqb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="person.fill" catalog="system" id="8ml-3k-q5Y"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yoX-5M-bM0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -381,7 +381,7 @@
                 <navigationController id="g1J-F3-s9r" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Lost" image="magnifyingglass.circle.fill" catalog="system" id="dUh-pP-fLn"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kyR-2N-wTf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -397,7 +397,7 @@
             <objects>
                 <viewController id="mLX-ih-BDO" customClass="AssociationsController" customModule="Lost_Found" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x1Q-2V-ZD9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="2Vo-Fw-yvE"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -414,7 +414,7 @@
                 <navigationController id="Hxv-8C-Qf6" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Associations" image="house.fill" catalog="system" id="PgK-CL-gBV"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="e6L-Tp-bok">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -430,7 +430,7 @@
             <objects>
                 <viewController id="IaB-QZ-plF" customClass="LostController" customModule="Lost_Found" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Ff-SX-PWn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VFE-Iw-ieH">
@@ -478,7 +478,7 @@
             <objects>
                 <viewController id="7I9-eB-Jbi" customClass="FoundController" customModule="Lost_Found" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NAB-to-qud">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rlJ-cC-Ifh">
@@ -518,7 +518,7 @@
             <objects>
                 <viewController id="JMb-52-CD1" customClass="ProfileController" customModule="Lost_Found" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qY7-cE-fec">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4wl-YD-WrT">
@@ -562,7 +562,7 @@
                 <navigationController id="aO2-sf-DZv" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Discussions" image="message.fill" catalog="system" id="gpu-fF-w6Q"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bGG-Nh-pmz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -578,7 +578,7 @@
             <objects>
                 <viewController id="Zvf-We-dtm" customClass="FoundController" customModule="Lost_Found" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="g4e-9c-Hy8">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="SuY-SV-W0J"/>
                         <color key="backgroundColor" systemColor="systemIndigoColor"/>

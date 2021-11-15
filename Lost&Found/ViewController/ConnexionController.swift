@@ -29,14 +29,11 @@ class ViewController: UIViewController {
         let email = username.text!
         let pass = password.text!
         Webservice().login(username: email,mdp: pass) { (succes,reponse) in
-            print("succes",succes,"reponse",reponse)
             if succes, let json = reponse{
                 self.performSegue(withIdentifier: "connexion", sender: nil)
-                
             }
             else{
-                print("suppose tconnectich")
-                self.propmt(title: "Fuck", message: "here we go again")
+                self.propmt(title: "Echec", message: "Email ou mot de passe incorrect")
             }
         }
     }
@@ -53,7 +50,7 @@ class ViewController: UIViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .destructive , handler: nil)
         alert.addAction(action)
-        self.present(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
 }
 
