@@ -13,38 +13,27 @@ Our application is name Lost & Found and is developped in Swift for The client a
 ## Links
 
 - [Mini Project](https://github.com/mohamedmmc/LostAndFound)
-- [Node js] (https://developer.apple.com/xcode/)
+- [Backend] (https://github.com/mohamedmmc/LostAndFound-Back)
+- [Xcode] (https://developer.apple.com/xcode/)
 
 ## Available Commands
 
 In the project directory, you can run:
 
-### npm install" : "npm install express": "npm dev start",
+### Excute the project
+### Change the storyboard wich is the UI of the app
 
-The app is built using JavaScript. Open [http://localhost:3000](http://localhost:3000) to test APIs with POSTMAN. You also need to run the server file as well to completely run the app. The page will reload if you make edits.
-You will also see any lint errors in the console.
-/user is the path to get all users
-/user/id is the path to check the user with the id passed in parameters 
-### "npm run build":,
+The app is built using Xcode. Run the backend using the link in ##Links then build the app to start using the routes of the back
+In this app, you will have to create an account using facebook, google or github Authenticator
+Once logged in, The user can either add a Lost or Found Item, which other users will see updated.
+All of the lost and find Item have to be initilized with a position on the map, so the one searching for an item can have an idea where it has been pinged
+  
+### Coming Soon
+The app is not finished yet, so all of the other implementations will be added later !
 
-Builds the app for production to the build folder. It correctly bundles React in production mode and optimizes the build for the best performance. The build is minified and the filenames include the hashes. Your app will be ready to deploy!
-
-### "npm run test":,
-
-Launches the test runner in the interactive watch mode.
-
-### "npm run dev": "concurrently "nodemon server" "npm run start",
-
-For running the server and app together I am using concurrently this helps a lot in the MERN application as it runs both the server (client and server) concurrently. So you can work on them both together.
-
-### "serve": "node server"
-
-For running the server file on you can use this command.
-
-### npm run serve
 
 ## Built With
 
-- JavaScript
-- Node Express
-- NPM
+- Xcode
+- Node js 
+- MongoDB
