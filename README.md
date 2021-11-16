@@ -4,8 +4,8 @@ This project is a mobile application project designed for everybody which provid
 This application lets the user create an account, search for a lost item and even pay the one who provides the service online. Our application does also create the ability to add a found item and also to put all lost object withing 6 months to donations for charity.
 Our application is name Lost & Found and is developped in Swift for The client and in node.js for the backend part with mongoDB as database  
 <p align="center">
-<img src="https://shiva-engine.com/wp-content/uploads/2017/10/xcode-logo-small.png">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/404px-Apple_logo_black.svg.png">
+<img src="https://shiva-engine.com/wp-content/uploads/2017/10/xcode-logo-small.png" width="300" height="300">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/404px-Apple_logo_black.svg.png" width="300" height="300">
 </p>
 
 <h1 align="center"><project-name></h1>
