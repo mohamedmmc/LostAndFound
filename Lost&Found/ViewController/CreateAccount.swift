@@ -10,7 +10,8 @@ import UIKit
 
 
 
-class CreateAccount: UIViewController {
+class CreateAccount: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+ 
     @IBOutlet weak var numT: UITextField!
     @IBOutlet weak var mdpT: UITextField!
     @IBOutlet weak var usernameT: UITextField!
@@ -18,8 +19,15 @@ class CreateAccount: UIViewController {
     @IBOutlet weak var prenom: UITextField!
     @IBOutlet weak var titre: UILabel!
     @IBOutlet weak var valider: UIButton!
+    @IBOutlet weak var photoDeProfilImageView: UIImageView!
+
+    
+    
     let Design = DesignUi()
     override func viewDidLoad() {
+        photoDeProfilImageView.contentMode = UIView.ContentMode.scaleAspectFit
+        
+        
         Design.BorderLabel(titre: titre, radius: 20, width: 2, Bordercolor: UIColor.init(red: 255, green: 255, blue: 255, alpha: 1))
         Design.BorderButton(titre: valider, radius: 20, width: 2, Bordercolor: UIColor.init(red: 255, green: 255, blue: 255, alpha: 2))
         let passord = UIImage(named: "password")
@@ -28,6 +36,24 @@ class CreateAccount: UIViewController {
         Design.addLeftIcon(txtField: mdpT, andImage: passord!)
 
     }
+    
+    @IBAction func Parcourir(_ sender: Any) {
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else {
+            return
+        }
+        photoDeProfilImageView.image = image
+        
+        dismiss(animated: true)
+    }
+    
+    
     @IBAction func validation(_ sender: UIButton) {
         let user = User(id:"",nom: nom.text!, prenom: prenom.text!, email: usernameT.text!, mdp: mdpT.text!, numtel: numT.text!, token: "")
         Webservice().creationCompte(user: user) { (succes,quotes) in

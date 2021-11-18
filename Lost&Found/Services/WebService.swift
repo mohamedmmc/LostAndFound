@@ -69,6 +69,7 @@ class Webservice{
             "email": user.email,
             "password":user.mdp,
             "numt":user.numT
+            
         ]
         guard let url = URL(string: "http://localhost:3000/user") else{
             return
