@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-
+import FBSDKLoginKit
 class ProfileController: UIViewController {
         
     override func viewDidLoad() {
@@ -21,6 +21,8 @@ class ProfileController: UIViewController {
     
     @IBAction func deconnexion(_ sender: Any) {
         promptWithConfirm()
+        let loginManager = LoginManager()
+        loginManager.logOut()
     }
     let webS = Webservice()
    

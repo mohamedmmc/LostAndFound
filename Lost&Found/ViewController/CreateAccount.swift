@@ -59,25 +59,29 @@ class CreateAccount: UIViewController,UIImagePickerControllerDelegate,UINavigati
         
         //Webservice().creationCompte(user: user,userpdp: photoDeProfilImageView.image!)
         if isValidEmail(usernameT.text!){
-           
-            if (numero.isValidPhoneNumber()){
-                Webservice().CreationCompte(user: user, image: photoDeProfilImageView.image!) { (succes, reponse) in
-                    if succes, let json = reponse{
-                        self.performSegue(withIdentifier: "connexion", sender: reponse)
+            if (numero.count != 11) {
+                if (numero.isValidPhoneNumber()){
+                    Webservice().CreationCompte(user: user, image: photoDeProfilImageView.image!) { (succes, reponse) in
+                        if succes, let json = reponse{
+                            self.performSegue(withIdentifier: "connexion", sender: reponse)
+                        }
+                        else if (reponse == "mail existant"){
+                            self.propmt(title: "Echec", message: "Mail deja Existant")
+                            
+                        }
+                        else if (reponse == "num existant"){
+                            self.propmt(title: "Echec", message: "Numero deja Existant")
+                            
+                            
+                        }
                     }
-                    else if (reponse == "mail existant"){
-                        self.propmt(title: "Echec", message: "Mail deja Existant")
-                        
-                    }
-                    else if (reponse == "num existant"){
-                        self.propmt(title: "Echec", message: "Numero deja Existant")
-                        
-                        
-                    }
+                }else{
+                    self.propmt(title: "Echec", message: "Numero invalid")
                 }
             }else{
                 self.propmt(title: "Echec", message: "Numero invalid")
             }
+
         }
         else{
             self.propmt(title: "Echec", message: "Email incorrect")
@@ -127,7 +131,7 @@ class CreateAccount: UIViewController,UIImagePickerControllerDelegate,UINavigati
 }
 
 extension String {
-    func isValidPhoneNumber() -> Bool {
+    func    isValidPhoneNumber() -> Bool {
         let regEx = "^\\+(?:[0-9]?){6,14}[0-9]$"
 
         let phoneCheck = NSPredicate(format: "SELF MATCHES[c] %@", regEx)

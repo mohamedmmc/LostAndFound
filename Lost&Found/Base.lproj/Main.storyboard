@@ -113,10 +113,6 @@
                                     <segue destination="LTW-CH-vDx" kind="presentation" identifier="test" modalPresentationStyle="fullScreen" id="KVJ-FP-918"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="facebook" translatesAutoresizingMaskIntoConstraints="NO" id="h2G-jI-YIY">
-                                <rect key="frame" x="33" y="637" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="google" translatesAutoresizingMaskIntoConstraints="NO" id="FMD-ZZ-Liv">
                                 <rect key="frame" x="127" y="637" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -142,6 +138,14 @@
                                 </state>
                                 <connections>
                                     <action selector="Connexion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cq2-fm-OHr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOV-VH-ok1">
+                                <rect key="frame" x="28" y="637" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="facebook"/>
+                                <connections>
+                                    <action selector="loginButtonFB:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gZO-wU-7oJ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -313,14 +317,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rentrer le code envoyé" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yqY-gI-e9I">
-                                <rect key="frame" x="35" y="434" width="175" height="20"/>
+                                <rect key="frame" x="35" y="434" width="175" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.13725490200000001" green="0.46274509800000002" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Verification Numero" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OPR-IK-bNI">
-                                <rect key="frame" x="29" y="351" width="222" height="53"/>
+                                <rect key="frame" x="29" y="351" width="222" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="0.13725490200000001" green="0.46274509800000002" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

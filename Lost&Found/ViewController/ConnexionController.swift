@@ -6,14 +6,76 @@
 //
 
 import UIKit
-
-class ViewController: UIViewController {
+import FBSDKLoginKit
+class ViewController: UIViewController,LoginButtonDelegate {
     
+    
+    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+        getUserDataFromFacebook()
+        
+    }
+    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+        
+    }
+    
+    @IBAction func loginButtonFB(_ sender: Any) {
+        facebookLoginButton.sendActions(for: .touchUpInside)
+    }
+    let facebookLoginButton = FBLoginButton(frame: .zero, permissions: [.publicProfile,.email])
+    
+    func getUserDataFromFacebook() {
+        GraphRequest(graphPath: "me", parameters: ["fields": "first_name,last_name, picture,email, id"]).start { (connection, result, error) in
+            if let err = error { print(err.localizedDescription); return } else {
+                if let fields = result as? [String:Any],let lastname = fields["last_name"] as? String,let firstName = fields["first_name"] as? String,let email = fields["email"] as? String, let id = fields["id"] as? String {
+                    
+                    let user = User(id: "", nom: lastname, prenom: firstName, email: email, mdp: "", numtel: "", photoP: "", token: "")
+                    Webservice().loginSocialMedia(username: user.email) { succes, reponse in
+                        if succes, let json = reponse as? String{
+                            self.performSegue(withIdentifier: "connexion", sender: reponse)
+                            if json == "pas inscrit" {
+                                print("pas inscrit avec facebook")
+                            }
+                        }
+                        else{
+                            Webservice().CreationCompteFacebook(user: user, image: UIImage(named: "facebook")! ) { succes, reponse in
+                                if succes, let json = reponse{
+                                    self.performSegue(withIdentifier: "connexion", sender: reponse)
+                                }
+                                else if (reponse == "mail existant"){
+                                    self.propmt(title: "Echec", message: "Mail deja Existant")
+                                    
+                                }
+                            }
+                        }
+                        
+                        
+                    }
+                }
+            }
+        }
+    }
     @IBOutlet weak var Connexin: UIButton!
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if let token = AccessToken.current, !token.isExpired{
+            performSegue(withIdentifier: "connexion", sender: "yes")            }
+        
+    }
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        facebookLoginButton.delegate = self
+        facebookLoginButton.isHidden = true
+        
+        
+        
+        
+        
         
         Connexin?.layer.cornerRadius = 10
         Connexin?.layer.borderWidth = 2
@@ -21,6 +83,8 @@ class ViewController: UIViewController {
         username.layer.borderColor = UIColor.init(red: 146, green: 182, blue: 252, alpha: 0).cgColor
         username.layer.cornerRadius = 50
     }
+    
+    
     
     @IBAction func MdpOublie(_ sender: UIButton) {
         
@@ -54,4 +118,6 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
 }
+
+
 

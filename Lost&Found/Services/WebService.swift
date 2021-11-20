@@ -31,6 +31,49 @@ struct Media {
 class Webservice {
     
     
+    func loginSocialMedia(username: String,callback: @escaping (Bool,Any?)->Void){
+        let params = [
+            "email": username
+        ]
+        guard let url = URL(string: "http://localhost:3000/user/login") else{
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+        let session = URLSession.shared.dataTask(with: request){
+            data, response, error in
+            DispatchQueue.main.async {
+                if error != nil{
+                    print("error")
+                }else {
+                    
+                    if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
+                        if let reponse = jsonRes["user"] as? [String: Any]{
+                            for (key,value) in reponse{
+                                print(key,value)
+                                UserDefaults.standard.setValue(value, forKey: key)
+                                
+                            }
+                            callback(true,"good")
+                            
+                        }else{
+                            callback(false,"pas inscrit")
+                        }
+                    }else{
+                        callback(false,nil)
+                    }
+                }
+            }
+            
+        }.resume()
+        
+    }
+    
+    
     
     func login(username: String,mdp: String,callback: @escaping (Bool,Any?)->Void){
         let params = [
@@ -57,7 +100,7 @@ class Webservice {
                         if let reponse = jsonRes["user"] as? [String: Any]{
                             
                             for (key,value) in reponse{
-                        
+                                
                                 UserDefaults.standard.setValue(value, forKey: key)
                                 
                             }
@@ -74,6 +117,38 @@ class Webservice {
             
         }.resume()
         
+    }
+    
+    func DataBodyWithoutPass(user:User, media: [Media]?, boundary: String) -> Data {
+        let lineBreak = "\r\n"
+        var body = Data()
+        body.append("--\(boundary + lineBreak)")
+        body.append("Content-Disposition: form-data; name=\"nom\"\(lineBreak + lineBreak)")
+        body.append("\(user.nom + lineBreak)")
+        
+        
+        
+        body.append("--\(boundary + lineBreak)")
+        body.append("Content-Disposition: form-data; name=\"prenom\"\(lineBreak + lineBreak)")
+        body.append("\(user.prenom + lineBreak)")
+        
+        
+        body.append("--\(boundary + lineBreak)")
+        body.append("Content-Disposition: form-data; name=\"email\"\(lineBreak + lineBreak)")
+        body.append("\(user.email + lineBreak)")
+        
+        
+        if let media = media {
+            for photo in media {
+                body.append("--\(boundary + lineBreak)")
+                body.append("Content-Disposition: form-data; name=\"\(photo.key)\"; filename=\"\(photo.filename)\"\(lineBreak)")
+                body.append("Content-Type: \(photo.mimeType + lineBreak + lineBreak)")
+                body.append(photo.data)
+                body.append(lineBreak)
+            }
+        }
+        body.append("--\(boundary)--\(lineBreak)")
+        return body
     }
     
     func DataBody(user:User, media: [Media]?, boundary: String) -> Data {
@@ -149,7 +224,6 @@ class Webservice {
                         if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]{
                             if let reponse = json["reponse"] as? String{
                                 if (reponse.contains("email")){
-                                    print(reponse)
                                     callback(false,"mail existant")
                                 }
                                 else if (reponse.contains("numt")){
@@ -210,7 +284,7 @@ class Webservice {
     //    }
     
     func getUser(token:String,callback: @escaping (Bool,Any?)->Void){
-        guard let url = URL(string: "http://192.168.1.7:3000/user/") else{
+        guard let url = URL(string: "http://192.168.1.7:3000/user/login") else{
             return
         }
         var request = URLRequest(url: url)
@@ -226,7 +300,7 @@ class Webservice {
                     if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
                         if var reponse = jsonRes["user"] as? String{
                             callback(true,reponse)
-                            print(reponse)
+                            //print(reponse)
                         }
                         else{
                             callback(false,nil)
@@ -239,22 +313,65 @@ class Webservice {
             
         }.resume()
     }
+    
+    
+    func CreationCompteFacebook(user:User, image :UIImage, callback: @escaping (Bool,String?)->Void){
+        
+        guard let mediaImage = Media(withImage: image, forKey: "photoProfil") else { return }
+        guard let url = URL(string: "http://localhost:3000/user/FB") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        //create boundary
+        let boundary = generateBoundary()
+        //set content type
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        //call createDataBody method
+        
+        let dataBody = DataBodyWithoutPass(user:user, media: [mediaImage], boundary: boundary)
+        print(dataBody)
+        request.httpBody = dataBody
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, error) in
+            DispatchQueue.main.async {
+                if let response = response {
+                }
+                if let data = data {
+                    do {
+                        if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]{
+                            if let reponse = json["reponse"] as? String{
+                                //print(reponse)
+                                if (reponse.contains("email")){
+                                    callback(false,"mail existant")
+                                }
+                                else{
+                                    callback(true,"ok")
+                                }
+                            }
+                        }
+                    } catch {
+                        callback(false,nil)
+                    }
+                }else{
+                    callback(false,nil)}}
+        }.resume()
+    }
+    
 }
 
 extension UIImageView {
-public func imageFromServerURL(urlString: String) {
-    self.image = nil
-    let urlStringNew = urlString.replacingOccurrences(of: " ", with: "%20")
-    URLSession.shared.dataTask(with: NSURL(string: urlStringNew)! as URL, completionHandler: { (data, response, error) -> Void in
-
-        if error != nil {
-            print(error as Any)
-            return
-        }
-        DispatchQueue.main.async(execute: { () -> Void in
-            let image = UIImage(data: data!)
-            self.image = image
-        })
-
-    }).resume()
-}}
+    public func imageFromServerURL(urlString: String) {
+        self.image = nil
+        let urlStringNew = urlString.replacingOccurrences(of: " ", with: "%20")
+        URLSession.shared.dataTask(with: NSURL(string: urlStringNew)! as URL, completionHandler: { (data, response, error) -> Void in
+            
+            if error != nil {
+                print(error as Any)
+                return
+            }
+            DispatchQueue.main.async(execute: { () -> Void in
+                let image = UIImage(data: data!)
+                self.image = image
+            })
+            
+        }).resume()
+    }}
