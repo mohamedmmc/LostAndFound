@@ -6,6 +6,9 @@ target 'Lost&Found' do
   use_frameworks!
 
 
+
     pod 'FBSDKLoginKit'
+
+	pod 'GoogleSignIn'
     
 end

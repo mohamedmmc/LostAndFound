@@ -7,6 +7,7 @@
 
 import UIKit
 import FBSDKLoginKit
+import GoogleSignIn
 class ViewController: UIViewController,LoginButtonDelegate {
     
     
@@ -16,6 +17,18 @@ class ViewController: UIViewController,LoginButtonDelegate {
     }
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
         
+    }
+    @IBAction func loginGoogleButton(_ sender: Any) {
+        let signInConfig = GIDConfiguration.init(clientID: "226296852735-1vvlur0mo1hm96ppbvn88qmq14odbjlt.apps.googleusercontent.com")
+        
+        GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) { user, error in
+          guard error == nil else { return }
+            
+            print(user?.profile?.email)
+            print(user?.profile?.familyName)
+            print(user?.profile?.name)
+            print(user?.profile?.imageURL(withDimension: 512))
+        }
     }
     
     @IBAction func loginButtonFB(_ sender: Any) {

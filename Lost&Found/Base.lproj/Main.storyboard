@@ -113,10 +113,6 @@
                                     <segue destination="LTW-CH-vDx" kind="presentation" identifier="test" modalPresentationStyle="fullScreen" id="KVJ-FP-918"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="google" translatesAutoresizingMaskIntoConstraints="NO" id="FMD-ZZ-Liv">
-                                <rect key="frame" x="127" y="637" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="github" translatesAutoresizingMaskIntoConstraints="NO" id="2zx-UO-C0t">
                                 <rect key="frame" x="230" y="637" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -146,6 +142,14 @@
                                 <state key="normal" title="Button" image="facebook"/>
                                 <connections>
                                     <action selector="loginButtonFB:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gZO-wU-7oJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mxa-fP-Qm9">
+                                <rect key="frame" x="130" y="637" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="google"/>
+                                <connections>
+                                    <action selector="loginGoogleButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="l2h-2N-eRO"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -324,7 +328,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Verification Numero" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OPR-IK-bNI">
-                                <rect key="frame" x="29" y="351" width="222" height="52"/>
+                                <rect key="frame" x="29" y="351" width="222" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="0.13725490200000001" green="0.46274509800000002" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -580,7 +584,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tKC-ye-GZk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2693" y="1655"/>
+            <point key="canvasLocation" x="2672" y="1598"/>
         </scene>
         <!--Discussions-->
         <scene sceneID="v1l-PW-7Te">
