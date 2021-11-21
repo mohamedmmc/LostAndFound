@@ -50,11 +50,11 @@ class Webservice {
                 if error != nil{
                     print("error")
                 }else {
-                    
+                    //print("++++++++++++",data)
                     if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
                         if let reponse = jsonRes["user"] as? [String: Any]{
                             for (key,value) in reponse{
-                                print(key,value)
+                                print("++++++++++",key,value)
                                 UserDefaults.standard.setValue(value, forKey: key)
                                 
                             }
@@ -230,10 +230,14 @@ class Webservice {
                                     callback(false,"num existant")
                                 }
                                 else if (reponse == "good"){
+                                    if let validUser = json["user"] as? [String:Any]{
+                                        for (key,value) in validUser{
+                                            UserDefaults.standard.setValue(value, forKey: key)
+                                        }
+                                    }
                                     callback(true,"ok")
                                 }
                             }
-                            
                         }
                     } catch {
                         callback(false,nil)
@@ -315,35 +319,44 @@ class Webservice {
     }
     
     
-    func CreationCompteFacebook(user:User, image :UIImage, callback: @escaping (Bool,String?)->Void){
+    func CreationCompteSocial(user:User, image :UIImage, callback: @escaping (Bool,String?)->Void){
         
         guard let mediaImage = Media(withImage: image, forKey: "photoProfil") else { return }
-        guard let url = URL(string: "http://localhost:3000/user/FB") else { return }
+        guard let url = URL(string: "http://localhost:3000/user/Social") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         //create boundary
+        //print("AAAAAAAAAAAA", user)
         let boundary = generateBoundary()
         //set content type
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         //call createDataBody method
         
         let dataBody = DataBodyWithoutPass(user:user, media: [mediaImage], boundary: boundary)
-        print(dataBody)
+        //print(dataBody)
         request.httpBody = dataBody
         let session = URLSession.shared
         session.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
                 if let response = response {
                 }
+                /*if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
+                 if var reponse = jsonRes["user"] as? String{
+                     callback(true,reponse)*/
                 if let data = data {
                     do {
+                       // print("data lenna ",data)
                         if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]{
                             if let reponse = json["reponse"] as? String{
-                                //print(reponse)
                                 if (reponse.contains("email")){
                                     callback(false,"mail existant")
                                 }
                                 else{
+                                    if let validUser = json["user"] as? [String:Any]{
+                                        for (key,value) in validUser{
+                                            UserDefaults.standard.setValue(value, forKey: key)
+                                        }
+                                    }
                                     callback(true,"ok")
                                 }
                             }

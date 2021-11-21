@@ -21,8 +21,7 @@ class ProfileController: UIViewController {
     
     @IBAction func deconnexion(_ sender: Any) {
         promptWithConfirm()
-        let loginManager = LoginManager()
-        loginManager.logOut()
+        
     }
     let webS = Webservice()
    
@@ -30,11 +29,23 @@ class ProfileController: UIViewController {
     @IBOutlet weak var Name: UILabel!
     
     
+    
+    
     func promptWithConfirm(){
         let refreshAlert = UIAlertController(title: "Deconnexion", message: "Etes vous sure de vouloir vous deconnecter ?", preferredStyle: UIAlertController.Style.alert)
 
         refreshAlert.addAction(UIAlertAction(title: "Ok", style: .destructive, handler: { (action: UIAlertAction!) in
+            let loginManager = LoginManager()
+            loginManager.logOut()
+            UserDefaults.standard.removeObject(forKey: "nom")
+            UserDefaults.standard.removeObject(forKey: "prenom")
+            UserDefaults.standard.removeObject(forKey: "numt")
+            UserDefaults.standard.removeObject(forKey: "email")
+            UserDefaults.standard.removeObject(forKey: "password")
+            UserDefaults.standard.removeObject(forKey: "photoProfil")
+            UserDefaults.standard.synchronize()
             self.performSegue(withIdentifier: "deconnexion", sender: "ok")
+            
           }))
 
         refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in

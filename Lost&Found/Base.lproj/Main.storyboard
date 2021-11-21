@@ -166,7 +166,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1732" y="-587"/>
+            <point key="canvasLocation" x="2639.130434782609" y="-621.42857142857144"/>
         </scene>
         <!--Create Account-->
         <scene sceneID="rbT-QY-hCp">
@@ -302,11 +302,12 @@
                         <outlet property="usernameT" destination="cyW-NT-gYv" id="KYD-GE-53j"/>
                         <outlet property="valider" destination="qdj-K0-zFX" id="WAU-ge-f0v"/>
                         <segue destination="X6c-yB-TYS" kind="show" identifier="otpsegue" id="vnZ-Zs-pee"/>
+                        <segue destination="mb5-Kn-gtg" kind="presentation" identifier="connexion" modalPresentationStyle="fullScreen" id="ZfF-5W-kZ1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ggV-UP-MJt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2650.7246376811595" y="-587.27678571428567"/>
+            <point key="canvasLocation" x="3602.898550724638" y="-621.42857142857144"/>
         </scene>
         <!--Controller-->
         <scene sceneID="6dC-mO-3S5">
@@ -377,7 +378,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Uw-LS-XtI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3595.652173913044" y="-587.27678571428567"/>
+            <point key="canvasLocation" x="4623.188405797102" y="-621.42857142857144"/>
         </scene>
         <!--Profile-->
         <scene sceneID="7z6-1L-avv">
@@ -620,6 +621,9 @@
             <point key="canvasLocation" x="903" y="1584"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ZfF-5W-kZ1"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.backward" catalog="system" width="128" height="98"/>
         <image name="background" width="1708" height="3411"/>

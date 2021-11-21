@@ -11,6 +11,7 @@ import GoogleSignIn
 class ViewController: UIViewController,LoginButtonDelegate {
     
     
+    
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
         getUserDataFromFacebook()
         
@@ -19,15 +20,40 @@ class ViewController: UIViewController,LoginButtonDelegate {
         
     }
     @IBAction func loginGoogleButton(_ sender: Any) {
+        getUserDataFromGoogle()
+    }
+    
+    func getUserDataFromGoogle (){
         let signInConfig = GIDConfiguration.init(clientID: "226296852735-1vvlur0mo1hm96ppbvn88qmq14odbjlt.apps.googleusercontent.com")
         
         GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) { user, error in
           guard error == nil else { return }
-            
-            print(user?.profile?.email)
-            print(user?.profile?.familyName)
-            print(user?.profile?.name)
-            print(user?.profile?.imageURL(withDimension: 512))
+         
+           // print(user?.profile?.imageURL(withDimension: 512))
+            let user = User(id: "", nom: (user?.profile?.familyName)!, prenom: (user?.profile?.givenName)!, email: (user?.profile!.email)!, mdp: "", numtel: "", photoP: "", token: "")
+            Webservice().loginSocialMedia(username: user.email) { succes, reponse in
+                if succes, let json = reponse as? String{
+                    self.performSegue(withIdentifier: "connexion", sender: reponse)
+                    if json == "pas inscrit" {
+                        print("pas inscrit avec facebook")
+                    }
+                }
+                else{
+                    Webservice().CreationCompteSocial(user: user, image: UIImage(named: "google")! ) { succes, reponse in
+                        if succes, let json = reponse{
+                            if (json == "ok"){
+                                self.performSegue(withIdentifier: "connexion", sender: reponse)
+                            }
+                        }
+                        else if (reponse == "mail existant"){
+                            self.propmt(title: "Echec", message: "Mail deja Existant")
+                            
+                        }
+                    }
+                }
+                
+                
+            }
         }
     }
     
@@ -50,7 +76,7 @@ class ViewController: UIViewController,LoginButtonDelegate {
                             }
                         }
                         else{
-                            Webservice().CreationCompteFacebook(user: user, image: UIImage(named: "facebook")! ) { succes, reponse in
+                            Webservice().CreationCompteSocial(user: user, image: UIImage(named: "facebook")! ) { succes, reponse in
                                 if succes, let json = reponse{
                                     self.performSegue(withIdentifier: "connexion", sender: reponse)
                                 }
@@ -74,7 +100,15 @@ class ViewController: UIViewController,LoginButtonDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         if let token = AccessToken.current, !token.isExpired{
-            performSegue(withIdentifier: "connexion", sender: "yes")            }
+            performSegue(withIdentifier: "connexion", sender: "yes")
+        }
+        
+        //print(UserDefaults.standard.dictionaryRepresentation())
+
+        if let test = UserDefaults.standard.string(forKey: "nom"){
+            print(UserDefaults.standard.string(forKey: "nom"))
+        }
+
         
     }
     

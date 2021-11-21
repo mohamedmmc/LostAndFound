@@ -63,7 +63,10 @@ class CreateAccount: UIViewController,UIImagePickerControllerDelegate,UINavigati
                 if (numero.isValidPhoneNumber()){
                     Webservice().CreationCompte(user: user, image: photoDeProfilImageView.image!) { (succes, reponse) in
                         if succes, let json = reponse{
-                            self.performSegue(withIdentifier: "connexion", sender: reponse)
+                            print(json)
+                            if (json == "ok"){
+                                self.performSegue(withIdentifier: "connexion", sender: reponse)
+                            }
                         }
                         else if (reponse == "mail existant"){
                             self.propmt(title: "Echec", message: "Mail deja Existant")
