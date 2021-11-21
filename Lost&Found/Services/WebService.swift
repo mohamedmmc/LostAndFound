@@ -35,7 +35,7 @@ class Webservice {
         let params = [
             "email": username
         ]
-        guard let url = URL(string: "http://localhost:3000/user/login") else{
+        guard let url = URL(string: "http://localhost:3000/user/Auth") else{
             return
         }
         
