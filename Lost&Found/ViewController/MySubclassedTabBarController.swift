@@ -8,13 +8,14 @@
 import Foundation
 import UIKit
 class MySubclassedTabBarController: UITabBarController {
-
+    var test = 1
     override func viewDidLoad() {
       super.viewDidLoad()
       delegate = self
     }
 }
 
+ 
 extension MySubclassedTabBarController: UITabBarControllerDelegate  {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
 

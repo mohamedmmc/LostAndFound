@@ -11,10 +11,9 @@
 		851AB3AA274017E9005606AC /* DesignUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3A9274017E9005606AC /* DesignUi.swift */; };
 		851AB3AC27402EC4005606AC /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3AB27402EC4005606AC /* ProfileController.swift */; };
 		851AB3AE27402ED3005606AC /* AssociationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3AD27402ED3005606AC /* AssociationsController.swift */; };
-		851AB3B027402EDE005606AC /* LostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3AF27402EDE005606AC /* LostController.swift */; };
-		851AB3B227402EEA005606AC /* FoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3B127402EEA005606AC /* FoundController.swift */; };
+		851AB3B227402EEA005606AC /* LostAndFoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3B127402EEA005606AC /* LostAndFoundController.swift */; };
 		851AB3B427410C2D005606AC /* MySubclassedTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3B327410C2D005606AC /* MySubclassedTabBarController.swift */; };
-		851AB3B7274142B9005606AC /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3B6274142B9005606AC /* WebService.swift */; };
+		851AB3B7274142B9005606AC /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3B6274142B9005606AC /* UserService.swift */; };
 		851AB3BC2741920B005606AC /* Utilis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3BB2741920B005606AC /* Utilis.swift */; };
 		85417DD927303088003F59CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85417DD827303088003F59CF /* AppDelegate.swift */; };
 		85417DDB27303088003F59CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85417DDA27303088003F59CF /* SceneDelegate.swift */; };
@@ -23,8 +22,12 @@
 		85417DE327303088003F59CF /* Lost_Found.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 85417DE127303088003F59CF /* Lost_Found.xcdatamodeld */; };
 		85417DE527303089003F59CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85417DE427303089003F59CF /* Assets.xcassets */; };
 		85417DE827303089003F59CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85417DE627303089003F59CF /* LaunchScreen.storyboard */; };
+		855C5A22274BFA3300906DE1 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C5A21274BFA3300906DE1 /* ArticleService.swift */; };
+		855C5A24274BFCEF00906DE1 /* ModifierProfilController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C5A23274BFCEF00906DE1 /* ModifierProfilController.swift */; };
 		85B5B729273E986C0079E2FE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5B728273E986C0079E2FE /* User.swift */; };
 		85B5B72D273E993E0079E2FE /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5B72C273E993E0079E2FE /* CreateAccount.swift */; };
+		85B745DB274EC77000B18E4F /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B745DA274EC76F00B18E4F /* Article.swift */; };
+		85B745DD274F2CAE00B18E4F /* AssociationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B745DC274F2CAD00B18E4F /* AssociationController.swift */; };
 		E1D35C6F954C510F44A2D314 /* Pods_Lost_Found.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E8092D2410330D9E58E0372 /* Pods_Lost_Found.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,10 +37,9 @@
 		851AB3A9274017E9005606AC /* DesignUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignUi.swift; sourceTree = "<group>"; };
 		851AB3AB27402EC4005606AC /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		851AB3AD27402ED3005606AC /* AssociationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssociationsController.swift; sourceTree = "<group>"; };
-		851AB3AF27402EDE005606AC /* LostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostController.swift; sourceTree = "<group>"; };
-		851AB3B127402EEA005606AC /* FoundController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundController.swift; sourceTree = "<group>"; };
+		851AB3B127402EEA005606AC /* LostAndFoundController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostAndFoundController.swift; sourceTree = "<group>"; };
 		851AB3B327410C2D005606AC /* MySubclassedTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySubclassedTabBarController.swift; sourceTree = "<group>"; };
-		851AB3B6274142B9005606AC /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		851AB3B6274142B9005606AC /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		851AB3BB2741920B005606AC /* Utilis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilis.swift; sourceTree = "<group>"; };
 		85417DD527303088003F59CF /* Lost&Found.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lost&Found.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		85417DD827303088003F59CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -48,8 +50,12 @@
 		85417DE427303089003F59CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85417DE727303089003F59CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85417DE927303089003F59CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		855C5A21274BFA3300906DE1 /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
+		855C5A23274BFCEF00906DE1 /* ModifierProfilController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierProfilController.swift; sourceTree = "<group>"; };
 		85B5B728273E986C0079E2FE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		85B5B72C273E993E0079E2FE /* CreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
+		85B745DA274EC76F00B18E4F /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		85B745DC274F2CAD00B18E4F /* AssociationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssociationController.swift; sourceTree = "<group>"; };
 		8E8092D2410330D9E58E0372 /* Pods_Lost_Found.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lost_Found.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D70E04CEDFD44276B9ABC8D5 /* Pods-Lost&Found.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lost&Found.debug.xcconfig"; path = "Target Support Files/Pods-Lost&Found/Pods-Lost&Found.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,8 +90,9 @@
 		851AB3B827414DC2005606AC /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				851AB3B6274142B9005606AC /* WebService.swift */,
+				851AB3B6274142B9005606AC /* UserService.swift */,
 				851AB3BB2741920B005606AC /* Utilis.swift */,
+				855C5A21274BFA3300906DE1 /* ArticleService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -131,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				85B5B728273E986C0079E2FE /* User.swift */,
+				85B745DA274EC76F00B18E4F /* Article.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -143,9 +151,10 @@
 				851AB3A5273FDAA1005606AC /* OTPController.swift */,
 				851AB3AB27402EC4005606AC /* ProfileController.swift */,
 				851AB3AD27402ED3005606AC /* AssociationsController.swift */,
-				851AB3AF27402EDE005606AC /* LostController.swift */,
-				851AB3B127402EEA005606AC /* FoundController.swift */,
+				851AB3B127402EEA005606AC /* LostAndFoundController.swift */,
 				851AB3B327410C2D005606AC /* MySubclassedTabBarController.swift */,
+				855C5A23274BFCEF00906DE1 /* ModifierProfilController.swift */,
+				85B745DC274F2CAD00B18E4F /* AssociationController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -284,16 +293,19 @@
 				851AB3BC2741920B005606AC /* Utilis.swift in Sources */,
 				85417DE327303088003F59CF /* Lost_Found.xcdatamodeld in Sources */,
 				851AB3AE27402ED3005606AC /* AssociationsController.swift in Sources */,
-				851AB3B7274142B9005606AC /* WebService.swift in Sources */,
+				851AB3B7274142B9005606AC /* UserService.swift in Sources */,
+				855C5A22274BFA3300906DE1 /* ArticleService.swift in Sources */,
+				85B745DD274F2CAE00B18E4F /* AssociationController.swift in Sources */,
+				855C5A24274BFCEF00906DE1 /* ModifierProfilController.swift in Sources */,
 				851AB3AA274017E9005606AC /* DesignUi.swift in Sources */,
 				85B5B72D273E993E0079E2FE /* CreateAccount.swift in Sources */,
-				851AB3B227402EEA005606AC /* FoundController.swift in Sources */,
+				851AB3B227402EEA005606AC /* LostAndFoundController.swift in Sources */,
 				851AB3A6273FDAA1005606AC /* OTPController.swift in Sources */,
 				85417DDD27303088003F59CF /* ConnexionController.swift in Sources */,
 				851AB3AC27402EC4005606AC /* ProfileController.swift in Sources */,
 				85417DD927303088003F59CF /* AppDelegate.swift in Sources */,
 				85B5B729273E986C0079E2FE /* User.swift in Sources */,
-				851AB3B027402EDE005606AC /* LostController.swift in Sources */,
+				85B745DB274EC77000B18E4F /* Article.swift in Sources */,
 				85417DDB27303088003F59CF /* SceneDelegate.swift in Sources */,
 				851AB3B427410C2D005606AC /* MySubclassedTabBarController.swift in Sources */,
 			);

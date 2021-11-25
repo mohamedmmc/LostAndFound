@@ -28,10 +28,11 @@ struct Media {
     }
 }
 
-class Webservice {
+class UserService {
     
     
     func loginSocialMedia(username: String,callback: @escaping (Bool,Any?)->Void){
+        
         let params = [
             "email": username
         ]
@@ -52,12 +53,19 @@ class Webservice {
                 }else {
                     //print("++++++++++++",data)
                     if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
+                       print("probleme ici", jsonRes)
+                        if jsonRes["token"] != nil {
+                           
+                            
+                            UserDefaults.standard.setValue(jsonRes["token"], forKey: "tokenConnexion")
+                        }
                         if let reponse = jsonRes["user"] as? [String: Any]{
                             for (key,value) in reponse{
-                                print("++++++++++",key,value)
+                               // print("++++++++++",key,value)
                                 UserDefaults.standard.setValue(value, forKey: key)
                                 
                             }
+                            UserDefaults.standard.setValue("", forKey: "password")
                             callback(true,"good")
                             
                         }else{
@@ -97,6 +105,11 @@ class Webservice {
                 }else {
                     
                     if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
+                        if jsonRes["token"] != nil {
+                           
+                            
+                            UserDefaults.standard.setValue(jsonRes["token"], forKey: "tokenConnexion")
+                        }
                         if let reponse = jsonRes["user"] as? [String: Any]{
                             
                             for (key,value) in reponse{
@@ -107,10 +120,10 @@ class Webservice {
                             callback(true,"good")
                             
                         }else{
-                            callback(false,nil)
+                            callback(false,jsonRes)
                         }
                     }else{
-                        callback(false,nil)
+                        callback(false,"erreur ici")
                     }
                 }
             }
@@ -222,6 +235,7 @@ class Webservice {
                 if let data = data {
                     do {
                         if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]{
+                            
                             if let reponse = json["reponse"] as? String{
                                 if (reponse.contains("email")){
                                     callback(false,"mail existant")
@@ -230,7 +244,13 @@ class Webservice {
                                     callback(false,"num existant")
                                 }
                                 else if (reponse == "good"){
+                                    if json["token"] != nil {
+                                       
+                                        
+                                        UserDefaults.standard.setValue(json["token"], forKey: "tokenConnexion")
+                                    }
                                     if let validUser = json["user"] as? [String:Any]{
+                                        
                                         for (key,value) in validUser{
                                             UserDefaults.standard.setValue(value, forKey: key)
                                         }
@@ -247,45 +267,7 @@ class Webservice {
         }.resume()
     }
     
-    
-    
-    //    func creationCompte(user: User, userpdp: UIImage, callback: @escaping (Bool,String?)->Void){
-    //        let params = [
-    //            "nom":user.nom,
-    //            "prenom":user.prenom,
-    //            "email": user.email,
-    //            "password":user.mdp,
-    //            "numt":user.numT,
-    //        ]
-    //        guard let url = URL(string: "http://localhost:3000/user") else{
-    //            return
-    //        }
-    //        var request = URLRequest(url: url)
-    //
-    //        request.httpMethod = "POST"
-    //        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
-    //        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
-    //        let session = URLSession.shared.dataTask(with: request){
-    //            data, response, error in
-    //            DispatchQueue.main.async {
-    //                if error != nil{
-    //                    print("there is error")
-    //                }else {
-    //                    if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
-    //                        if var reponse = jsonRes["nom"] as? String{
-    //                            callback(true,reponse)
-    //                        }
-    //                        else{
-    //                            callback(false,nil)
-    //                        }
-    //                    }else{
-    //                        callback(false,nil)
-    //                    }
-    //                }
-    //            }
-    //
-    //        }.resume()
-    //    }
+
     
     func getUser(token:String,callback: @escaping (Bool,Any?)->Void){
         guard let url = URL(string: "http://192.168.1.7:3000/user/login") else{
@@ -338,11 +320,6 @@ class Webservice {
         let session = URLSession.shared
         session.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
-                if let response = response {
-                }
-                /*if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
-                 if var reponse = jsonRes["user"] as? String{
-                     callback(true,reponse)*/
                 if let data = data {
                     do {
                        // print("data lenna ",data)
@@ -352,8 +329,13 @@ class Webservice {
                                     callback(false,"mail existant")
                                 }
                                 else{
+                                    if let connexionToken = json["token"] as? String{
+                                        //print(connexionToken)
+                                        UserDefaults.standard.setValue(connexionToken, forKey: "connexionToken")
+                                    }
                                     if let validUser = json["user"] as? [String:Any]{
                                         for (key,value) in validUser{
+                                            //print("cle = ",key, "Valeur =",value)
                                             UserDefaults.standard.setValue(value, forKey: key)
                                         }
                                     }
@@ -365,11 +347,71 @@ class Webservice {
                         callback(false,nil)
                     }
                 }else{
+                    callback(false,nil)}
+                
+            }
+        }.resume()
+    }
+    
+    func UpdateProfil(user:User, image :UIImage, callback: @escaping (Bool,String?)->Void){
+        
+        guard let mediaImage = Media(withImage: image, forKey: "photoProfil") else { return }
+        guard let url = URL(string: "http://localhost:3000/user/"+UserDefaults.standard.string(forKey: "_id")!) else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "PATCH"
+        //create boundary
+        
+        let boundary = generateBoundary()
+        //set content type
+        request.setValue( "Bearer \(UserDefaults.standard.string(forKey: "tokenConnexion")!)", forHTTPHeaderField: "Authorization")
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        //print("token est la : ",UserDefaults.standard.string(forKey: "tokenConnexion")!)
+        //call createDataBody method
+        
+        let dataBody = DataBody(user:user, media: [mediaImage], boundary: boundary)
+        request.httpBody = dataBody
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, error) in
+            DispatchQueue.main.async {
+                if let response = response {
+                }
+                if let data = data {
+                    do {
+                        if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]{
+                            if let reponse = json["reponse"] as? String{
+                               // print(json)
+                                if (reponse.contains("updated")){
+                                    if let validUser = json["user"] as? [String:Any]{
+                                        for (key,value) in validUser{
+                                            UserDefaults.standard.setValue(value, forKey: key)
+                                        }
+                                    }
+                                    callback(true,"updated")
+                                   
+                                }
+                                else{
+                                    callback(false,"ICIIII")
+                                }
+                            } else{
+                                callback(false,"erreur")
+                            }
+                        }
+                    } catch {
+                        callback(false,nil)
+                    }
+                }else{
                     callback(false,nil)}}
         }.resume()
     }
     
 }
+
+
+
+
+
+
 
 extension UIImageView {
     public func imageFromServerURL(urlString: String) {

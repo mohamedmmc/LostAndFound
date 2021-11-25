@@ -10,36 +10,43 @@ import FBSDKLoginKit
 import GoogleSignIn
 class ViewController: UIViewController,LoginButtonDelegate {
     
-    
+    var faza = UIImage(named: "")
+
     
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
         getUserDataFromFacebook()
-        
-    }
-    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
-        
     }
     @IBAction func loginGoogleButton(_ sender: Any) {
         getUserDataFromGoogle()
     }
+    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+        
+    }
+    
     
     func getUserDataFromGoogle (){
         let signInConfig = GIDConfiguration.init(clientID: "226296852735-1vvlur0mo1hm96ppbvn88qmq14odbjlt.apps.googleusercontent.com")
-        
-        GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) { user, error in
+        GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) { [self] userG, error in
           guard error == nil else { return }
          
            // print(user?.profile?.imageURL(withDimension: 512))
-            let user = User(id: "", nom: (user?.profile?.familyName)!, prenom: (user?.profile?.givenName)!, email: (user?.profile!.email)!, mdp: "", numtel: "", photoP: "", token: "")
-            Webservice().loginSocialMedia(username: user.email) { succes, reponse in
+            let user = User(id: "", nom: (userG?.profile?.familyName)!, prenom: (userG?.profile?.givenName)!, email: (userG?.profile!.email)!, mdp: "", numtel: "", photoP: "", token: "")
+
+           if let dataPhoto = try? Data(contentsOf: (userG?.profile?.imageURL(withDimension: 512))!) {
+                 faza = UIImage(data: dataPhoto)
+            }
+            UserService().loginSocialMedia(username: user.email) { succes, reponse in
                 if succes, let json = reponse as? String{
                     self.performSegue(withIdentifier: "connexion", sender: reponse)
                     if json == "pas inscrit" {
                         print("pas inscrit avec facebook")
                     }
+                    
                 }
+                
                 else{
-                    Webservice().CreationCompteSocial(user: user, image: UIImage(named: "google")! ) { succes, reponse in
+                    
+                    UserService().CreationCompteSocial(user: user, image: faza! ) { succes, reponse in
                         if succes, let json = reponse{
                             if (json == "ok"){
                                 self.performSegue(withIdentifier: "connexion", sender: reponse)
@@ -63,12 +70,23 @@ class ViewController: UIViewController,LoginButtonDelegate {
     let facebookLoginButton = FBLoginButton(frame: .zero, permissions: [.publicProfile,.email])
     
     func getUserDataFromFacebook() {
-        GraphRequest(graphPath: "me", parameters: ["fields": "first_name,last_name, picture,email, id"]).start { (connection, result, error) in
-            if let err = error { print(err.localizedDescription); return } else {
+        let imageData = NSData()
+        GraphRequest(graphPath: "me", parameters: ["fields": "first_name,last_name,  picture.width(480).height(480),email, id"]).start { [self] (connection, result, error) in
+             
                 if let fields = result as? [String:Any],let lastname = fields["last_name"] as? String,let firstName = fields["first_name"] as? String,let email = fields["email"] as? String, let id = fields["id"] as? String {
+                    if let profilePictureObj = fields["picture"] as? NSDictionary{
+                        
+                        let data = profilePictureObj["data"] as! NSDictionary
+                        let pictureUrlString  = data["url"] as! String
+                        let pictureUrl = NSURL(string: pictureUrlString)
+                      
+                        let imageData = NSData(contentsOf: pictureUrl! as URL)
+                        faza = UIImage(data: imageData as! Data)
+                
+                    }
                     
                     let user = User(id: "", nom: lastname, prenom: firstName, email: email, mdp: "", numtel: "", photoP: "", token: "")
-                    Webservice().loginSocialMedia(username: user.email) { succes, reponse in
+                    UserService().loginSocialMedia(username: user.email) { succes, reponse in
                         if succes, let json = reponse as? String{
                             self.performSegue(withIdentifier: "connexion", sender: reponse)
                             if json == "pas inscrit" {
@@ -76,7 +94,8 @@ class ViewController: UIViewController,LoginButtonDelegate {
                             }
                         }
                         else{
-                            Webservice().CreationCompteSocial(user: user, image: UIImage(named: "facebook")! ) { succes, reponse in
+                            
+                            UserService().CreationCompteSocial(user: user, image: faza! ) { succes, reponse in
                                 if succes, let json = reponse{
                                     self.performSegue(withIdentifier: "connexion", sender: reponse)
                                 }
@@ -92,7 +111,7 @@ class ViewController: UIViewController,LoginButtonDelegate {
                 }
             }
         }
-    }
+    
     @IBOutlet weak var Connexin: UIButton!
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -105,9 +124,7 @@ class ViewController: UIViewController,LoginButtonDelegate {
         
         //print(UserDefaults.standard.dictionaryRepresentation())
 
-        if let test = UserDefaults.standard.string(forKey: "nom"){
-            print(UserDefaults.standard.string(forKey: "nom"))
-        }
+       
 
         
     }
@@ -139,7 +156,7 @@ class ViewController: UIViewController,LoginButtonDelegate {
     @IBAction func Connexion(_ sender: UIButton) {
         let email = username.text!
         let pass = password.text!
-        Webservice().login(username: email,mdp: pass) { (succes,reponse) in
+        UserService().login(username: email,mdp: pass) { (succes,reponse) in
             if succes, let json = reponse{
                 
                 self.performSegue(withIdentifier: "connexion", sender: nil)

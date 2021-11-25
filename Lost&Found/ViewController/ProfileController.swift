@@ -13,7 +13,7 @@ class ProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let test = UserDefaults.standard.string(forKey: "nom")
-
+        
         profilPic.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "photoProfil")!)
 
         Name.text = test
@@ -23,8 +23,20 @@ class ProfileController: UIViewController {
         promptWithConfirm()
         
     }
-    let webS = Webservice()
-   
+    @IBAction func ModifierProfil(_ sender: Any) {
+        performSegue(withIdentifier: "modifierProfil", sender: "")
+    }
+    let webS = UserService()
+    @IBAction func darkModeSwitch(_ sender: UISwitch) {
+        if sender.isOn {
+                    UIApplication.shared.windows.forEach{
+                        window in window.overrideUserInterfaceStyle = .dark
+                    }}else{
+                        UIApplication.shared.windows.forEach{ window in window.overrideUserInterfaceStyle = .light
+                    }
+                    }
+    }
+    
     @IBOutlet weak var profilPic: UIImageView!
     @IBOutlet weak var Name: UILabel!
     
@@ -37,6 +49,7 @@ class ProfileController: UIViewController {
         refreshAlert.addAction(UIAlertAction(title: "Ok", style: .destructive, handler: { (action: UIAlertAction!) in
             let loginManager = LoginManager()
             loginManager.logOut()
+            UserDefaults.standard.removeObject(forKey: "tokenConnexion")
             UserDefaults.standard.removeObject(forKey: "nom")
             UserDefaults.standard.removeObject(forKey: "prenom")
             UserDefaults.standard.removeObject(forKey: "numt")

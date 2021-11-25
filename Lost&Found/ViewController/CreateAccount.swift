@@ -53,15 +53,13 @@ class CreateAccount: UIViewController,UIImagePickerControllerDelegate,UINavigati
     
     
     @IBAction func validation(_ sender: UIButton) {
-        let numero = "+216" + numT.text!
         
-        let user = User(id:"",nom: nom.text!, prenom: prenom.text!, email: usernameT.text!, mdp: mdpT.text!, numtel: numero,photoP: "photo:"+usernameT.text! , token: "")
+        let user = User(id:"",nom: nom.text!, prenom: prenom.text!, email: usernameT.text!, mdp: mdpT.text!, numtel: numT.text!,photoP: "photo:"+usernameT.text! , token: "")
         
         //Webservice().creationCompte(user: user,userpdp: photoDeProfilImageView.image!)
         if isValidEmail(usernameT.text!){
-            if (numero.count != 11) {
-                if (numero.isValidPhoneNumber()){
-                    Webservice().CreationCompte(user: user, image: photoDeProfilImageView.image!) { (succes, reponse) in
+            if (numT.text!.count != 8) {
+                    UserService().CreationCompte(user: user, image: photoDeProfilImageView.image!) { (succes, reponse) in
                         if succes, let json = reponse{
                             print(json)
                             if (json == "ok"){
@@ -78,9 +76,7 @@ class CreateAccount: UIViewController,UIImagePickerControllerDelegate,UINavigati
                             
                         }
                     }
-                }else{
-                    self.propmt(title: "Echec", message: "Numero invalid")
-                }
+                
             }else{
                 self.propmt(title: "Echec", message: "Numero invalid")
             }
@@ -133,11 +129,4 @@ class CreateAccount: UIViewController,UIImagePickerControllerDelegate,UINavigati
     
 }
 
-extension String {
-    func    isValidPhoneNumber() -> Bool {
-        let regEx = "^\\+(?:[0-9]?){6,14}[0-9]$"
 
-        let phoneCheck = NSPredicate(format: "SELF MATCHES[c] %@", regEx)
-        return phoneCheck.evaluate(with: self)
-    }
-}
