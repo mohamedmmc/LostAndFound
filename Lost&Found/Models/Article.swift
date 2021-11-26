@@ -8,16 +8,17 @@
 import Foundation
 
 struct Articles: Codable {
-    var articles: [Article]
+    var articles: [Article]?
 }
 
 struct Article: Codable {
     var _id:String
-    var nom:String
-    var description:String
-    var addresse:String
+    var nom:String?
+    var description:String?
+    var addresse:String?
     var photo:String?
     var dateCreation:String
     var dateModif:String
+    var type:String
     var __v:Int
 }

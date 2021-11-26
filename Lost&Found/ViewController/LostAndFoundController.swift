@@ -15,27 +15,38 @@ class LostAndFoundController: UIViewController,UITableViewDelegate,UITableViewDa
     var dernierTableau = [Article]()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        loadArticleToTableview(tableau:self.tableArticle)
         
+       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableArticle.reloadData()
+    }
+    
+    func loadArticleToTableview (tableau:UITableView){
         ArticleService().getArticle { succes, reponse in
             if succes {
-                for article in reponse!.articles{
+                for article in reponse!.articles!{
                     self.dernierTableau.append(article)
-                    self.tableArticle.reloadWithAnimation()
-//
+                    DispatchQueue.main.async {
+                        tableau.reloadWithAnimation()
+                                }
                 }
             }
             else{
                 print("pas d'article a afficher")
             }
         }
-        
-        tableArticle.reloadData()
-
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        tableArticle.reloadWithAnimation()
+    }
 
     @IBAction func AddItem(_ sender: Any) {
+        performSegue(withIdentifier: "ajouterArticle", sender: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

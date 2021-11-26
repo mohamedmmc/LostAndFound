@@ -97,6 +97,7 @@ class UserService {
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
         
         request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+        
         let session = URLSession.shared.dataTask(with: request){
             data, response, error in
             DispatchQueue.main.async {
