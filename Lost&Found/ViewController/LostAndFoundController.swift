@@ -94,9 +94,7 @@ class LostAndFoundController: UIViewController,UITableViewDelegate,UITableViewDa
         else if segue.identifier == "detailArticle" {
             let index = sender as! IndexPath
             let destination = segue.destination as! DetailArticleController
-            destination.nom = dernierTableau[index.row].nom
-            destination.desc = dernierTableau[index.row].description
-            destination.image = dernierTableau[index.row].photo
+            destination.article = dernierTableau[index.row]
         }
      
     }

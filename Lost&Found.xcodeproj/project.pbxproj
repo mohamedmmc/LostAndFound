@@ -27,6 +27,7 @@
 		85749BEA2750670400167934 /* AjouterArticleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85749BE92750670400167934 /* AjouterArticleController.swift */; };
 		85749BEC2752DEC900167934 /* DetailArticleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85749BEB2752DEC800167934 /* DetailArticleController.swift */; };
 		85749BEE2754E25600167934 /* OptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85749BED2754E25600167934 /* OptionsController.swift */; };
+		85749BF027582BB400167934 /* ContactProfilController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85749BEF27582BB300167934 /* ContactProfilController.swift */; };
 		85B5B729273E986C0079E2FE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5B728273E986C0079E2FE /* User.swift */; };
 		85B5B72D273E993E0079E2FE /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5B72C273E993E0079E2FE /* CreateAccount.swift */; };
 		85B745DB274EC77000B18E4F /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B745DA274EC76F00B18E4F /* Article.swift */; };
@@ -58,6 +59,7 @@
 		85749BE92750670400167934 /* AjouterArticleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjouterArticleController.swift; sourceTree = "<group>"; };
 		85749BEB2752DEC800167934 /* DetailArticleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailArticleController.swift; sourceTree = "<group>"; };
 		85749BED2754E25600167934 /* OptionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsController.swift; sourceTree = "<group>"; };
+		85749BEF27582BB300167934 /* ContactProfilController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactProfilController.swift; sourceTree = "<group>"; };
 		85B5B728273E986C0079E2FE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		85B5B72C273E993E0079E2FE /* CreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
 		85B745DA274EC76F00B18E4F /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				85749BE92750670400167934 /* AjouterArticleController.swift */,
 				85749BEB2752DEC800167934 /* DetailArticleController.swift */,
 				85749BED2754E25600167934 /* OptionsController.swift */,
+				85749BEF27582BB300167934 /* ContactProfilController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				85417DDD27303088003F59CF /* ConnexionController.swift in Sources */,
 				851AB3AC27402EC4005606AC /* ProfileController.swift in Sources */,
 				85417DD927303088003F59CF /* AppDelegate.swift in Sources */,
+				85749BF027582BB400167934 /* ContactProfilController.swift in Sources */,
 				85B5B729273E986C0079E2FE /* User.swift in Sources */,
 				85B745DB274EC77000B18E4F /* Article.swift in Sources */,
 				85417DDB27303088003F59CF /* SceneDelegate.swift in Sources */,
