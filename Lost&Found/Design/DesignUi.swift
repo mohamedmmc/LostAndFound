@@ -27,4 +27,11 @@ class DesignUi {
         titre?.layer.borderWidth = width
         titre?.layer.borderColor = Bordercolor.cgColor
     }
+    public func RadiusImage(titre:UIImageView!,radius:CGFloat,width:CGFloat,Bordercolor:UIColor){
+        titre?.layer.cornerRadius = radius
+        titre?.layer.masksToBounds = true
+        titre?.layer.borderWidth = width
+        titre?.layer.borderColor = Bordercolor.cgColor
+
+    }
 }

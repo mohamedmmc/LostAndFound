@@ -81,15 +81,15 @@ class ArticleService {
         let session = URLSession.shared
         session.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
-                if let response = response {
-                }
+          
                 if let data = data {
                     let decoder = JSONDecoder()
                     do {
                         let test = try decoder.decode(Article.self, from: data)
                         callback(true,test)
                     }catch{
-                        print(error)
+                        print("erreur de decodage (add): ",error)
+                        callback(false,"erreur decodage")
                     }
                 } else{
                     callback(false,"no data")
@@ -122,6 +122,10 @@ class ArticleService {
         body.append("Content-Disposition: form-data; name=\"type\"\(lineBreak + lineBreak)")
         body.append("\(article.type + lineBreak)")
         
+        body.append("--\(boundary + lineBreak)")
+        body.append("Content-Disposition: form-data; name=\"user\"\(lineBreak + lineBreak)")
+        body.append("\(UserDefaults.standard.string(forKey: "_id")! + lineBreak)")
+        
         if let media = media {
             for photo in media {
                 body.append("--\(boundary + lineBreak)")
@@ -151,16 +155,22 @@ class ArticleService {
             data, response, error in
             DispatchQueue.main.async {
             if error == nil && data != nil{
-                
-                let decoder = JSONDecoder()
-                do {
-                    
-                    let test = try decoder.decode(Articles.self, from: data!)
-                    callback(true,test)
-                } catch  {
-                    print(error)
-                    callback(false,nil)
+                if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
+                    if jsonRes["message"] == nil{
+                        let decoder = JSONDecoder()
+                        do {
+                            let test = try decoder.decode(Articles.self, from: data!)
+                            callback(true,test)
+                        } catch  {
+                            print(error)
+                            callback(false,nil)
+                        }
+                    }
+                    else{
+                        callback(false,nil)
+                    }
                 }
+               
             }else{
                 callback(false,nil)}
             

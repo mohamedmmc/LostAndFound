@@ -23,6 +23,8 @@ class ModiferProfilController: UIViewController,UIImagePickerControllerDelegate,
         photoDeProfilImageView.contentMode = UIView.ContentMode.scaleAspectFit
         Design.BorderButton(titre: valider, radius: 20, width: 2, Bordercolor: UIColor.init(red: 255, green: 255, blue: 255, alpha: 2))
         photoDeProfilImageView.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "photoProfil")!)
+        Design.RadiusImage(titre: photoDeProfilImageView!, radius: 5,width: 2,Bordercolor: .white)
+
     }
     
     
@@ -37,24 +39,24 @@ class ModiferProfilController: UIViewController,UIImagePickerControllerDelegate,
     
     @IBAction func valider(_ sender: Any) {
  
-        if isValidEmail(usernameT.text!){
-            if (numT.text!.count != 8){
-                let user = User(id: UserDefaults.standard.string(forKey: "_id")!, nom: nom.text!, prenom: prenom.text!, email: usernameT.text!, mdp: UserDefaults.standard.string(forKey: "password")!, numtel: numT.text!, photoP: UserDefaults.standard.string(forKey: "photoProfil")!, token: UserDefaults.standard.string(forKey: "tokenConnexion")!)
-                let pictureUrl = NSURL(string: UserDefaults.standard.string(forKey: "photoProfil")!)
-              
-                let imageData = NSData(contentsOf: pictureUrl! as URL)
-                let faza = UIImage(data: imageData as! Data)
-                    UserService().UpdateProfil(user: user, image: faza!) { succes, reponse in
-                        if succes, let json = reponse{
-                            print(json)
-                            self.dismiss(animated: true)
-                        }
-                        else{
-                            print(reponse)
-                        }
-                    }
-                }
-        }
+//        if isValidEmail(usernameT.text!){
+//            if (numT.text!.count != 8){
+//                let user = User(id: UserDefaults.standard.string(forKey: "_id")!, nom: nom.text!, prenom: prenom.text!, email: usernameT.text!, mdp: UserDefaults.standard.string(forKey: "password")!, numtel: numT.text!, photoP: UserDefaults.standard.string(forKey: "photoProfil")!, token: UserDefaults.standard.string(forKey: "tokenConnexion")!)
+//                let pictureUrl = NSURL(string: UserDefaults.standard.string(forKey: "photoProfil")!)
+//
+//                let imageData = NSData(contentsOf: pictureUrl! as URL)
+//                let faza = UIImage(data: imageData as! Data)
+//                    UserService().UpdateProfil(user: user, image: faza!) { succes, reponse in
+//                        if succes, let json = reponse{
+//                            print(json)
+//                            self.dismiss(animated: true)
+//                        }
+//                        else{
+//                            print(reponse)
+//                        }
+//                    }
+//                }
+//        }
     }
     
     

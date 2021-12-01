@@ -24,7 +24,9 @@
 		85417DE827303089003F59CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85417DE627303089003F59CF /* LaunchScreen.storyboard */; };
 		855C5A22274BFA3300906DE1 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C5A21274BFA3300906DE1 /* ArticleService.swift */; };
 		855C5A24274BFCEF00906DE1 /* ModifierProfilController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C5A23274BFCEF00906DE1 /* ModifierProfilController.swift */; };
-		85749BEA2750670400167934 /* AjouterArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85749BE92750670400167934 /* AjouterArticle.swift */; };
+		85749BEA2750670400167934 /* AjouterArticleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85749BE92750670400167934 /* AjouterArticleController.swift */; };
+		85749BEC2752DEC900167934 /* DetailArticleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85749BEB2752DEC800167934 /* DetailArticleController.swift */; };
+		85749BEE2754E25600167934 /* OptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85749BED2754E25600167934 /* OptionsController.swift */; };
 		85B5B729273E986C0079E2FE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5B728273E986C0079E2FE /* User.swift */; };
 		85B5B72D273E993E0079E2FE /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5B72C273E993E0079E2FE /* CreateAccount.swift */; };
 		85B745DB274EC77000B18E4F /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B745DA274EC76F00B18E4F /* Article.swift */; };
@@ -53,7 +55,9 @@
 		85417DE927303089003F59CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		855C5A21274BFA3300906DE1 /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 		855C5A23274BFCEF00906DE1 /* ModifierProfilController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierProfilController.swift; sourceTree = "<group>"; };
-		85749BE92750670400167934 /* AjouterArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjouterArticle.swift; sourceTree = "<group>"; };
+		85749BE92750670400167934 /* AjouterArticleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjouterArticleController.swift; sourceTree = "<group>"; };
+		85749BEB2752DEC800167934 /* DetailArticleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailArticleController.swift; sourceTree = "<group>"; };
+		85749BED2754E25600167934 /* OptionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsController.swift; sourceTree = "<group>"; };
 		85B5B728273E986C0079E2FE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		85B5B72C273E993E0079E2FE /* CreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
 		85B745DA274EC76F00B18E4F /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
@@ -157,7 +161,9 @@
 				851AB3B327410C2D005606AC /* MySubclassedTabBarController.swift */,
 				855C5A23274BFCEF00906DE1 /* ModifierProfilController.swift */,
 				85B745DC274F2CAD00B18E4F /* AssociationController.swift */,
-				85749BE92750670400167934 /* AjouterArticle.swift */,
+				85749BE92750670400167934 /* AjouterArticleController.swift */,
+				85749BEB2752DEC800167934 /* DetailArticleController.swift */,
+				85749BED2754E25600167934 /* OptionsController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -296,6 +302,8 @@
 				851AB3BC2741920B005606AC /* Utilis.swift in Sources */,
 				85417DE327303088003F59CF /* Lost_Found.xcdatamodeld in Sources */,
 				851AB3AE27402ED3005606AC /* AssociationsController.swift in Sources */,
+				85749BEC2752DEC900167934 /* DetailArticleController.swift in Sources */,
+				85749BEE2754E25600167934 /* OptionsController.swift in Sources */,
 				851AB3B7274142B9005606AC /* UserService.swift in Sources */,
 				855C5A22274BFA3300906DE1 /* ArticleService.swift in Sources */,
 				85B745DD274F2CAE00B18E4F /* AssociationController.swift in Sources */,
@@ -311,7 +319,7 @@
 				85B745DB274EC77000B18E4F /* Article.swift in Sources */,
 				85417DDB27303088003F59CF /* SceneDelegate.swift in Sources */,
 				851AB3B427410C2D005606AC /* MySubclassedTabBarController.swift in Sources */,
-				85749BEA2750670400167934 /* AjouterArticle.swift in Sources */,
+				85749BEA2750670400167934 /* AjouterArticleController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

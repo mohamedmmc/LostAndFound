@@ -54,11 +54,11 @@ class CreateAccount: UIViewController,UIImagePickerControllerDelegate,UINavigati
     
     @IBAction func validation(_ sender: UIButton) {
         
-        let user = User(id:"",nom: nom.text!, prenom: prenom.text!, email: usernameT.text!, mdp: mdpT.text!, numtel: numT.text!,photoP: "photo:"+usernameT.text! , token: "")
+        let user = User(id:"",nom: nom.text!, prenom: prenom.text!, email: usernameT.text!, mdp: mdpT.text!, numtel: numT.text!,photoProfil: "photo:"+usernameT.text! , isVerified: false,__v: 0)
         
         //Webservice().creationCompte(user: user,userpdp: photoDeProfilImageView.image!)
         if isValidEmail(usernameT.text!){
-            if (numT.text!.count != 8) {
+            if (numT.text!.count == 8) {
                     UserService().CreationCompte(user: user, image: photoDeProfilImageView.image!) { (succes, reponse) in
                         if succes, let json = reponse{
                             print(json)

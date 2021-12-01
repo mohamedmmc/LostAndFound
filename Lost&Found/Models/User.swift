@@ -8,26 +8,28 @@
 import Foundation
 
 struct User: Codable {
-    let id:String
-    let nom:String
-    let prenom:String
-    let email:String
-    let mdp:String
-    let numT:String
-    let photoP:String
-    public let token:String
-    
+    var _id:String
+    var nom:String
+    var prenom:String
+    var email:String
+    var mdp:String?
+    var numT:String?
+    var photoProfil:String
+    var isVerified:Bool
+    var __v:Int
+
  
     
-    init(id:String, nom:String,prenom:String,email:String,mdp:String,numtel:String,photoP:String,token:String) {
-        self.id=""
+    init(id:String, nom:String,prenom:String,email:String,mdp:String,numtel:String,photoProfil:String,isVerified:Bool,__v:Int) {
+        self._id = id
         self.nom = nom
         self.prenom = prenom
         self.email = email
         self.mdp=mdp
         self.numT=numtel
-        self.photoP = photoP
-        self.token=""
+        self.photoProfil = photoProfil
+        self.isVerified = isVerified
+        self.__v = 0
     }
     
     

@@ -30,10 +30,11 @@ class ViewController: UIViewController,LoginButtonDelegate {
           guard error == nil else { return }
          
            // print(user?.profile?.imageURL(withDimension: 512))
-            let user = User(id: "", nom: (userG?.profile?.familyName)!, prenom: (userG?.profile?.givenName)!, email: (userG?.profile!.email)!, mdp: "", numtel: "", photoP: "", token: "")
+            let user = User(id: "", nom: (userG?.profile?.familyName)!, prenom: (userG?.profile?.givenName)!, email: (userG?.profile!.email)!, mdp: "", numtel: "", photoProfil: "",isVerified: false,__v: 0)
 
            if let dataPhoto = try? Data(contentsOf: (userG?.profile?.imageURL(withDimension: 512))!) {
                  faza = UIImage(data: dataPhoto)
+            
             }
             UserService().loginSocialMedia(username: user.email) { succes, reponse in
                 if succes, let json = reponse as? String{
@@ -85,7 +86,7 @@ class ViewController: UIViewController,LoginButtonDelegate {
                 
                     }
                     
-                    let user = User(id: "", nom: lastname, prenom: firstName, email: email, mdp: "", numtel: "", photoP: "", token: "")
+                    let user = User(id: "", nom: lastname, prenom: firstName, email: email, mdp: "", numtel: "", photoProfil: "", isVerified: false,__v: 0)
                     UserService().loginSocialMedia(username: user.email) { succes, reponse in
                         if succes, let json = reponse as? String{
                             self.performSegue(withIdentifier: "connexion", sender: reponse)

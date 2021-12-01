@@ -39,11 +39,9 @@ class UserService {
         guard let url = URL(string: "http://localhost:3000/user/Auth") else{
             return
         }
-        
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
-        
         request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
         let session = URLSession.shared.dataTask(with: request){
             data, response, error in
@@ -61,9 +59,7 @@ class UserService {
                         }
                         if let reponse = jsonRes["user"] as? [String: Any]{
                             for (key,value) in reponse{
-                               // print("++++++++++",key,value)
                                 UserDefaults.standard.setValue(value, forKey: key)
-                                
                             }
                             UserDefaults.standard.setValue("", forKey: "password")
                             callback(true,"good")
@@ -186,12 +182,12 @@ class UserService {
         
         body.append("--\(boundary + lineBreak)")
         body.append("Content-Disposition: form-data; name=\"password\"\(lineBreak + lineBreak)")
-        body.append("\(user.mdp + lineBreak)")
+        body.append("\(user.mdp! + lineBreak)")
         
         
         body.append("--\(boundary + lineBreak)")
         body.append("Content-Disposition: form-data; name=\"numt\"\(lineBreak + lineBreak)")
-        body.append("\(user.numT + lineBreak)")
+        body.append("\(user.numT! + lineBreak)")
         
         if let media = media {
             for photo in media {

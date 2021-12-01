@@ -10,5 +10,6 @@ target 'Lost&Found' do
     pod 'FBSDKLoginKit'
 
 pod 'GoogleSignIn'
+ pod 'SideMenu'
     
 end

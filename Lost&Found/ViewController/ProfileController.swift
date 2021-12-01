@@ -8,15 +8,17 @@
 import Foundation
 import UIKit
 import FBSDKLoginKit
+
 class ProfileController: UIViewController {
-        
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let test = UserDefaults.standard.string(forKey: "nom")
         
-        profilPic.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "photoProfil")!)
 
-        Name.text = test
+        profilPic.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "photoProfil")!)
+        Name.text = test!.uppercased() + " " + UserDefaults.standard.string(forKey: "prenom")!
+        
     }
     
     @IBAction func deconnexion(_ sender: Any) {
@@ -24,7 +26,7 @@ class ProfileController: UIViewController {
         
     }
     @IBAction func ModifierProfil(_ sender: Any) {
-        performSegue(withIdentifier: "modifierProfil", sender: "")
+        performSegue(withIdentifier: "options", sender: sender)
     }
     let webS = UserService()
     @IBAction func darkModeSwitch(_ sender: UISwitch) {

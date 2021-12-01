@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Articles: Codable {
+struct Articles: Decodable{
     var articles: [Article]?
 }
 
-struct Article: Codable {
+struct Article: Decodable {
     var _id:String
     var nom:String?
     var description:String?
@@ -20,5 +20,6 @@ struct Article: Codable {
     var dateCreation:String
     var dateModif:String
     var type:String
+    var user:User
     var __v:Int
 }
