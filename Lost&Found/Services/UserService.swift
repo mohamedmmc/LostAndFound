@@ -178,16 +178,19 @@ class UserService {
         body.append("--\(boundary + lineBreak)")
         body.append("Content-Disposition: form-data; name=\"email\"\(lineBreak + lineBreak)")
         body.append("\(user.email + lineBreak)")
+        if !(user.mdp ?? "").isEmpty{
+            body.append("--\(boundary + lineBreak)")
+            body.append("Content-Disposition: form-data; name=\"password\"\(lineBreak + lineBreak)")
+            body.append("\(user.mdp! + lineBreak)")
+        }
         
         
-        body.append("--\(boundary + lineBreak)")
-        body.append("Content-Disposition: form-data; name=\"password\"\(lineBreak + lineBreak)")
-        body.append("\(user.mdp! + lineBreak)")
-        
-        
-        body.append("--\(boundary + lineBreak)")
-        body.append("Content-Disposition: form-data; name=\"numt\"\(lineBreak + lineBreak)")
-        body.append("\(user.numT! + lineBreak)")
+        if !(user.numT ?? "").isEmpty{
+            body.append("--\(boundary + lineBreak)")
+            body.append("Content-Disposition: form-data; name=\"numt\"\(lineBreak + lineBreak)")
+            body.append("\(user.numT! + lineBreak)")
+        }
+       
         
         if let media = media {
             for photo in media {
@@ -354,6 +357,7 @@ class UserService {
         
         guard let mediaImage = Media(withImage: image, forKey: "photoProfil") else { return }
         guard let url = URL(string: "http://localhost:3000/user/"+UserDefaults.standard.string(forKey: "_id")!) else { return }
+        print(url)
         var request = URLRequest(url: url)
         request.httpMethod = "PATCH"
         //create boundary
@@ -376,6 +380,7 @@ class UserService {
                 if let data = data {
                     do {
                         if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]{
+                            print("json",json)
                             if let reponse = json["reponse"] as? String{
                                // print(json)
                                 if (reponse.contains("updated")){

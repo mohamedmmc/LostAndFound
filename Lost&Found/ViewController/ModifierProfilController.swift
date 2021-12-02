@@ -39,24 +39,25 @@ class ModiferProfilController: UIViewController,UIImagePickerControllerDelegate,
     
     @IBAction func valider(_ sender: Any) {
  
-//        if isValidEmail(usernameT.text!){
-//            if (numT.text!.count != 8){
-//                let user = User(id: UserDefaults.standard.string(forKey: "_id")!, nom: nom.text!, prenom: prenom.text!, email: usernameT.text!, mdp: UserDefaults.standard.string(forKey: "password")!, numtel: numT.text!, photoP: UserDefaults.standard.string(forKey: "photoProfil")!, token: UserDefaults.standard.string(forKey: "tokenConnexion")!)
-//                let pictureUrl = NSURL(string: UserDefaults.standard.string(forKey: "photoProfil")!)
-//
-//                let imageData = NSData(contentsOf: pictureUrl! as URL)
-//                let faza = UIImage(data: imageData as! Data)
-//                    UserService().UpdateProfil(user: user, image: faza!) { succes, reponse in
-//                        if succes, let json = reponse{
-//                            print(json)
-//                            self.dismiss(animated: true)
-//                        }
-//                        else{
-//                            print(reponse)
-//                        }
-//                    }
-//                }
-//        }
+        if isValidEmail(usernameT.text!){
+            if (numT.text!.count == 8){
+                
+                let user = User(id: UserDefaults.standard.string(forKey: "_id")!, nom: nom.text!, prenom: prenom.text!, email: usernameT.text!, photoProfil: "", isVerified: UserDefaults.standard.bool(forKey: "isVerified"), __v: 0)
+                let pictureUrl = NSURL(string: UserDefaults.standard.string(forKey: "photoProfil")!)
+                print(user)
+                let imageData = NSData(contentsOf: pictureUrl! as URL)
+                let faza = UIImage(data: imageData as! Data)
+                UserService().UpdateProfil(user: user, image: photoDeProfilImageView.image!) { succes, reponse in
+                        if succes, let json = reponse{
+                            print(json)
+                            self.dismiss(animated: true)
+                        }
+                        else{
+                            print(reponse)
+                        }
+                    }
+                }
+        }
     }
     
     

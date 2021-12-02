@@ -11,6 +11,7 @@ import UIKit
 class OptionsController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     let tableau = ["Securite","Modifier Profil","Theme"]
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableau.count
     }
@@ -26,6 +27,7 @@ class OptionsController: UIViewController,UITableViewDelegate,UITableViewDataSou
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(tableau[indexPath.row])
     }
     
     override func viewDidLoad() {

@@ -8,16 +8,41 @@
 import Foundation
 import UIKit
 import FBSDKLoginKit
-
+import DropDown
 class ProfileController: UIViewController {
-
+    let dropDown = DropDown()
+    let Design = DesignUi()
+    @IBAction func settingsUibuttonTapped(_ sender: Any) {
+        dropDown.show()
+    }
+    
+    
+    func dropDownSelector (){
+        dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            if (item == "Modifier Profil"){
+                performSegue(withIdentifier: "modifierProfil", sender: nil)
+            }
+        }
+    }
+    
+    
+    @IBOutlet weak var settingsUIbutton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let test = UserDefaults.standard.string(forKey: "nom")
-        
+
+        // The view to which the drop down will appear on
+        dropDown.anchorView = settingsUIbutton // UIView or UIBarButtonItem
+        dropDownSelector()
+        dropDown.dataSource = ["Securite","Modifier Profil","Theme"]
 
         profilPic.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "photoProfil")!)
         Name.text = test!.uppercased() + " " + UserDefaults.standard.string(forKey: "prenom")!
+        profilPic.contentMode = UIView.ContentMode.scaleAspectFit
+        
+        profilPic.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "photoProfil")!)
+        Design.RadiusImage(titre: profilPic!, radius: 5,width: 2,Bordercolor: .white)
         
     }
     
@@ -25,9 +50,7 @@ class ProfileController: UIViewController {
         promptWithConfirm()
         
     }
-    @IBAction func ModifierProfil(_ sender: Any) {
-        performSegue(withIdentifier: "options", sender: sender)
-    }
+
     let webS = UserService()
     @IBAction func darkModeSwitch(_ sender: UISwitch) {
         if sender.isOn {
