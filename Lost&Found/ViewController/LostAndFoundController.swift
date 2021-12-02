@@ -81,7 +81,8 @@ class LostAndFoundController: UIViewController,UITableViewDelegate,UITableViewDa
                 }
             }
             else{
-                print("pas d'article a afficher")
+                
+                self.propmt(title: "Tableau vide", message: "Pas d'article a afficher pour le moment")
             }
         }
     }
@@ -134,7 +135,14 @@ class LostAndFoundController: UIViewController,UITableViewDelegate,UITableViewDa
         
         
         return cell
-    }}
+    }
+    func propmt(title:String, message:String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .destructive , handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+}
     
     
 
@@ -155,4 +163,5 @@ extension UITableView {
             delayCounter += 1
         }
     }
+    
 }

@@ -10,6 +10,7 @@ import UIKit
 import FBSDKLoginKit
 import DropDown
 class ProfileController: UIViewController {
+    var darkTheme = false
     let dropDown = DropDown()
     let Design = DesignUi()
     @IBAction func settingsUibuttonTapped(_ sender: Any) {
@@ -21,6 +22,34 @@ class ProfileController: UIViewController {
         dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             if (item == "Modifier Profil"){
                 performSegue(withIdentifier: "modifierProfil", sender: nil)
+            }
+            else if (item == "Theme"){
+                let refreshAlert = UIAlertController(title: "Changer theme", message: "Etes vous sure de vouloir changer de theme ?", preferredStyle: UIAlertController.Style.alert)
+
+                refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                    if !darkTheme{
+                        UIApplication.shared.windows.forEach { window in
+                            window.overrideUserInterfaceStyle = .dark
+                            print("change dark")
+                            darkTheme = true
+                        }
+                    }
+                    else{
+                        UIApplication.shared.windows.forEach { window in
+                            window.overrideUserInterfaceStyle = .light
+                            print("change light")
+                        }
+                    }
+                }))
+                refreshAlert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: { (action: UIAlertAction!) in
+                    refreshAlert.dismiss(animated: true) {
+                    }
+                }))
+                present(refreshAlert, animated: true, completion: nil)
+
+            }
+            else if (item == "Déconnexion"){
+                promptWithConfirm()
             }
         }
     }
@@ -34,7 +63,7 @@ class ProfileController: UIViewController {
         // The view to which the drop down will appear on
         dropDown.anchorView = settingsUIbutton // UIView or UIBarButtonItem
         dropDownSelector()
-        dropDown.dataSource = ["Securite","Modifier Profil","Theme"]
+        dropDown.dataSource = ["Securite","Modifier Profil","Theme","Déconnexion"]
 
         profileUpdated()
         profilPic.contentMode = UIView.ContentMode.scaleAspectFit
@@ -92,7 +121,7 @@ class ProfileController: UIViewController {
             
           }))
 
-        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: { (action: UIAlertAction!) in
             refreshAlert.dismiss(animated: true) {
                 
             }
