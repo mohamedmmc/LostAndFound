@@ -30,20 +30,26 @@ class ProfileController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let test = UserDefaults.standard.string(forKey: "nom")
 
         // The view to which the drop down will appear on
         dropDown.anchorView = settingsUIbutton // UIView or UIBarButtonItem
         dropDownSelector()
         dropDown.dataSource = ["Securite","Modifier Profil","Theme"]
 
-        profilPic.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "photoProfil")!)
-        Name.text = test!.uppercased() + " " + UserDefaults.standard.string(forKey: "prenom")!
+        profileUpdated()
         profilPic.contentMode = UIView.ContentMode.scaleAspectFit
         
         profilPic.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "photoProfil")!)
         Design.RadiusImage(titre: profilPic!, radius: 5,width: 2,Bordercolor: .white)
         
+        let name = Notification.Name("updateProfil")
+        NotificationCenter.default.addObserver(self, selector: #selector(profileUpdated), name: name, object: nil)
+        
+    }
+    
+    @objc func profileUpdated(){
+        profilPic.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "photoProfil")!)
+        Name.text = UserDefaults.standard.string(forKey: "nom")!.uppercased() + " " + UserDefaults.standard.string(forKey: "prenom")!
     }
     
     @IBAction func deconnexion(_ sender: Any) {

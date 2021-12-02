@@ -55,22 +55,22 @@ class LostAndFoundController: UIViewController,UITableViewDelegate,UITableViewDa
     override func viewDidLoad() {
         initSearchController()
         super.viewDidLoad()
-        tableArticle.refreshControl = UIRefreshControl()
-        tableArticle.refreshControl?.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
         loadArticleToTableview(tableau:self.tableArticle)
         uiDesign.BorderButton(titre: addbutton, radius: 12, width: 3, Bordercolor: .white)
+        let name = Notification.Name("articleAjoute")
+        NotificationCenter.default.addObserver(self, selector: #selector(loadArticle), name: name, object: nil)
         
        
     }
 
     @IBOutlet weak var addbutton: UIButton!
 
-    @objc private func didPullToRefresh(){
+    @objc func loadArticle(){
         dernierTableau.removeAll()
-        loadArticleToTableview(tableau: tableArticle)
-    }
+        loadArticleToTableview(tableau:self.tableArticle)
+        }
     
-    func loadArticleToTableview (tableau:UITableView){
+     func loadArticleToTableview (tableau:UITableView){
         ArticleService().getArticle { succes, reponse in
             if succes {
                 for article in reponse!.articles!{

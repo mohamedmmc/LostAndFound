@@ -49,7 +49,9 @@ class ModiferProfilController: UIViewController,UIImagePickerControllerDelegate,
                 let faza = UIImage(data: imageData as! Data)
                 UserService().UpdateProfil(user: user, image: photoDeProfilImageView.image!) { succes, reponse in
                         if succes, let json = reponse{
-                            print(json)
+                            let name = Notification.Name("updateProfil")
+                            let notification = Notification(name: name)
+                            NotificationCenter.default.post(notification)
                             self.dismiss(animated: true)
                         }
                         else{

@@ -65,10 +65,9 @@ class AjouterArticleController: UIViewController,UIImagePickerControllerDelegate
             ArticleService().AjoutArticle(article: article, image: imageArticle.image!) { succes, reponse in
                 if succes, let json = reponse{
 
-                    let tableView = LostAndFoundController().tableArticle
-                    self.test.append(json as! Article)
-                    //tableView?.reloadWithAnimation()
-                    tableView?.reloadData()
+                    let name = Notification.Name("articleAjoute")
+                    let notification = Notification(name: name)
+                    NotificationCenter.default.post(notification)
                     self.dismiss(animated: true, completion: nil)
                     
                 }
