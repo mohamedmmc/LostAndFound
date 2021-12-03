@@ -51,7 +51,6 @@ class UserService {
                 }else {
                     //print("++++++++++++",data)
                     if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
-                       print("probleme ici", jsonRes)
                         if jsonRes["token"] != nil {
                            
                             
@@ -330,8 +329,10 @@ class UserService {
                                 }
                                 else{
                                     if let connexionToken = json["token"] as? String{
-                                        //print(connexionToken)
-                                        UserDefaults.standard.setValue(connexionToken, forKey: "connexionToken")
+                                        print("Connexion social et ceci est token ",connexionToken)
+                                        
+                                        UserDefaults.standard.setValue(connexionToken, forKey: "tokenConnexion")
+                                      
                                     }
                                     if let validUser = json["user"] as? [String:Any]{
                                         for (key,value) in validUser{
@@ -353,18 +354,54 @@ class UserService {
         }.resume()
     }
     
+    
+    func deleteProfil ( callback: @escaping (Bool,String?)->Void){
+        guard let url = URL(string: "http://localhost:3000/user/"+UserDefaults.standard.string(forKey: "_id")!) else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue( "Bearer \(UserDefaults.standard.string(forKey: "tokenConnexion")!)", forHTTPHeaderField: "Authorization")
+        let session = URLSession.shared.dataTask(with: request){
+            data, response, error in
+            DispatchQueue.main.async {
+                if error != nil{
+                    print("there is error")
+                }else {
+                    if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
+                        if var reponse = jsonRes["reponse"] as? String{
+                            if reponse.contains("succes") {
+                                callback(true,reponse)
+
+                            }else{
+                                callback(false,reponse)
+                            }
+                            //print(reponse)
+                        }
+                        else{
+                            callback(false,nil)
+                        }
+                    }else{
+                        callback(false,nil)
+                    }
+                }
+            }
+            
+        }.resume()
+    }
+    
     func UpdateProfil(user:User, image :UIImage, callback: @escaping (Bool,String?)->Void){
         
         guard let mediaImage = Media(withImage: image, forKey: "photoProfil") else { return }
         guard let url = URL(string: "http://localhost:3000/user/"+UserDefaults.standard.string(forKey: "_id")!) else { return }
-        print(url)
         var request = URLRequest(url: url)
         request.httpMethod = "PATCH"
         //create boundary
         
         let boundary = generateBoundary()
         //set content type
-        request.setValue( "Bearer \(UserDefaults.standard.string(forKey: "tokenConnexion")!)", forHTTPHeaderField: "Authorization")
+        let token = UserDefaults.standard.string(forKey: "tokenConnexion")!
+        print("le token est la ya zebi",token)
+        request.setValue( "Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         
         //print("token est la : ",UserDefaults.standard.string(forKey: "tokenConnexion")!)

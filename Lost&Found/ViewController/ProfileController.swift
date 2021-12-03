@@ -51,7 +51,39 @@ class ProfileController: UIViewController {
             else if (item == "Déconnexion"){
                 promptWithConfirm()
             }
+            else if (item == "Supprimer Profil"){
+                let refreshAlert = UIAlertController(title: "Supprimer", message: "Etes vous sure de vouloir supprimer votre profile ?", preferredStyle: UIAlertController.Style.alert)
+
+                refreshAlert.addAction(UIAlertAction(title: "Ok", style: .destructive, handler: { (action: UIAlertAction!) in
+                    UserService().deleteProfil { succes, reponse in
+                        if succes{
+                            self.clearData()
+                            self.performSegue(withIdentifier: "deconnexion", sender: "ok")
+                        }
+                    }
+                }))
+                refreshAlert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: { (action: UIAlertAction!) in
+                    refreshAlert.dismiss(animated: true) {
+                    }
+                }))
+                present(refreshAlert, animated: true, completion: nil)
+                
+            }
         }
+    }
+    
+    func clearData(){
+        let loginManager = LoginManager()
+        loginManager.logOut()
+        UserDefaults.standard.removeObject(forKey: "_id")
+        UserDefaults.standard.removeObject(forKey: "tokenConnexion")
+        UserDefaults.standard.removeObject(forKey: "nom")
+        UserDefaults.standard.removeObject(forKey: "prenom")
+        UserDefaults.standard.removeObject(forKey: "numt")
+        UserDefaults.standard.removeObject(forKey: "email")
+        UserDefaults.standard.removeObject(forKey: "password")
+        UserDefaults.standard.removeObject(forKey: "photoProfil")
+        UserDefaults.standard.synchronize()
     }
     
     
@@ -59,11 +91,12 @@ class ProfileController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //print("le token est profile controller",UserDefaults.standard.string(forKey: "tokenConnexion")!)
         // The view to which the drop down will appear on
         dropDown.anchorView = settingsUIbutton // UIView or UIBarButtonItem
         dropDownSelector()
-        dropDown.dataSource = ["Securite","Modifier Profil","Theme","Déconnexion"]
+        dropDown.dataSource = ["Securite","Modifier Profil","Theme","Déconnexion","Supprimer Profil"]
+        dropDown.selectionBackgroundColor = .blue
 
         profileUpdated()
         profilPic.contentMode = UIView.ContentMode.scaleAspectFit
@@ -87,15 +120,6 @@ class ProfileController: UIViewController {
     }
 
     let webS = UserService()
-    @IBAction func darkModeSwitch(_ sender: UISwitch) {
-        if sender.isOn {
-                    UIApplication.shared.windows.forEach{
-                        window in window.overrideUserInterfaceStyle = .dark
-                    }}else{
-                        UIApplication.shared.windows.forEach{ window in window.overrideUserInterfaceStyle = .light
-                    }
-                    }
-    }
     
     @IBOutlet weak var profilPic: UIImageView!
     @IBOutlet weak var Name: UILabel!
@@ -107,16 +131,7 @@ class ProfileController: UIViewController {
         let refreshAlert = UIAlertController(title: "Deconnexion", message: "Etes vous sure de vouloir vous deconnecter ?", preferredStyle: UIAlertController.Style.alert)
 
         refreshAlert.addAction(UIAlertAction(title: "Ok", style: .destructive, handler: { (action: UIAlertAction!) in
-            let loginManager = LoginManager()
-            loginManager.logOut()
-            UserDefaults.standard.removeObject(forKey: "tokenConnexion")
-            UserDefaults.standard.removeObject(forKey: "nom")
-            UserDefaults.standard.removeObject(forKey: "prenom")
-            UserDefaults.standard.removeObject(forKey: "numt")
-            UserDefaults.standard.removeObject(forKey: "email")
-            UserDefaults.standard.removeObject(forKey: "password")
-            UserDefaults.standard.removeObject(forKey: "photoProfil")
-            UserDefaults.standard.synchronize()
+            self.clearData()
             self.performSegue(withIdentifier: "deconnexion", sender: "ok")
             
           }))

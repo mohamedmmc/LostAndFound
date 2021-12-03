@@ -31,7 +31,6 @@
 		85B5B729273E986C0079E2FE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5B728273E986C0079E2FE /* User.swift */; };
 		85B5B72D273E993E0079E2FE /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5B72C273E993E0079E2FE /* CreateAccount.swift */; };
 		85B745DB274EC77000B18E4F /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B745DA274EC76F00B18E4F /* Article.swift */; };
-		85B745DD274F2CAE00B18E4F /* AssociationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B745DC274F2CAD00B18E4F /* AssociationController.swift */; };
 		E1D35C6F954C510F44A2D314 /* Pods_Lost_Found.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E8092D2410330D9E58E0372 /* Pods_Lost_Found.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,7 +62,6 @@
 		85B5B728273E986C0079E2FE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		85B5B72C273E993E0079E2FE /* CreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
 		85B745DA274EC76F00B18E4F /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
-		85B745DC274F2CAD00B18E4F /* AssociationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssociationController.swift; sourceTree = "<group>"; };
 		8E8092D2410330D9E58E0372 /* Pods_Lost_Found.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lost_Found.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D70E04CEDFD44276B9ABC8D5 /* Pods-Lost&Found.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lost&Found.debug.xcconfig"; path = "Target Support Files/Pods-Lost&Found/Pods-Lost&Found.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -162,7 +160,6 @@
 				851AB3B127402EEA005606AC /* LostAndFoundController.swift */,
 				851AB3B327410C2D005606AC /* MySubclassedTabBarController.swift */,
 				855C5A23274BFCEF00906DE1 /* ModifierProfilController.swift */,
-				85B745DC274F2CAD00B18E4F /* AssociationController.swift */,
 				85749BE92750670400167934 /* AjouterArticleController.swift */,
 				85749BEB2752DEC800167934 /* DetailArticleController.swift */,
 				85749BED2754E25600167934 /* OptionsController.swift */,
@@ -309,7 +306,6 @@
 				85749BEE2754E25600167934 /* OptionsController.swift in Sources */,
 				851AB3B7274142B9005606AC /* UserService.swift in Sources */,
 				855C5A22274BFA3300906DE1 /* ArticleService.swift in Sources */,
-				85B745DD274F2CAE00B18E4F /* AssociationController.swift in Sources */,
 				855C5A24274BFCEF00906DE1 /* ModifierProfilController.swift in Sources */,
 				851AB3AA274017E9005606AC /* DesignUi.swift in Sources */,
 				85B5B72D273E993E0079E2FE /* CreateAccount.swift in Sources */,

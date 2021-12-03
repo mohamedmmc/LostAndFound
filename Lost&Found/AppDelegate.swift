@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
+        
         let facebook = ApplicationDelegate.shared.application(
             application,
             didFinishLaunchingWithOptions: launchOptions
@@ -21,6 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if (facebook){
             return true
         }
+        UserDefaults.standard.removeObject(forKey: "_id")
+        UserDefaults.standard.removeObject(forKey: "tokenConnexion")
+        UserDefaults.standard.removeObject(forKey: "nom")
+        UserDefaults.standard.removeObject(forKey: "prenom")
+        UserDefaults.standard.removeObject(forKey: "numt")
+        UserDefaults.standard.removeObject(forKey: "email")
+        UserDefaults.standard.removeObject(forKey: "password")
+        UserDefaults.standard.removeObject(forKey: "photoProfil")
+        UserDefaults.standard.synchronize()
         let google = GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
             if error != nil || user == nil {
               // Show the app's signed-out state.

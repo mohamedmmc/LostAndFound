@@ -7,9 +7,14 @@
 
 import Foundation
 import UIKit
+import FBSDKLoginKit
 
 class AssociationsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    @IBAction func logoutfb(_ sender: Any) {
+        let loginManager = LoginManager()
+        loginManager.logOut()
     }
 }

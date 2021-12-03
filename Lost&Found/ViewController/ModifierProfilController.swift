@@ -20,6 +20,8 @@ class ModiferProfilController: UIViewController,UIImagePickerControllerDelegate,
             numT.text = UserDefaults.standard.string(forKey: "numt")
         }
         super.viewDidLoad()
+        print("le token est profile modifier profile",UserDefaults.standard.string(forKey: "tokenConnexion")!)
+
         photoDeProfilImageView.contentMode = UIView.ContentMode.scaleAspectFit
         Design.BorderButton(titre: valider, radius: 20, width: 2, Bordercolor: UIColor.init(red: 255, green: 255, blue: 255, alpha: 2))
         photoDeProfilImageView.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "photoProfil")!)
@@ -40,14 +42,24 @@ class ModiferProfilController: UIViewController,UIImagePickerControllerDelegate,
     @IBAction func valider(_ sender: Any) {
  
         if isValidEmail(usernameT.text!){
-            if (numT.text!.count == 8){
+            var user :User?
+            if (UserDefaults.standard.string(forKey: "numt") ?? "").isEmpty{
+                if (numT.text!.isEmpty){
+                    user = User(id: UserDefaults.standard.string(forKey: "_id")!, nom: nom.text!, prenom: prenom.text!, email: usernameT.text!, photoProfil: "", isVerified: UserDefaults.standard.bool(forKey: "isVerified"), __v: 0)
+                }
+                else{
+                    user = User(id: UserDefaults.standard.string(forKey: "_id")!, nom: nom.text!, prenom: prenom.text!, email: usernameT.text!, mdp: "", numtel: numT.text!, photoProfil: "", isVerified: UserDefaults.standard.bool(forKey: "isVerified"), __v: 0)
+                }
+            }
+            else{
+                user = User(id: UserDefaults.standard.string(forKey: "_id")!, nom: nom.text!, prenom: prenom.text!, email: usernameT.text!, mdp: UserDefaults.standard.string(forKey: "password")!, numtel: numT.text!, photoProfil: "", isVerified: UserDefaults.standard.bool(forKey: "isVerified"), __v: 0)
+            }
                 
-                let user = User(id: UserDefaults.standard.string(forKey: "_id")!, nom: nom.text!, prenom: prenom.text!, email: usernameT.text!, photoProfil: "", isVerified: UserDefaults.standard.bool(forKey: "isVerified"), __v: 0)
                 let pictureUrl = NSURL(string: UserDefaults.standard.string(forKey: "photoProfil")!)
-                print(user)
+            print(user!)
                 let imageData = NSData(contentsOf: pictureUrl! as URL)
                 let faza = UIImage(data: imageData as! Data)
-                UserService().UpdateProfil(user: user, image: photoDeProfilImageView.image!) { succes, reponse in
+            UserService().UpdateProfil(user: user!, image: photoDeProfilImageView.image!) { succes, reponse in
                         if succes, let json = reponse{
                             let name = Notification.Name("updateProfil")
                             let notification = Notification(name: name)
@@ -58,7 +70,7 @@ class ModiferProfilController: UIViewController,UIImagePickerControllerDelegate,
                             print(reponse)
                         }
                     }
-                }
+                
         }
     }
     
