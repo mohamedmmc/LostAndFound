@@ -10,7 +10,7 @@ target 'Lost&Found' do
     pod 'FBSDKLoginKit'
 
 pod 'GoogleSignIn'
- pod 'SideMenu'
 pod 'DropDown'
-    
+ pod 'GoogleMaps' 
+    pod 'GooglePlaces'
 end

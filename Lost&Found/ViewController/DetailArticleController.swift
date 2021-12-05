@@ -7,9 +7,10 @@
 
 import Foundation
 import UIKit
-
+import GoogleMaps
 class DetailArticleController: UIViewController {
     
+    @IBOutlet weak var testGps: GMSMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
         if article!.user._id == UserDefaults.standard.string(forKey: "_id") {
@@ -18,7 +19,21 @@ class DetailArticleController: UIViewController {
         }
         articleImageView.imageFromServerURL(urlString: article!.photo!)
         nomArticleLabel.text = article!.nom
-        descriptionArticleLabel.text = article!.type + "/n" + article!.description!
+        descriptionArticleLabel.text = article!.description!
+        if !(article?.addresse ?? []).isEmpty{
+            
+            let camera = GMSCameraPosition.camera(withLatitude: (article?.addresse![0])!, longitude: (article?.addresse![1])!, zoom: 15)
+            testGps.camera = camera
+            let marker = GMSMarker()
+                    marker.position = CLLocationCoordinate2D(latitude:  (article?.addresse![0])!, longitude: (article?.addresse![1])!)
+                    marker.title = "Sydney"
+                    marker.snippet = "Australia"
+                    marker.map = testGps
+        }
+        else{
+            testGps.isHidden = true
+        }
+        
     }
     var article :Article?
     var nom ,desc,image:String?

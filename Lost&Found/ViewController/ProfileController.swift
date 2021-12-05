@@ -9,15 +9,39 @@ import Foundation
 import UIKit
 import FBSDKLoginKit
 import DropDown
+import MapKit
 class ProfileController: UIViewController {
     var darkTheme = false
     let dropDown = DropDown()
     let Design = DesignUi()
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var settingsUIbutton: UIBarButtonItem!
+    @IBOutlet weak var profilPic: UIImageView!
+    @IBOutlet weak var Name: UILabel!
     @IBAction func settingsUibuttonTapped(_ sender: Any) {
         dropDown.show()
     }
     
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+       
+        let initialLocation = CLLocation(latitude: 21, longitude: -158)
+        dropDown.anchorView = settingsUIbutton // UIView or UIBarButtonItem
+        dropDownSelector()
+        dropDown.dataSource = ["Securite","Modifier Profil","Theme","Déconnexion","Supprimer Profil"]
+        dropDown.selectionBackgroundColor = .blue
+
+        profileUpdated()
+        profilPic.contentMode = UIView.ContentMode.scaleAspectFit
+        
+        profilPic.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "photoProfil")!)
+        Design.RadiusImage(titre: profilPic!, radius: 5,width: 2,Bordercolor: .white)
+        
+        let name = Notification.Name("updateProfil")
+        NotificationCenter.default.addObserver(self, selector: #selector(profileUpdated), name: name, object: nil)
+        
+    }
     func dropDownSelector (){
         dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             if (item == "Modifier Profil"){
@@ -87,27 +111,7 @@ class ProfileController: UIViewController {
     }
     
     
-    @IBOutlet weak var settingsUIbutton: UIBarButtonItem!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //print("le token est profile controller",UserDefaults.standard.string(forKey: "tokenConnexion")!)
-        // The view to which the drop down will appear on
-        dropDown.anchorView = settingsUIbutton // UIView or UIBarButtonItem
-        dropDownSelector()
-        dropDown.dataSource = ["Securite","Modifier Profil","Theme","Déconnexion","Supprimer Profil"]
-        dropDown.selectionBackgroundColor = .blue
 
-        profileUpdated()
-        profilPic.contentMode = UIView.ContentMode.scaleAspectFit
-        
-        profilPic.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "photoProfil")!)
-        Design.RadiusImage(titre: profilPic!, radius: 5,width: 2,Bordercolor: .white)
-        
-        let name = Notification.Name("updateProfil")
-        NotificationCenter.default.addObserver(self, selector: #selector(profileUpdated), name: name, object: nil)
-        
-    }
     
     @objc func profileUpdated(){
         profilPic.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "photoProfil")!)
@@ -121,8 +125,7 @@ class ProfileController: UIViewController {
 
     let webS = UserService()
     
-    @IBOutlet weak var profilPic: UIImageView!
-    @IBOutlet weak var Name: UILabel!
+    
     
     
     
@@ -145,4 +148,16 @@ class ProfileController: UIViewController {
         present(refreshAlert, animated: true, completion: nil)
     }
   
+}
+private extension MKMapView {
+  func centerToLocation(
+    _ location: CLLocation,
+    regionRadius: CLLocationDistance = 1000
+  ) {
+    let coordinateRegion = MKCoordinateRegion(
+      center: location.coordinate,
+      latitudinalMeters: regionRadius,
+      longitudinalMeters: regionRadius)
+    setRegion(coordinateRegion, animated: true)
+  }
 }

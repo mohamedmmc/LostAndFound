@@ -13,6 +13,12 @@ PODS:
   - FBSDKCoreKit_Basics (12.1.0)
   - FBSDKLoginKit (12.1.0):
     - FBSDKCoreKit (= 12.1.0)
+  - GoogleMaps (6.0.0):
+    - GoogleMaps/Maps (= 6.0.0)
+  - GoogleMaps/Base (6.0.0)
+  - GoogleMaps/Maps (6.0.0):
+    - GoogleMaps/Base
+  - GooglePlaces (6.0.0)
   - GoogleSignIn (6.0.2):
     - AppAuth (~> 1.4)
     - GTMAppAuth (~> 1.0)
@@ -21,13 +27,13 @@ PODS:
     - AppAuth/Core (~> 1.4)
     - GTMSessionFetcher/Core (~> 1.5)
   - GTMSessionFetcher/Core (1.7.0)
-  - SideMenu (6.5.0)
 
 DEPENDENCIES:
   - DropDown
   - FBSDKLoginKit
+  - GoogleMaps
+  - GooglePlaces
   - GoogleSignIn
-  - SideMenu
 
 SPEC REPOS:
   trunk:
@@ -37,10 +43,11 @@ SPEC REPOS:
     - FBSDKCoreKit
     - FBSDKCoreKit_Basics
     - FBSDKLoginKit
+    - GoogleMaps
+    - GooglePlaces
     - GoogleSignIn
     - GTMAppAuth
     - GTMSessionFetcher
-    - SideMenu
 
 SPEC CHECKSUMS:
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
@@ -49,11 +56,12 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 75368765d9c2303073145a7925dfaa9d60bcd77b
   FBSDKCoreKit_Basics: 39865aff97e5f6951a78fb3e89dc4460e35e1895
   FBSDKLoginKit: e993f97c7cc794c5da4056d8aec3c3d66033a727
+  GoogleMaps: 750f237920fa44dd32de0c0d2004d35cb2c688f3
+  GooglePlaces: c97d96ae68594acb64035c9ca9f26fbfc1d23af1
   GoogleSignIn: fd381840dbe7c1137aa6dc30849a5c3e070c034a
   GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
-  SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
 
-PODFILE CHECKSUM: c78896748657d421e72ff54d2557884fd6e68f00
+PODFILE CHECKSUM: 2cce25b75fcab003f41719b96be4195d7f3ce16c
 
 COCOAPODS: 1.11.2

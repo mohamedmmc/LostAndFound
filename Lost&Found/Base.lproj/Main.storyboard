@@ -112,10 +112,6 @@
                                     <segue destination="LTW-CH-vDx" kind="presentation" identifier="test" modalPresentationStyle="fullScreen" id="KVJ-FP-918"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="github" translatesAutoresizingMaskIntoConstraints="NO" id="2zx-UO-C0t">
-                                <rect key="frame" x="230" y="637" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jTq-WB-daZ">
                                 <rect key="frame" x="228" y="558" width="150" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -136,7 +132,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOV-VH-ok1">
-                                <rect key="frame" x="28" y="637" width="60" height="60"/>
+                                <rect key="frame" x="46" y="645" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="facebook"/>
                                 <connections>
@@ -144,7 +140,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mxa-fP-Qm9">
-                                <rect key="frame" x="130" y="637" width="60" height="60"/>
+                                <rect key="frame" x="148" y="645" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="google"/>
                                 <connections>
@@ -497,6 +493,48 @@
             </objects>
             <point key="canvasLocation" x="4356.521739130435" y="1597.7678571428571"/>
         </scene>
+        <!--Controller-->
+        <scene sceneID="j69-Uv-umb">
+            <objects>
+                <viewController id="2ZR-yx-0KR" customClass="GPSController" customModule="Lost_Found" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="32m-uS-D4q">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xn-RU-atV">
+                                <rect key="frame" x="28" y="44" width="42" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <imageReference key="image" image="arrow.backward" catalog="system" symbolScale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="back:" destination="LTW-CH-vDx" eventType="touchUpInside" id="hol-AG-C0T"/>
+                                    <action selector="backButton:" destination="2ZR-yx-0KR" eventType="touchUpInside" id="e8G-7U-dHD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RkP-2T-ScX">
+                                <rect key="frame" x="182" y="765" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="plus.circle.fill" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="33" scale="default"/>
+                                </state>
+                                <connections>
+                                    <action selector="addGPSLocationButton:" destination="2ZR-yx-0KR" eventType="touchUpInside" id="hK9-2t-8FS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rHp-hP-x8v"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nqr-ah-ILt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-743.47826086956525" y="1573.6607142857142"/>
+        </scene>
         <!--Ajouter Article Controller-->
         <scene sceneID="RPr-i8-uNb">
             <objects>
@@ -553,20 +591,6 @@
                                     <action selector="SwitchDidChange:" destination="cJ1-tK-2GH" eventType="valueChanged" id="thh-id-Pfp"/>
                                 </connections>
                             </switch>
-                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="playback" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IB1-1R-FNq">
-                                <rect key="frame" x="162" y="250" width="90" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal">
-                                    <color key="titleColor" red="0.13725490200000001" green="0.46274509800000002" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <imageReference key="image" image="camera.fill" catalog="system" symbolScale="large"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="33"/>
-                                </state>
-                                <connections>
-                                    <action selector="Parcourir:" destination="LTW-CH-vDx" eventType="touchUpInside" id="0dw-ya-CR9"/>
-                                    <action selector="parcourir:" destination="cJ1-tK-2GH" eventType="touchUpInside" id="qNG-Sj-ttd"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epb-MA-JSM">
                                 <rect key="frame" x="147" y="423" width="120" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -574,9 +598,33 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eJK-ga-JBb">
+                                <rect key="frame" x="216" y="243" width="51" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="map.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="28"/>
+                                </state>
+                                <connections>
+                                    <action selector="shosMap:" destination="cJ1-tK-2GH" eventType="touchUpInside" id="d1p-Ms-b6l"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="playback" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IB1-1R-FNq">
+                                <rect key="frame" x="111" y="243" width="70" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.13725490200000001" green="0.46274509800000002" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <imageReference key="image" image="camera.fill" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="28"/>
+                                </state>
+                                <connections>
+                                    <action selector="Parcourir:" destination="LTW-CH-vDx" eventType="touchUpInside" id="0dw-ya-CR9"/>
+                                    <action selector="parcourir:" destination="cJ1-tK-2GH" eventType="touchUpInside" id="qNG-Sj-ttd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ENP-pf-TzD"/>
-                        <color key="backgroundColor" red="1" green="0.75473090539999999" blue="0.97873230119999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" id="fEg-nJ-nyg"/>
                     <connections>
@@ -586,6 +634,7 @@
                         <outlet property="labelTest" destination="epb-MA-JSM" id="eNd-4h-t93"/>
                         <outlet property="nomArticleTextfield" destination="S1W-k2-LtX" id="V86-Ni-WIZ"/>
                         <outlet property="typeArticleSwitch" destination="ebn-Fd-6x3" id="8B5-gy-NPK"/>
+                        <segue destination="2ZR-yx-0KR" kind="presentation" identifier="gpsSegue" modalPresentationStyle="fullScreen" id="fhj-g6-sc1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ERp-XW-ff0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -741,23 +790,15 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G11-b5-I0m">
-                                <rect key="frame" x="107" y="383" width="201" height="57"/>
+                                <rect key="frame" x="107" y="379" width="201" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="0.0" height="1"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Aq-ls-emo">
-                                <rect key="frame" x="149" y="663" width="116" height="63"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Contacter "/>
-                                <connections>
-                                    <action selector="contactButton:" destination="1fG-vx-aIk" eventType="touchUpInside" id="3B5-sK-dsd"/>
-                                </connections>
-                            </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="asdasdlkasjdlkasjd" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5B3-hd-Y6W">
-                                <rect key="frame" x="40" y="448" width="328" height="207"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="asdasdlkasjdlkasjd" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5B3-hd-Y6W">
+                                <rect key="frame" x="40" y="448" width="334" height="116"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
@@ -771,6 +812,19 @@
                                 <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7aL-5X-71b" customClass="GMSMapView">
+                                <rect key="frame" x="40" y="572" width="341" height="137"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Aq-ls-emo">
+                                <rect key="frame" x="152" y="717" width="116" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Contacter "/>
+                                <connections>
+                                    <action selector="contactButton:" destination="1fG-vx-aIk" eventType="touchUpInside" id="3B5-sK-dsd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6ma-Ch-NFp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -782,6 +836,7 @@
                         <outlet property="contactButtonn" destination="8Aq-ls-emo" id="3c0-5v-Abf"/>
                         <outlet property="descriptionArticleLabel" destination="5B3-hd-Y6W" id="8x7-E2-C7R"/>
                         <outlet property="nomArticleLabel" destination="G11-b5-I0m" id="CwR-Wt-42G"/>
+                        <outlet property="testGps" destination="7aL-5X-71b" id="ukZ-vW-adk"/>
                         <segue destination="qRd-Bg-eci" kind="showDetail" identifier="contactProfil" id="Fl1-rU-x9T"/>
                     </connections>
                 </viewController>
@@ -861,7 +916,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Numero de telephone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YXk-4K-slZ">
-                                <rect key="frame" x="35" y="531" width="165" height="21"/>
+                                <rect key="frame" x="35" y="531" width="165" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.13725490200000001" green="0.46274509800000002" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -962,12 +1017,13 @@
         <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="facebook" width="512" height="512"/>
         <image name="gearshape.fill" catalog="system" width="128" height="121"/>
-        <image name="github" width="512" height="512"/>
         <image name="google" width="160" height="160"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="map.fill" catalog="system" width="128" height="110"/>
         <image name="message.fill" catalog="system" width="128" height="113"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <image name="rectangle.and.text.magnifyingglass.rtl" catalog="system" width="128" height="83"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

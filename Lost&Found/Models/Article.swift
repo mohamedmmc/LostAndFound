@@ -15,7 +15,7 @@ struct Article: Decodable {
     var _id:String
     var nom:String?
     var description:String?
-    var addresse:String?
+    var addresse:[Double]?
     var photo:String?
     var dateCreation:String
     var dateModif:String

@@ -7,14 +7,15 @@
 
 import Foundation
 import UIKit
-
+import GooglePlaces
+import GoogleMaps
 class AjouterArticleController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     let Design = DesignUi()
     var test = [Article]()
     var type = "Found"
-    
-    
+    var gpsLocation = [Double]()
     override func viewDidLoad() {
+        
         NotificationCenter.default.post(name: Notification.Name("reloadTable"), object: nil)
         super.viewDidLoad()
         if typeArticleSwitch.isOn{
@@ -32,7 +33,7 @@ class AjouterArticleController: UIViewController,UIImagePickerControllerDelegate
     @IBOutlet weak var nomArticleTextfield: UITextField!
     @IBOutlet weak var descriptionArticleTextarea: UITextView!
     @IBOutlet weak var ajouterButton: UIButton!
-    
+
     @IBAction func SwitchDidChange(_ sender: Any) {
         if typeArticleSwitch.isOn{
             type = "Found"
@@ -57,11 +58,27 @@ class AjouterArticleController: UIViewController,UIImagePickerControllerDelegate
         present(picker, animated: true)
     }
     
+    @IBAction func shosMap(_ sender: Any) {
+        performSegue(withIdentifier: "gpsSegue", sender: nil)
+        
+        
+//        let camera = GMSCameraPosition.camera(withLatitude: 36.900115, longitude: 10.187923, zoom: 15.0)
+//                let mapView = GMSMapView.map(withFrame: CGRect(x: 0, y: 0, width: 500, height: 500), camera: camera)
+//                self.view.addSubview(mapView)
+//
+//
+//                // Creates a marker in the center of the map.
+//                let marker = GMSMarker()
+//                marker.position = CLLocationCoordinate2D(latitude: 36.900115, longitude: 10.187923)
+//                marker.title = "Ariana Soghra"
+//                marker.snippet = "Tunisia"
+//                marker.map = mapView
+    }
     @IBAction func Ajouter(_ sender: Any) {
         if (!nomArticleTextfield.text!.isEmpty){
             let user = User(id: UserDefaults.standard.string(forKey: "_id")!, nom: "", prenom: "", email: "", mdp: "", numtel: "", photoProfil: "", isVerified: false, __v: 0)
             print("l'utilisateur bouton ajoute article ", user)
-            let article = Article(_id: "", nom: nomArticleTextfield.text!, description: descriptionArticleTextarea.text!, addresse: "1", photo: "2", dateCreation: "3", dateModif: "4",type: type, user: user,__v: 0)
+            let article = Article(_id: "", nom: nomArticleTextfield.text!, description: descriptionArticleTextarea.text!, addresse: gpsLocation, photo: "2", dateCreation: "3", dateModif: "4",type: type, user: user,__v: 0)
             ArticleService().AjoutArticle(article: article, image: imageArticle.image!) { succes, reponse in
                 if succes, let json = reponse{
 

@@ -8,6 +8,7 @@
 import UIKit
 import FBSDKLoginKit
 import GoogleSignIn
+import GoogleMaps
 class ViewController: UIViewController,LoginButtonDelegate {
     
     var faza = UIImage(named: "")
@@ -28,9 +29,12 @@ class ViewController: UIViewController,LoginButtonDelegate {
         let signInConfig = GIDConfiguration.init(clientID: "226296852735-1vvlur0mo1hm96ppbvn88qmq14odbjlt.apps.googleusercontent.com")
         GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) { [self] userG, error in
           guard error == nil else { return }
-         
+         var nom = ""
            // print(user?.profile?.imageURL(withDimension: 512))
-            let user = User(id: "", nom: (userG?.profile?.familyName)!, prenom: (userG?.profile?.givenName)!, email: (userG?.profile!.email)!, mdp: "", numtel: "", photoProfil: "",isVerified: false,__v: 0)
+            if !(userG?.profile?.familyName ?? "").isEmpty{
+                nom = (userG?.profile?.familyName)!
+            }
+            let user = User(id: "", nom: nom, prenom: (userG?.profile?.givenName)!, email: (userG?.profile!.email)!, mdp: "", numtel: "", photoProfil: "",isVerified: false,__v: 0)
 
            if let dataPhoto = try? Data(contentsOf: (userG?.profile?.imageURL(withDimension: 512))!) {
                  faza = UIImage(data: dataPhoto)
@@ -133,15 +137,9 @@ class ViewController: UIViewController,LoginButtonDelegate {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+     
         facebookLoginButton.delegate = self
         facebookLoginButton.isHidden = true
-        
-        
-        
-        
-        
-        
         Connexin?.layer.cornerRadius = 10
         Connexin?.layer.borderWidth = 2
         Connexin?.layer.borderColor = UIColor.init(red: 255, green: 255, blue: 255, alpha: 1).cgColor

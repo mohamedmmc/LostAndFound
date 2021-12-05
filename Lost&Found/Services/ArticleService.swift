@@ -113,10 +113,15 @@ class ArticleService {
         body.append("Content-Disposition: form-data; name=\"description\"\(lineBreak + lineBreak)")
         body.append("\(article.description! + lineBreak)")
         
+        if !(article.addresse ?? []).isEmpty{
+            for element in article.addresse!{
+                body.append("--\(boundary + lineBreak)")
+                body.append("Content-Disposition: form-data; name=\"addresse\"\(lineBreak + lineBreak)")
+                body.append("\(element)" + "\(lineBreak)")
+            }
+            
+        }
         
-        body.append("--\(boundary + lineBreak)")
-        body.append("Content-Disposition: form-data; name=\"addresse\"\(lineBreak + lineBreak)")
-        body.append("\(article.addresse! + lineBreak)")
         
         body.append("--\(boundary + lineBreak)")
         body.append("Content-Disposition: form-data; name=\"type\"\(lineBreak + lineBreak)")
