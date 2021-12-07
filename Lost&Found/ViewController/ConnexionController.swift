@@ -150,6 +150,7 @@ class ViewController: UIViewController,LoginButtonDelegate {
     
     
     @IBAction func MdpOublie(_ sender: UIButton) {
+        performSegue(withIdentifier: "mdpOublie", sender: nil)
         
     }
     @IBAction func Connexion(_ sender: UIButton) {

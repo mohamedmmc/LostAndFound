@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		850FBD56275AD394005DF862 /* GPSController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850FBD55275AD394005DF862 /* GPSController.swift */; };
 		850FBD58275AD997005DF862 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850FBD57275AD997005DF862 /* PlacesViewController.swift */; };
-		851AB3A6273FDAA1005606AC /* OTPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3A5273FDAA1005606AC /* OTPController.swift */; };
+		851AB3A6273FDAA1005606AC /* MotDePasseOublieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3A5273FDAA1005606AC /* MotDePasseOublieController.swift */; };
 		851AB3AA274017E9005606AC /* DesignUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3A9274017E9005606AC /* DesignUi.swift */; };
 		851AB3AC27402EC4005606AC /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3AB27402EC4005606AC /* ProfileController.swift */; };
 		851AB3AE27402ED3005606AC /* AssociationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3AD27402ED3005606AC /* AssociationsController.swift */; };
@@ -42,7 +42,7 @@
 		73DC12F3DD7CB68A26D13A57 /* Pods_Lost_Found.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lost_Found.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		850FBD55275AD394005DF862 /* GPSController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSController.swift; sourceTree = "<group>"; };
 		850FBD57275AD997005DF862 /* PlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
-		851AB3A5273FDAA1005606AC /* OTPController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPController.swift; sourceTree = "<group>"; };
+		851AB3A5273FDAA1005606AC /* MotDePasseOublieController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotDePasseOublieController.swift; sourceTree = "<group>"; };
 		851AB3A9274017E9005606AC /* DesignUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignUi.swift; sourceTree = "<group>"; };
 		851AB3AB27402EC4005606AC /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		851AB3AD27402ED3005606AC /* AssociationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssociationsController.swift; sourceTree = "<group>"; };
@@ -161,7 +161,7 @@
 			children = (
 				85417DDC27303088003F59CF /* ConnexionController.swift */,
 				85B5B72C273E993E0079E2FE /* CreateAccount.swift */,
-				851AB3A5273FDAA1005606AC /* OTPController.swift */,
+				851AB3A5273FDAA1005606AC /* MotDePasseOublieController.swift */,
 				851AB3AB27402EC4005606AC /* ProfileController.swift */,
 				851AB3AD27402ED3005606AC /* AssociationsController.swift */,
 				851AB3B127402EEA005606AC /* LostAndFoundController.swift */,
@@ -337,7 +337,7 @@
 				851AB3AA274017E9005606AC /* DesignUi.swift in Sources */,
 				85B5B72D273E993E0079E2FE /* CreateAccount.swift in Sources */,
 				851AB3B227402EEA005606AC /* LostAndFoundController.swift in Sources */,
-				851AB3A6273FDAA1005606AC /* OTPController.swift in Sources */,
+				851AB3A6273FDAA1005606AC /* MotDePasseOublieController.swift in Sources */,
 				850FBD58275AD997005DF862 /* PlacesViewController.swift in Sources */,
 				85417DDD27303088003F59CF /* ConnexionController.swift in Sources */,
 				850FBD56275AD394005DF862 /* GPSController.swift in Sources */,

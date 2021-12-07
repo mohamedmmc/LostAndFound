@@ -444,6 +444,28 @@ class UserService {
         }.resume()
     }
     
+    
+    
+    func forgotPassword (email:String, callback: @escaping (Bool,Any?)->Void){
+        
+        guard let url = URL(string: "http://localhost:3000/user/forgotPassword") else {return}
+        var request = URLRequest(url: url)
+        let params = [
+            "email": email
+        ]
+        request.httpMethod = "POST"
+        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+        let session = URLSession.shared.dataTask(with: request){
+            data, response, error in
+            if let json = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]{
+            print(json)
+                callback(true,json)
+            }else{
+                callback(false,"erreur")
+            }
+        }.resume()
+    }
 }
 
 
@@ -468,4 +490,8 @@ extension UIImageView {
             })
             
         }).resume()
-    }}
+    }
+    
+    
+    
+}
