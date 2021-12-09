@@ -459,18 +459,45 @@ class UserService {
         let session = URLSession.shared.dataTask(with: request){
             data, response, error in
             if let json = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]{
-            print(json)
-                callback(true,json)
+                if (json["succes"] as! Int == 1){
+                    callback(true,json["token"] as! String)
+
+                }else{
+                    callback(false,"error")
+                }
             }else{
                 callback(false,"erreur")
             }
         }.resume()
     }
+    
+    func resetPass(password : String, email:String, code:String , callback: @escaping (Bool,Any?)->Void){
+        
+        guard let url = URL(string: "http://localhost:3000/user/resetPassword/"+email+"/"+code) else {return}
+        var request = URLRequest(url: url)
+        let params = [
+            "Password": password
+        ]
+        
+        request.httpMethod = "POST"
+        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+        let session = URLSession.shared.dataTask(with: request){
+            data, response, error in
+            if let json = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]{
+                if json["reponse"] as! String == "Your password has been successfully reset"{
+                    callback(true,"reset done")
+                }
+                else{
+                    callback(false,json)
+                }
+            }
+        }.resume()
 }
 
 
 
-
+}
 
 
 

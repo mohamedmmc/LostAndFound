@@ -24,6 +24,7 @@
 		85417DE327303088003F59CF /* Lost_Found.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 85417DE127303088003F59CF /* Lost_Found.xcdatamodeld */; };
 		85417DE527303089003F59CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85417DE427303089003F59CF /* Assets.xcassets */; };
 		85417DE827303089003F59CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85417DE627303089003F59CF /* LaunchScreen.storyboard */; };
+		855A9EF0275F5E9E00EBBBD5 /* ResetPassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855A9EEF275F5E9E00EBBBD5 /* ResetPassController.swift */; };
 		855C5A22274BFA3300906DE1 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C5A21274BFA3300906DE1 /* ArticleService.swift */; };
 		855C5A24274BFCEF00906DE1 /* ModifierProfilController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C5A23274BFCEF00906DE1 /* ModifierProfilController.swift */; };
 		85749BEA2750670400167934 /* AjouterArticleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85749BE92750670400167934 /* AjouterArticleController.swift */; };
@@ -59,6 +60,7 @@
 		85417DE427303089003F59CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85417DE727303089003F59CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85417DE927303089003F59CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		855A9EEF275F5E9E00EBBBD5 /* ResetPassController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPassController.swift; sourceTree = "<group>"; };
 		855C5A21274BFA3300906DE1 /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 		855C5A23274BFCEF00906DE1 /* ModifierProfilController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierProfilController.swift; sourceTree = "<group>"; };
 		85749BE92750670400167934 /* AjouterArticleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjouterArticleController.swift; sourceTree = "<group>"; };
@@ -162,8 +164,8 @@
 				85417DDC27303088003F59CF /* ConnexionController.swift */,
 				85B5B72C273E993E0079E2FE /* CreateAccount.swift */,
 				851AB3A5273FDAA1005606AC /* MotDePasseOublieController.swift */,
-				851AB3AB27402EC4005606AC /* ProfileController.swift */,
 				851AB3AD27402ED3005606AC /* AssociationsController.swift */,
+				851AB3AB27402EC4005606AC /* ProfileController.swift */,
 				851AB3B127402EEA005606AC /* LostAndFoundController.swift */,
 				851AB3B327410C2D005606AC /* MySubclassedTabBarController.swift */,
 				855C5A23274BFCEF00906DE1 /* ModifierProfilController.swift */,
@@ -173,6 +175,7 @@
 				85749BEF27582BB300167934 /* ContactProfilController.swift */,
 				850FBD55275AD394005DF862 /* GPSController.swift */,
 				850FBD57275AD997005DF862 /* PlacesViewController.swift */,
+				855A9EEF275F5E9E00EBBBD5 /* ResetPassController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				85749BEC2752DEC900167934 /* DetailArticleController.swift in Sources */,
 				85749BEE2754E25600167934 /* OptionsController.swift in Sources */,
 				851AB3B7274142B9005606AC /* UserService.swift in Sources */,
+				855A9EF0275F5E9E00EBBBD5 /* ResetPassController.swift in Sources */,
 				855C5A22274BFA3300906DE1 /* ArticleService.swift in Sources */,
 				855C5A24274BFCEF00906DE1 /* ModifierProfilController.swift in Sources */,
 				851AB3AA274017E9005606AC /* DesignUi.swift in Sources */,
