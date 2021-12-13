@@ -56,11 +56,8 @@ class ViewController: UIViewController,LoginButtonDelegate {
                     if json == "pas inscrit" {
                         print("pas inscrit avec facebook")
                     }
-                    
                 }
-                
                 else{
-                    
                     UserService().CreationCompteSocial(user: user, image: faza! ) { succes, reponse in
                         if succes, let json = reponse{
                             if (json as! String == "ok"){
@@ -76,8 +73,6 @@ class ViewController: UIViewController,LoginButtonDelegate {
                         }
                     }
                 }
-                
-                
             }
         }
     }
@@ -131,6 +126,7 @@ class ViewController: UIViewController,LoginButtonDelegate {
                                     self.performSegue(withIdentifier: "connexion", sender: reponse)
                                 }
                                 else if (reponse! == "mail existant"){
+                                    alert.dismiss(animated: true, completion: nil)
                                     self.propmt(title: "Echec", message: "Mail deja Existant")
                                     
                                 }
