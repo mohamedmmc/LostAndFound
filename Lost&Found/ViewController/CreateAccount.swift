@@ -55,22 +55,37 @@ class CreateAccount: UIViewController,UIImagePickerControllerDelegate,UINavigati
     @IBAction func validation(_ sender: UIButton) {
         
         let user = User(id:"",nom: nom.text!, prenom: prenom.text!, email: usernameT.text!, mdp: mdpT.text!, numtel: numT.text!,photoProfil: "photo:"+usernameT.text! , isVerified: false,__v: 0)
-        
+        let alert = UIAlertController(title: nil, message: "Un instant...", preferredStyle: .alert)
+
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+        loadingIndicator.startAnimating();
+
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
         //Webservice().creationCompte(user: user,userpdp: photoDeProfilImageView.image!)
         if isValidEmail(usernameT.text!){
             if (numT.text!.count == 8) {
                     UserService().CreationCompte(user: user, image: photoDeProfilImageView.image!) { (succes, reponse) in
                         if succes, let json = reponse{
                             print(json)
+                            
                             if (json == "ok"){
+                                SendBirdApi().SendBirdCreateAccount(user_id: UserDefaults.standard.string(forKey: "_id")!, nickname:  UserDefaults.standard.string(forKey: "nom")!, profile_url:  UserDefaults.standard.string(forKey: "photoProfil")!)
+                                alert.dismiss(animated: true, completion: nil)
                                 self.performSegue(withIdentifier: "connexion", sender: reponse)
                             }
                         }
                         else if (reponse == "mail existant"){
+                            alert.dismiss(animated: true, completion: nil)
+
                             self.propmt(title: "Echec", message: "Mail deja Existant")
                             
                         }
                         else if (reponse == "num existant"){
+                            alert.dismiss(animated: true, completion: nil)
+
                             self.propmt(title: "Echec", message: "Numero deja Existant")
                             
                             
@@ -78,11 +93,15 @@ class CreateAccount: UIViewController,UIImagePickerControllerDelegate,UINavigati
                     }
                 
             }else{
+                alert.dismiss(animated: true, completion: nil)
+
                 self.propmt(title: "Echec", message: "Numero invalid")
             }
 
         }
         else{
+            alert.dismiss(animated: true, completion: nil)
+
             self.propmt(title: "Echec", message: "Email incorrect")
         }
         

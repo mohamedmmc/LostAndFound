@@ -9,6 +9,7 @@ import UIKit
 import FBSDKLoginKit
 import GoogleSignIn
 import GoogleMaps
+import SendBirdUIKit
 class ViewController: UIViewController,LoginButtonDelegate {
     
     var faza = UIImage(named: "")
@@ -26,6 +27,14 @@ class ViewController: UIViewController,LoginButtonDelegate {
     
     
     func getUserDataFromGoogle (){
+        let alert = UIAlertController(title: nil, message: "Un instant...", preferredStyle: .alert)
+
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+        loadingIndicator.startAnimating();
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
         let signInConfig = GIDConfiguration.init(clientID: "226296852735-1vvlur0mo1hm96ppbvn88qmq14odbjlt.apps.googleusercontent.com")
         GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) { [self] userG, error in
           guard error == nil else { return }
@@ -42,6 +51,7 @@ class ViewController: UIViewController,LoginButtonDelegate {
             }
             UserService().loginSocialMedia(username: user.email) { succes, reponse in
                 if succes, let json = reponse as? String{
+                    alert.dismiss(animated: true, completion: nil)
                     self.performSegue(withIdentifier: "connexion", sender: reponse)
                     if json == "pas inscrit" {
                         print("pas inscrit avec facebook")
@@ -53,11 +63,14 @@ class ViewController: UIViewController,LoginButtonDelegate {
                     
                     UserService().CreationCompteSocial(user: user, image: faza! ) { succes, reponse in
                         if succes, let json = reponse{
-                            if (json == "ok"){
+                            if (json as! String == "ok"){
+                                alert.dismiss(animated: true, completion: nil)
+                                SendBirdApi().SendBirdCreateAccount(user_id: UserDefaults.standard.string(forKey: "_id")!, nickname:  UserDefaults.standard.string(forKey: "nom")!, profile_url:  UserDefaults.standard.string(forKey: "photoProfil")!)
                                 self.performSegue(withIdentifier: "connexion", sender: reponse)
                             }
                         }
-                        else if (reponse == "mail existant"){
+                        else if (reponse as! String == "mail existant"){
+                            alert.dismiss(animated: true, completion: nil)
                             self.propmt(title: "Echec", message: "Mail deja Existant")
                             
                         }
@@ -75,6 +88,16 @@ class ViewController: UIViewController,LoginButtonDelegate {
     let facebookLoginButton = FBLoginButton(frame: .zero, permissions: [.publicProfile,.email])
     
     func getUserDataFromFacebook() {
+        let alert = UIAlertController(title: nil, message: "Un instant...", preferredStyle: .alert)
+
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+        loadingIndicator.startAnimating();
+
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
+        
         let imageData = NSData()
         GraphRequest(graphPath: "me", parameters: ["fields": "first_name,last_name,  picture.width(480).height(480),email, id"]).start { [self] (connection, result, error) in
              
@@ -93,6 +116,7 @@ class ViewController: UIViewController,LoginButtonDelegate {
                     let user = User(id: "", nom: lastname, prenom: firstName, email: email, mdp: "", numtel: "", photoProfil: "", isVerified: false,__v: 0)
                     UserService().loginSocialMedia(username: user.email) { succes, reponse in
                         if succes, let json = reponse as? String{
+                            alert.dismiss(animated: true, completion: nil)
                             self.performSegue(withIdentifier: "connexion", sender: reponse)
                             if json == "pas inscrit" {
                                 print("pas inscrit avec facebook")
@@ -102,9 +126,11 @@ class ViewController: UIViewController,LoginButtonDelegate {
                             
                             UserService().CreationCompteSocial(user: user, image: faza! ) { succes, reponse in
                                 if succes, let json = reponse{
+                                    alert.dismiss(animated: true, completion: nil)
+                                    SendBirdApi().SendBirdCreateAccount(user_id: UserDefaults.standard.string(forKey: "_id")!, nickname:  UserDefaults.standard.string(forKey: "nom")!, profile_url:  UserDefaults.standard.string(forKey: "photoProfil")!)
                                     self.performSegue(withIdentifier: "connexion", sender: reponse)
                                 }
-                                else if (reponse == "mail existant"){
+                                else if (reponse! == "mail existant"){
                                     self.propmt(title: "Echec", message: "Mail deja Existant")
                                     
                                 }
@@ -123,6 +149,7 @@ class ViewController: UIViewController,LoginButtonDelegate {
     
     
     override func viewDidAppear(_ animated: Bool) {
+       
         if let token = AccessToken.current, !token.isExpired{
             performSegue(withIdentifier: "connexion", sender: "yes")
         }
@@ -137,7 +164,6 @@ class ViewController: UIViewController,LoginButtonDelegate {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-     
         facebookLoginButton.delegate = self
         facebookLoginButton.isHidden = true
         Connexin?.layer.cornerRadius = 10
@@ -156,12 +182,22 @@ class ViewController: UIViewController,LoginButtonDelegate {
     @IBAction func Connexion(_ sender: UIButton) {
         let email = username.text!
         let pass = password.text!
+        let alert = UIAlertController(title: nil, message: "Un instant...", preferredStyle: .alert)
+
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+        loadingIndicator.startAnimating();
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
         UserService().login(username: email,mdp: pass) { (succes,reponse) in
             if succes, let json = reponse{
-                
+                alert.dismiss(animated: true, completion: nil)
+
                 self.performSegue(withIdentifier: "connexion", sender: nil)
             }
             else{
+                alert.dismiss(animated: true, completion: nil)
                 self.propmt(title: "Echec", message: "Email ou mot de passe incorrect")
             }
         }

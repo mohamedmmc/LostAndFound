@@ -27,6 +27,9 @@ PODS:
     - AppAuth/Core (~> 1.4)
     - GTMSessionFetcher/Core (~> 1.5)
   - GTMSessionFetcher/Core (1.7.0)
+  - SendBirdSDK (3.1.1)
+  - SendBirdUIKit (2.2.1):
+    - SendBirdSDK (~> 3.1.1)
 
 DEPENDENCIES:
   - DropDown
@@ -34,6 +37,7 @@ DEPENDENCIES:
   - GoogleMaps
   - GooglePlaces
   - GoogleSignIn
+  - SendBirdUIKit
 
 SPEC REPOS:
   trunk:
@@ -48,6 +52,8 @@ SPEC REPOS:
     - GoogleSignIn
     - GTMAppAuth
     - GTMSessionFetcher
+    - SendBirdSDK
+    - SendBirdUIKit
 
 SPEC CHECKSUMS:
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
@@ -61,7 +67,9 @@ SPEC CHECKSUMS:
   GoogleSignIn: fd381840dbe7c1137aa6dc30849a5c3e070c034a
   GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
+  SendBirdSDK: f698cf686d732889d79854756aba6bbc20062a00
+  SendBirdUIKit: 19f911839f10908e58db91900d33b6758ad47744
 
-PODFILE CHECKSUM: 2cce25b75fcab003f41719b96be4195d7f3ce16c
+PODFILE CHECKSUM: 13892f2cfbfd0c50b51d408fc8bb82aaa40ac7c9
 
 COCOAPODS: 1.11.2

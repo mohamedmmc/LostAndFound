@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SendBirdUIKit
 extension Data {
     mutating func append(_ string: String) {
         if let data = string.data(using: .utf8) {
@@ -61,6 +62,7 @@ class UserService {
                                 UserDefaults.standard.setValue(value, forKey: key)
                             }
                             UserDefaults.standard.setValue("", forKey: "password")
+                            SBUGlobals.CurrentUser = SBUUser(userId: UserDefaults.standard.string(forKey: "_id")!)
                             callback(true,"good")
                             
                         }else{
@@ -113,6 +115,8 @@ class UserService {
                                 UserDefaults.standard.setValue(value, forKey: key)
                                 
                             }
+                            SBUGlobals.CurrentUser = SBUUser(userId: UserDefaults.standard.string(forKey: "_id")!)
+
                             callback(true,"good")
                             
                         }else{
@@ -206,10 +210,7 @@ class UserService {
     func generateBoundary() -> String {
         return "Boundary-\(NSUUID().uuidString)"
     }
-    
-    
-    
-    
+
     
     
     func CreationCompte(user:User, image :UIImage, callback: @escaping (Bool,String?)->Void){
@@ -229,10 +230,12 @@ class UserService {
         let session = URLSession.shared
         session.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
+                
                 if let response = response {
                 }
                 if let data = data {
                     do {
+                        
                         if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]{
                             
                             if let reponse = json["reponse"] as? String{
@@ -253,6 +256,7 @@ class UserService {
                                         for (key,value) in validUser{
                                             UserDefaults.standard.setValue(value, forKey: key)
                                         }
+                                        SBUGlobals.CurrentUser = SBUUser(userId: UserDefaults.standard.string(forKey: "_id")!)
                                     }
                                     callback(true,"ok")
                                 }
@@ -339,6 +343,7 @@ class UserService {
                                             //print("cle = ",key, "Valeur =",value)
                                             UserDefaults.standard.setValue(value, forKey: key)
                                         }
+                                        SBUGlobals.CurrentUser = SBUUser(userId: UserDefaults.standard.string(forKey: "_id")!)
                                     }
                                     callback(true,"ok")
                                 }
@@ -458,16 +463,20 @@ class UserService {
         request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
         let session = URLSession.shared.dataTask(with: request){
             data, response, error in
-            if let json = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]{
-                if (json["succes"] as! Int == 1){
-                    callback(true,json["token"] as! String)
+            DispatchQueue.main.async {
+                if let json = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]{
+                   
+                    if (json["succes"] as? Int == 1){
+                        callback(true,json["token"] as! String)
 
+                    }else{
+                        callback(false,"mail non existant")
+                    }
                 }else{
-                    callback(false,"error")
+                    callback(false,"erreur")
                 }
-            }else{
-                callback(false,"erreur")
             }
+            
         }.resume()
     }
     

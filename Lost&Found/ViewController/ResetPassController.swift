@@ -11,18 +11,28 @@ import UIKit
 class ResetPassController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    
+    @IBAction func backButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     var code :String?
     var email : String?
     @IBAction func validerResetButton(_ sender: Any) {
-        UserService().resetPass(password: password.text!, email: email!, code: code!) { succes, reponse in
-            if succes{
-                self.performSegue(withIdentifier: "retour", sender: "nil")
-            }
-            else{
-                print("erreur reset pass")
+        DispatchQueue.main.async {
+            UserService().resetPass(password: self.password.text!, email: self.email!, code: self.code!) { succes, reponse in
+                if succes{
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "retour", sender: "okay")
+                    }
+                }
+                else{
+                    print("erreur reset pass")
+                }
             }
         }
+        
     }
     
     @IBOutlet weak var password: UITextField!

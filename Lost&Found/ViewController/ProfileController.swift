@@ -10,6 +10,7 @@ import UIKit
 import FBSDKLoginKit
 import DropDown
 import MapKit
+import SendBirdSDK
 class ProfileController: UIViewController {
     var darkTheme = false
     let dropDown = DropDown()
@@ -81,8 +82,22 @@ class ProfileController: UIViewController {
                 refreshAlert.addAction(UIAlertAction(title: "Ok", style: .destructive, handler: { (action: UIAlertAction!) in
                     UserService().deleteProfil { succes, reponse in
                         if succes{
+                            SendBirdApi().deleteUser(id: UserDefaults.standard.string(forKey: "_id")!)
+                            let alert = UIAlertController(title: nil, message: "Un instant...", preferredStyle: .alert)
+
+                            let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+                            loadingIndicator.hidesWhenStopped = true
+                            loadingIndicator.style = UIActivityIndicatorView.Style.gray
+                            loadingIndicator.startAnimating();
+
+                            alert.view.addSubview(loadingIndicator)
+                            present(alert, animated: true, completion: nil)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                
                             self.clearData()
+                                alert.dismiss(animated: true, completion: nil)
                             self.performSegue(withIdentifier: "deconnexion", sender: "ok")
+                            }
                         }
                     }
                 }))
@@ -120,6 +135,7 @@ class ProfileController: UIViewController {
     
     @IBAction func deconnexion(_ sender: Any) {
         promptWithConfirm()
+        SBDMain.disconnect(completionHandler: nil)
         
     }
 

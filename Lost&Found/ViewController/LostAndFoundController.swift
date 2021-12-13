@@ -52,6 +52,8 @@ class LostAndFoundController: UIViewController,UITableViewDelegate,UITableViewDa
     var dernierTableau = [Article]()
     var tableauFiltre = [Article]()
     
+ 
+    
     override func viewDidLoad() {
         initSearchController()
         super.viewDidLoad()

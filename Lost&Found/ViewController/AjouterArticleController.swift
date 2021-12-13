@@ -16,7 +16,6 @@ class AjouterArticleController: UIViewController,UIImagePickerControllerDelegate
     var gpsLocation = [Double]()
     override func viewDidLoad() {
         
-        NotificationCenter.default.post(name: Notification.Name("reloadTable"), object: nil)
         super.viewDidLoad()
         if typeArticleSwitch.isOn{
             type = "Found"

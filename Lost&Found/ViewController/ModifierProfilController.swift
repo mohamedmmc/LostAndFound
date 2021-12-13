@@ -61,6 +61,8 @@ class ModiferProfilController: UIViewController,UIImagePickerControllerDelegate,
                 let faza = UIImage(data: imageData as! Data)
             UserService().UpdateProfil(user: user!, image: photoDeProfilImageView.image!) { succes, reponse in
                         if succes, let json = reponse{
+                            
+                            SendBirdApi().SendBirdCreateAccount(user_id: UserDefaults.standard.string(forKey: "_id")!, nickname:  UserDefaults.standard.string(forKey: "nom")!, profile_url:  UserDefaults.standard.string(forKey: "photoProfil")!)
                             let name = Notification.Name("updateProfil")
                             let notification = Notification(name: name)
                             NotificationCenter.default.post(notification)

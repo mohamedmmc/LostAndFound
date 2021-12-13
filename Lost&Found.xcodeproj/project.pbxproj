@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19178A9D0DD51B7778A872A9 /* Pods_Lost_Found.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F43557549F8D5E077AAFC4 /* Pods_Lost_Found.framework */; };
 		850FBD56275AD394005DF862 /* GPSController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850FBD55275AD394005DF862 /* GPSController.swift */; };
 		850FBD58275AD997005DF862 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850FBD57275AD997005DF862 /* PlacesViewController.swift */; };
 		851AB3A6273FDAA1005606AC /* MotDePasseOublieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3A5273FDAA1005606AC /* MotDePasseOublieController.swift */; };
@@ -27,6 +28,7 @@
 		855A9EF0275F5E9E00EBBBD5 /* ResetPassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855A9EEF275F5E9E00EBBBD5 /* ResetPassController.swift */; };
 		855C5A22274BFA3300906DE1 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C5A21274BFA3300906DE1 /* ArticleService.swift */; };
 		855C5A24274BFCEF00906DE1 /* ModifierProfilController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C5A23274BFCEF00906DE1 /* ModifierProfilController.swift */; };
+		856260C12764C48600633D15 /* SendBirdApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856260C02764C48600633D15 /* SendBirdApi.swift */; };
 		85749BEA2750670400167934 /* AjouterArticleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85749BE92750670400167934 /* AjouterArticleController.swift */; };
 		85749BEC2752DEC900167934 /* DetailArticleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85749BEB2752DEC800167934 /* DetailArticleController.swift */; };
 		85749BEE2754E25600167934 /* OptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85749BED2754E25600167934 /* OptionsController.swift */; };
@@ -35,12 +37,11 @@
 		85B5B729273E986C0079E2FE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5B728273E986C0079E2FE /* User.swift */; };
 		85B5B72D273E993E0079E2FE /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5B72C273E993E0079E2FE /* CreateAccount.swift */; };
 		85B745DB274EC77000B18E4F /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B745DA274EC76F00B18E4F /* Article.swift */; };
-		CD1F5368AB8087AF659CBA8A /* Pods_Lost_Found.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73DC12F3DD7CB68A26D13A57 /* Pods_Lost_Found.framework */; };
+		85E9B1DF2762C7C400FB94F7 /* ChannelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9B1DE2762C7C400FB94F7 /* ChannelListViewController.swift */; };
+		85E9B1E32762D0DE00FB94F7 /* MessagerieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9B1E22762D0DE00FB94F7 /* MessagerieController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1546ED030E914C0AC48DA1BC /* Pods-Lost&Found.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lost&Found.release.xcconfig"; path = "Target Support Files/Pods-Lost&Found/Pods-Lost&Found.release.xcconfig"; sourceTree = "<group>"; };
-		73DC12F3DD7CB68A26D13A57 /* Pods_Lost_Found.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lost_Found.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		850FBD55275AD394005DF862 /* GPSController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSController.swift; sourceTree = "<group>"; };
 		850FBD57275AD997005DF862 /* PlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
 		851AB3A5273FDAA1005606AC /* MotDePasseOublieController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotDePasseOublieController.swift; sourceTree = "<group>"; };
@@ -63,6 +64,7 @@
 		855A9EEF275F5E9E00EBBBD5 /* ResetPassController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPassController.swift; sourceTree = "<group>"; };
 		855C5A21274BFA3300906DE1 /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 		855C5A23274BFCEF00906DE1 /* ModifierProfilController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierProfilController.swift; sourceTree = "<group>"; };
+		856260C02764C48600633D15 /* SendBirdApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendBirdApi.swift; sourceTree = "<group>"; };
 		85749BE92750670400167934 /* AjouterArticleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjouterArticleController.swift; sourceTree = "<group>"; };
 		85749BEB2752DEC800167934 /* DetailArticleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailArticleController.swift; sourceTree = "<group>"; };
 		85749BED2754E25600167934 /* OptionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsController.swift; sourceTree = "<group>"; };
@@ -71,7 +73,11 @@
 		85B5B728273E986C0079E2FE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		85B5B72C273E993E0079E2FE /* CreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
 		85B745DA274EC76F00B18E4F /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
-		8F18E70C0C98857A010A0524 /* Pods-Lost&Found.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lost&Found.debug.xcconfig"; path = "Target Support Files/Pods-Lost&Found/Pods-Lost&Found.debug.xcconfig"; sourceTree = "<group>"; };
+		85E9B1DE2762C7C400FB94F7 /* ChannelListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListViewController.swift; sourceTree = "<group>"; };
+		85E9B1E22762D0DE00FB94F7 /* MessagerieController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagerieController.swift; sourceTree = "<group>"; };
+		98F43557549F8D5E077AAFC4 /* Pods_Lost_Found.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lost_Found.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4777599B408AAD95BF87A5D /* Pods-Lost&Found.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lost&Found.release.xcconfig"; path = "Target Support Files/Pods-Lost&Found/Pods-Lost&Found.release.xcconfig"; sourceTree = "<group>"; };
+		FA51D7153C97473C73CDF00F /* Pods-Lost&Found.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lost&Found.debug.xcconfig"; path = "Target Support Files/Pods-Lost&Found/Pods-Lost&Found.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,13 +85,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD1F5368AB8087AF659CBA8A /* Pods_Lost_Found.framework in Frameworks */,
+				19178A9D0DD51B7778A872A9 /* Pods_Lost_Found.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A1695CF9AA9ED86D349F5D8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				98F43557549F8D5E077AAFC4 /* Pods_Lost_Found.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		851AB3A8274017CE005606AC /* Design */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +122,7 @@
 				851AB3B6274142B9005606AC /* UserService.swift */,
 				851AB3BB2741920B005606AC /* Utilis.swift */,
 				855C5A21274BFA3300906DE1 /* ArticleService.swift */,
+				856260C02764C48600633D15 /* SendBirdApi.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -118,7 +133,7 @@
 				85417DD727303088003F59CF /* Lost&Found */,
 				85417DD627303088003F59CF /* Products */,
 				DAB7420912F5C635BBD8456E /* Pods */,
-				A025E0CDACAA9115F4157AB6 /* Frameworks */,
+				4A1695CF9AA9ED86D349F5D8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -176,23 +191,17 @@
 				850FBD55275AD394005DF862 /* GPSController.swift */,
 				850FBD57275AD997005DF862 /* PlacesViewController.swift */,
 				855A9EEF275F5E9E00EBBBD5 /* ResetPassController.swift */,
+				85E9B1DE2762C7C400FB94F7 /* ChannelListViewController.swift */,
+				85E9B1E22762D0DE00FB94F7 /* MessagerieController.swift */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		A025E0CDACAA9115F4157AB6 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				73DC12F3DD7CB68A26D13A57 /* Pods_Lost_Found.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		DAB7420912F5C635BBD8456E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8F18E70C0C98857A010A0524 /* Pods-Lost&Found.debug.xcconfig */,
-				1546ED030E914C0AC48DA1BC /* Pods-Lost&Found.release.xcconfig */,
+				FA51D7153C97473C73CDF00F /* Pods-Lost&Found.debug.xcconfig */,
+				B4777599B408AAD95BF87A5D /* Pods-Lost&Found.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -204,12 +213,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 85417DEC27303089003F59CF /* Build configuration list for PBXNativeTarget "Lost&Found" */;
 			buildPhases = (
-				5BB8BDA19AA01F909FDC979F /* [CP] Check Pods Manifest.lock */,
+				8FBCE3F44ED92FBA3F8CADC7 /* [CP] Check Pods Manifest.lock */,
 				85417DD127303088003F59CF /* Sources */,
 				85417DD227303088003F59CF /* Frameworks */,
 				85417DD327303088003F59CF /* Resources */,
-				4BA673042940A65493BF1426 /* [CP] Embed Pods Frameworks */,
-				84628D27E2C1DD456E2894C5 /* [CP] Copy Pods Resources */,
+				F6C8431DA9DDD8C15EB01698 /* [CP] Embed Pods Frameworks */,
+				17AC15FE636558C2DF9A483D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -266,24 +275,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4BA673042940A65493BF1426 /* [CP] Embed Pods Frameworks */ = {
+		17AC15FE636558C2DF9A483D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Lost&Found/Pods-Lost&Found-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Lost&Found/Pods-Lost&Found-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Lost&Found/Pods-Lost&Found-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Lost&Found/Pods-Lost&Found-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Lost&Found/Pods-Lost&Found-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Lost&Found/Pods-Lost&Found-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5BB8BDA19AA01F909FDC979F /* [CP] Check Pods Manifest.lock */ = {
+		8FBCE3F44ED92FBA3F8CADC7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -305,21 +314,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		84628D27E2C1DD456E2894C5 /* [CP] Copy Pods Resources */ = {
+		F6C8431DA9DDD8C15EB01698 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Lost&Found/Pods-Lost&Found-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Lost&Found/Pods-Lost&Found-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Lost&Found/Pods-Lost&Found-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Lost&Found/Pods-Lost&Found-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Lost&Found/Pods-Lost&Found-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Lost&Found/Pods-Lost&Found-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -329,6 +338,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85E9B1DF2762C7C400FB94F7 /* ChannelListViewController.swift in Sources */,
 				851AB3BC2741920B005606AC /* Utilis.swift in Sources */,
 				85417DE327303088003F59CF /* Lost_Found.xcdatamodeld in Sources */,
 				851AB3AE27402ED3005606AC /* AssociationsController.swift in Sources */,
@@ -345,10 +355,12 @@
 				850FBD58275AD997005DF862 /* PlacesViewController.swift in Sources */,
 				85417DDD27303088003F59CF /* ConnexionController.swift in Sources */,
 				850FBD56275AD394005DF862 /* GPSController.swift in Sources */,
+				85E9B1E32762D0DE00FB94F7 /* MessagerieController.swift in Sources */,
 				851AB3AC27402EC4005606AC /* ProfileController.swift in Sources */,
 				85417DD927303088003F59CF /* AppDelegate.swift in Sources */,
 				85749BF027582BB400167934 /* ContactProfilController.swift in Sources */,
 				85B5B729273E986C0079E2FE /* User.swift in Sources */,
+				856260C12764C48600633D15 /* SendBirdApi.swift in Sources */,
 				85B745DB274EC77000B18E4F /* Article.swift in Sources */,
 				85417DDB27303088003F59CF /* SceneDelegate.swift in Sources */,
 				851AB3B427410C2D005606AC /* MySubclassedTabBarController.swift in Sources */,
@@ -497,7 +509,7 @@
 		};
 		85417DED27303089003F59CF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8F18E70C0C98857A010A0524 /* Pods-Lost&Found.debug.xcconfig */;
+			baseConfigurationReference = FA51D7153C97473C73CDF00F /* Pods-Lost&Found.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -517,7 +529,7 @@
 		};
 		85417DEE27303089003F59CF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1546ED030E914C0AC48DA1BC /* Pods-Lost&Found.release.xcconfig */;
+			baseConfigurationReference = B4777599B408AAD95BF87A5D /* Pods-Lost&Found.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
