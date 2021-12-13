@@ -15,6 +15,7 @@ class ProfileController: UIViewController {
     var darkTheme = false
     let dropDown = DropDown()
     let Design = DesignUi()
+    let myStuffTableau = [Article]()
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var settingsUIbutton: UIBarButtonItem!
     @IBOutlet weak var profilPic: UIImageView!
@@ -23,7 +24,35 @@ class ProfileController: UIViewController {
         dropDown.show()
     }
     
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "myStuff" {
     
+                let destination = segue.destination as! MyStuff
+    
+                destination.tableauMyStuff = myStuffTableau
+            }
+    
+        }
+    
+    @IBAction func MyStuff(_ sender: Any) {
+        ArticleService().getArticleByUser(id: UserDefaults.standard.string(forKey: "_id")!) { succes, articles in
+            if succes{
+                let name = Notification.Name("MyStuffAdded")
+                let notification = Notification(name: name)
+                NotificationCenter.default.post(notification)
+                self.performSegue(withIdentifier: "myStuff", sender: self.myStuffTableau)
+            }
+            else{
+                self.propmt(title: "Vous n'avez rien ajouté pour le moment", message: "Essayez d'ajouter un article avant de voir")
+            }
+        }
+    }
+    func propmt(title:String, message:String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .destructive , handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
        

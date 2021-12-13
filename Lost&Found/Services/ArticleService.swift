@@ -185,5 +185,30 @@ class ArticleService {
         }.resume()
     }
     
+    func getArticleByUser(id:String,callback: @escaping (Bool,Articles?)->Void){
+       
+        guard let url = URL(string: "http://localhost:3000/article/myArticles/"+id) else{
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        let session = URLSession.shared.dataTask(with: request){
+            data, response, error in
+            DispatchQueue.main.async {
+                if let data = data {
+                    let decoder = JSONDecoder()
+                    do {
+                        let test = try decoder.decode(Articles.self, from: data)
+                        print(test)
+                        callback(true,test)
+                    }catch{
+                        print("erreur de decodage (add): ",error)
+                        callback(false,nil)
+                    }
+                }
+            }
+        }.resume()
+    }
+    
     
 }

@@ -124,15 +124,7 @@ class CreateAccount: UIViewController,UIImagePickerControllerDelegate,UINavigati
         return emailPred.evaluate(with: email)
     }
     
-    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //        if segue.identifier == "otpsegue" {
-    //
-    //            let destination = segue.destination as! OTPController
-    //
-    //            destination.numero = numT.text
-    //        }
-    //
-    //    }
+ 
     
     func propmt(title:String, message:String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)

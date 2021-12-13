@@ -18,6 +18,7 @@
 		851AB3B427410C2D005606AC /* MySubclassedTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3B327410C2D005606AC /* MySubclassedTabBarController.swift */; };
 		851AB3B7274142B9005606AC /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3B6274142B9005606AC /* UserService.swift */; };
 		851AB3BC2741920B005606AC /* Utilis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AB3BB2741920B005606AC /* Utilis.swift */; };
+		853D8AFF27680091009CF076 /* MyStuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853D8AFE27680091009CF076 /* MyStuff.swift */; };
 		85417DD927303088003F59CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85417DD827303088003F59CF /* AppDelegate.swift */; };
 		85417DDB27303088003F59CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85417DDA27303088003F59CF /* SceneDelegate.swift */; };
 		85417DDD27303088003F59CF /* ConnexionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85417DDC27303088003F59CF /* ConnexionController.swift */; };
@@ -52,6 +53,7 @@
 		851AB3B327410C2D005606AC /* MySubclassedTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySubclassedTabBarController.swift; sourceTree = "<group>"; };
 		851AB3B6274142B9005606AC /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		851AB3BB2741920B005606AC /* Utilis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilis.swift; sourceTree = "<group>"; };
+		853D8AFE27680091009CF076 /* MyStuff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStuff.swift; sourceTree = "<group>"; };
 		85417DD527303088003F59CF /* Lost&Found.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lost&Found.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		85417DD827303088003F59CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85417DDA27303088003F59CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				855A9EEF275F5E9E00EBBBD5 /* ResetPassController.swift */,
 				85E9B1DE2762C7C400FB94F7 /* ChannelListViewController.swift */,
 				85E9B1E22762D0DE00FB94F7 /* MessagerieController.swift */,
+				853D8AFE27680091009CF076 /* MyStuff.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				856260C12764C48600633D15 /* SendBirdApi.swift in Sources */,
 				85B745DB274EC77000B18E4F /* Article.swift in Sources */,
 				85417DDB27303088003F59CF /* SceneDelegate.swift in Sources */,
+				853D8AFF27680091009CF076 /* MyStuff.swift in Sources */,
 				851AB3B427410C2D005606AC /* MySubclassedTabBarController.swift in Sources */,
 				85749BEA2750670400167934 /* AjouterArticleController.swift in Sources */,
 				85B223F2275AA041003D6553 /* GoogleMapsHelper.swift in Sources */,

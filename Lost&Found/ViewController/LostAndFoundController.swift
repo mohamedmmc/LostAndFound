@@ -8,7 +8,36 @@
 import Foundation
 import UIKit
 
-class LostAndFoundController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,UISearchResultsUpdating {
+class LostAndFoundController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UISearchBarDelegate,UISearchResultsUpdating {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if searchController.isActive {
+            return tableauFiltre.count
+        }
+        return dernierTableau.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+       
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellHome",for: indexPath)
+        let cv = cell.contentView
+        let image = cv.viewWithTag(3) as! UIImageView
+        let nom = cv.viewWithTag(4) as! UILabel
+        let description = cv.viewWithTag(5) as! UILabel
+        if searchController.isActive{
+            description.text = tableauFiltre[indexPath.row].description
+            nom.text = tableauFiltre[indexPath.row].nom
+            image.imageFromServerURL(urlString: tableauFiltre[indexPath.row].photo!)
+        }
+        else{
+            description.text = dernierTableau[indexPath.row].description
+            nom.text = dernierTableau[indexPath.row].nom
+            image.imageFromServerURL(urlString: dernierTableau[indexPath.row].photo!)
+        }
+        
+        
+        return cell
+    }
+    
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
         let scopeButton = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
@@ -47,8 +76,8 @@ class LostAndFoundController: UIViewController,UITableViewDelegate,UITableViewDa
     
     let searchController = UISearchController()
     let uiDesign = DesignUi()
-    @IBOutlet weak var tableArticle: UITableView!
     
+    @IBOutlet weak var tableArticle: UICollectionView!
     var dernierTableau = [Article]()
     var tableauFiltre = [Article]()
     
@@ -72,19 +101,15 @@ class LostAndFoundController: UIViewController,UITableViewDelegate,UITableViewDa
         loadArticleToTableview(tableau:self.tableArticle)
         }
     
-     func loadArticleToTableview (tableau:UITableView){
+     func loadArticleToTableview (tableau:UICollectionView){
         ArticleService().getArticle { succes, reponse in
             if succes {
                 for article in reponse!.articles!{
                     self.dernierTableau.append(article)
                     DispatchQueue.main.async {
-                        tableau.reloadWithAnimation()
+                        tableau.reloadData()
                                 }
                 }
-            }
-            else{
-                
-                self.propmt(title: "Tableau vide", message: "Pas d'article a afficher pour le moment")
             }
         }
     }
@@ -103,41 +128,18 @@ class LostAndFoundController: UIViewController,UITableViewDelegate,UITableViewDa
     }
 
     @IBAction func AddItem(_ sender: Any) {
-        performSegue(withIdentifier: "ajouterArticle", sender: tableArticle)
+        if (!UserDefaults.standard.bool(forKey: "isVerified")){
+            self.propmt(title: "Confirmation Compte", message: "Veuillez confirmer votre email avec le code envoye")
+        }
+        else
+        {
+            performSegue(withIdentifier: "ajouterArticle", sender: tableArticle)
+        }
     }
-    
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         performSegue(withIdentifier: "detailArticle", sender: indexPath)
-        
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController.isActive {
-            return tableauFiltre.count
-        }
-        return dernierTableau.count  }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellHome",for: indexPath)
-        let cv = cell.contentView
-        let image = cv.viewWithTag(1) as! UIImageView
-        let nom = cv.viewWithTag(2) as! UILabel
-        let description = cv.viewWithTag(3) as! UILabel
-        if searchController.isActive{
-            description.text = tableauFiltre[indexPath.row].description
-            nom.text = tableauFiltre[indexPath.row].nom
-            image.imageFromServerURL(urlString: tableauFiltre[indexPath.row].photo!)
-        }
-        else{
-            description.text = dernierTableau[indexPath.row].description
-            nom.text = dernierTableau[indexPath.row].nom
-            image.imageFromServerURL(urlString: dernierTableau[indexPath.row].photo!)
-        }
-        
-        
-        return cell
-    }
     func propmt(title:String, message:String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .destructive , handler: nil)
