@@ -28,8 +28,7 @@ extension MySubclassedTabBarController: UITabBarControllerDelegate  {
             let name = Notification.Name("articleAjoute")
             let notification = Notification(name: name)
             NotificationCenter.default.post(notification)
-          UIView.transition(from: fromView, to: toView, duration: 0.3, options: [.
-          transitionFlipFromBottom], completion: nil)
+            UIView.transition(from: fromView, to: toView, duration: 0.3, options: [.transitionCrossDissolve], completion: nil)
         }
 
         return true

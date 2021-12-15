@@ -12,6 +12,7 @@ import FBSDKLoginKit
 class AssociationsController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     let tableauAssociation = ["unicef","tunespoir"]
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+       
         return tableauAssociation.count
     }
     

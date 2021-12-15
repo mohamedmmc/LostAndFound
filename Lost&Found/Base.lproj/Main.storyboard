@@ -966,9 +966,12 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Aq-ls-emo">
-                                <rect key="frame" x="152" y="717" width="116" height="63"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Aq-ls-emo">
+                                <rect key="frame" x="152" y="700" width="116" height="63"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="1Lo-9y-xNE"/>
+                                    <constraint firstAttribute="width" constant="116" id="8ft-iV-dfg"/>
+                                </constraints>
                                 <state key="normal" title="Voir profil"/>
                                 <connections>
                                     <action selector="contactButton:" destination="1fG-vx-aIk" eventType="touchUpInside" id="3B5-sK-dsd"/>
@@ -977,6 +980,11 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6ma-Ch-NFp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6ma-Ch-NFp" firstAttribute="bottom" secondItem="8Aq-ls-emo" secondAttribute="bottom" constant="50" id="PhA-8y-A7A"/>
+                            <constraint firstItem="8Aq-ls-emo" firstAttribute="leading" secondItem="6ma-Ch-NFp" secondAttribute="leading" constant="152" id="R3H-Sa-AYT"/>
+                            <constraint firstItem="6ma-Ch-NFp" firstAttribute="trailing" secondItem="8Aq-ls-emo" secondAttribute="trailing" constant="146" id="fSa-ct-RyL"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="HYy-sn-4bG"/>
                     <connections>

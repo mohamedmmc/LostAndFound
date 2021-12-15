@@ -10,13 +10,14 @@ import GoogleSignIn
 import GoogleMaps
 import GooglePlaces
 import SendBirdUIKit
+import FBSDKLoginKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
+        
         let APP_ID = "6FF6BD6D-A86D-47C0-BE32-22C7C6C8A337"  // Specify your Sendbird application ID.
         SBUMain.initialize(applicationId: APP_ID) {
             // DB migration has started.
