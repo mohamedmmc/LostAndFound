@@ -11,6 +11,7 @@ import FBSDKLoginKit
 import DropDown
 import MapKit
 import SendBirdSDK
+import SendBirdUIKit
 class ProfileController: UIViewController {
     var darkTheme = false
     let dropDown = DropDown()
@@ -20,6 +21,7 @@ class ProfileController: UIViewController {
     @IBOutlet weak var settingsUIbutton: UIBarButtonItem!
     @IBOutlet weak var profilPic: UIImageView!
     @IBOutlet weak var Name: UILabel!
+    @IBOutlet weak var verifierbuttonState: UIButton!
     @IBAction func settingsUibuttonTapped(_ sender: Any) {
         dropDown.show()
     }
@@ -36,7 +38,7 @@ class ProfileController: UIViewController {
     
     @IBAction func MyStuff(_ sender: Any) {
         ArticleService().getArticleByUser(id: UserDefaults.standard.string(forKey: "_id")!) { succes, articles in
-            if succes{
+            if (articles?.articles!.count)! > 0{
                 let name = Notification.Name("MyStuffAdded")
                 let notification = Notification(name: name)
                 NotificationCenter.default.post(notification)
@@ -56,7 +58,6 @@ class ProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        let initialLocation = CLLocation(latitude: 21, longitude: -158)
         dropDown.anchorView = settingsUIbutton // UIView or UIBarButtonItem
         dropDownSelector()
         dropDown.dataSource = ["Securite","Modifier Profil","Theme","Déconnexion","Supprimer Profil"]
@@ -66,10 +67,17 @@ class ProfileController: UIViewController {
         profilPic.contentMode = UIView.ContentMode.scaleAspectFit
         
         profilPic.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "photoProfil")!)
+        print(UserDefaults.standard.string(forKey: "photoProfil")!) 
         Design.RadiusImage(titre: profilPic!, radius: 5,width: 2,Bordercolor: .white)
         
         let name = Notification.Name("updateProfil")
         NotificationCenter.default.addObserver(self, selector: #selector(profileUpdated), name: name, object: nil)
+        if (UserDefaults.standard.bool(forKey: "isVerified")){
+            verifierbuttonState.isHidden = true
+        }
+        else{
+            verifierbuttonState.isHidden = false
+        }
         
     }
     func dropDownSelector (){
@@ -81,17 +89,19 @@ class ProfileController: UIViewController {
                 let refreshAlert = UIAlertController(title: "Changer theme", message: "Etes vous sure de vouloir changer de theme ?", preferredStyle: UIAlertController.Style.alert)
 
                 refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-                    if !darkTheme{
+                    if traitCollection.userInterfaceStyle == .light {
                         UIApplication.shared.windows.forEach { window in
                             window.overrideUserInterfaceStyle = .dark
-                            print("change dark")
+                            SBUTheme.set(theme: .dark)
                             darkTheme = true
+                            UIColor.white
                         }
                     }
                     else{
                         UIApplication.shared.windows.forEach { window in
                             window.overrideUserInterfaceStyle = .light
-                            print("change light")
+                            SBUTheme.set(theme: .light)
+                            
                         }
                     }
                 }))
@@ -109,19 +119,18 @@ class ProfileController: UIViewController {
                 let refreshAlert = UIAlertController(title: "Supprimer", message: "Etes vous sure de vouloir supprimer votre profile ?", preferredStyle: UIAlertController.Style.alert)
 
                 refreshAlert.addAction(UIAlertAction(title: "Ok", style: .destructive, handler: { (action: UIAlertAction!) in
+                    
                     UserService().deleteProfil { succes, reponse in
                         if succes{
                             SendBirdApi().deleteUser(id: UserDefaults.standard.string(forKey: "_id")!)
                             let alert = UIAlertController(title: nil, message: "Un instant...", preferredStyle: .alert)
-
                             let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
                             loadingIndicator.hidesWhenStopped = true
                             loadingIndicator.style = UIActivityIndicatorView.Style.gray
                             loadingIndicator.startAnimating();
-
                             alert.view.addSubview(loadingIndicator)
                             present(alert, animated: true, completion: nil)
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                                 
                             self.clearData()
                                 alert.dismiss(animated: true, completion: nil)
@@ -139,6 +148,12 @@ class ProfileController: UIViewController {
             }
         }
     }
+    
+    
+    @IBAction func verifyButton(_ sender: Any) {
+        UserService().resendConfirmationAccount(email: UserDefaults.standard.string(forKey: "email")!, id: UserDefaults.standard.string(forKey: "_id")!)
+    }
+    
     
     func clearData(){
         let loginManager = LoginManager()
@@ -164,6 +179,7 @@ class ProfileController: UIViewController {
     
     @IBAction func deconnexion(_ sender: Any) {
         promptWithConfirm()
+        SBDMain.clearCachedData(completionHandler: nil)
         SBDMain.disconnect(completionHandler: nil)
         
     }

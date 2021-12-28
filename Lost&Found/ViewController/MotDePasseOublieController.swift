@@ -10,11 +10,12 @@ import UIKit
 
 class MotDePasseOublieController: UIViewController {
     var code = "random"
+     
     @IBAction func validerButton(_ sender: Any) {
         UserService().forgotPassword(email: emailConcerne.text!) { success, reponse in
             if success{
                 self.code = reponse! as! String
-                self.propmt(title: "Code", message: "Un mail contenant un code a ete envoye dans votre email")
+                self.performSegue(withIdentifier: "codeVerification", sender: self.code)
 
             }
             else{
@@ -26,31 +27,28 @@ class MotDePasseOublieController: UIViewController {
     @IBAction func backButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    @IBAction func validerCodeButton(_ sender: Any) {
-        if (codeTextfield.text!.elementsEqual(self.code)){
-            performSegue(withIdentifier: "confirmationCode", sender: code)
-        }
-        else{
-            self.propmt(title: "Erreur", message: "Code incorrect")
-        }
-        
-    }
     
         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == "confirmationCode" {
+            if segue.identifier == "codeVerification" {
     
-                let destination = segue.destination as! ResetPassController
+                let destination = segue.destination as! verificationCodeController
     
                 destination.email = emailConcerne.text!
                 destination.code = self.code
             }
     
         }
-    @IBOutlet weak var codeTextfield: UITextField!
     @IBOutlet weak var emailConcerne: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
  
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+
+          view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     func propmt(title:String, message:String){

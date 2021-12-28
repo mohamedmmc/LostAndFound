@@ -45,7 +45,7 @@ class ConstactProfilController: UIViewController {
                 print("Created channel url : ",self.channelURL)
             }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             
             SBDGroupChannel.getWithUrl(self.channelURL) { openChannel, error in
                 print("Entering channel url",self.channelURL)

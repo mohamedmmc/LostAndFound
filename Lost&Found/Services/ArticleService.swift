@@ -11,63 +11,44 @@ import UIKit
 
 class ArticleService {
     
-    
-    
-    func postArticle(username: String,mdp: String,callback: @escaping (Bool,Any?)->Void){
-        let params = [
-            "email": username,
-            "password":mdp,
-        ]
-        guard let url = URL(string: "http://localhost:3000/user/login") else{
-            return
-        }
+    func modifierArticle(article:Article, image :UIImage, callback: @escaping (Bool,Any?)->Void){
         
+        guard let mediaImage = Media(withImage: image, forKey: "photoProfil") else { return }
+        guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/article/"+article._id) else { return }
         var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "PATCH"
+        //create boundary
+        let boundary = generateBoundary()
+        //set content type
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        //call createDataBody method
         
-        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
-        let session = URLSession.shared.dataTask(with: request){
-            data, response, error in
+        let dataBody = DataBody(article:article, media: [mediaImage], boundary: boundary)
+        request.httpBody = dataBody
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
-                if error != nil{
-                    print("error")
-                }else {
-                    
-                    if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
-                        if let reponse = jsonRes["user"] as? [String: Any]{
-                            
-                            for (key,value) in reponse{
-                                
-                                UserDefaults.standard.setValue(value, forKey: key)
-                                
-                            }
-                            callback(true,"good")
-                            
-                        }else{
-                            callback(false,nil)
-                        }
-                    }else{
-                        callback(false,nil)
+          
+                if let data = data {
+                    let decoder = JSONDecoder()
+                    do {
+                        let test = try decoder.decode(Article.self, from: data)
+                        callback(true,test)
+                    }catch{
+                        print("erreur de decodage (add): ",error)
+                        callback(false,"erreur decodage")
                     }
+                } else{
+                    callback(false,"no data")
                 }
             }
-            
         }.resume()
-        
     }
-    
-    
-    
-    
-    
-    
-    
-    
+
     func AjoutArticle(article:Article, image :UIImage, callback: @escaping (Bool,Any?)->Void){
         
         guard let mediaImage = Media(withImage: image, forKey: "photoProfil") else { return }
-        guard let url = URL(string: "http://localhost:3000/article") else { return }
+        guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/article") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         //create boundary
@@ -150,7 +131,7 @@ class ArticleService {
     
     func getArticle( callback: @escaping (Bool,Articles?)->Void){
        
-        guard let url = URL(string: "http://localhost:3000/article") else{
+        guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/article") else{
             return
         }
         var request = URLRequest(url: url)
@@ -187,7 +168,7 @@ class ArticleService {
     
     func getArticleByUser(id:String,callback: @escaping (Bool,Articles?)->Void){
        
-        guard let url = URL(string: "http://localhost:3000/article/myArticles/"+id) else{
+        guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/article/myArticles/"+id) else{
             return
         }
         var request = URLRequest(url: url)

@@ -20,7 +20,7 @@ class MessagerieController: SBUChannelListViewController {
         
         listQuery?.userIdsExactFilter = [UserDefaults.standard.string(forKey: "_id")!]
         listQuery?.loadNextPage(completionHandler: { (groupChannels, error) in
-           print("groupe channel : ",groupChannels, "erreur : ",error)
+         //  print("groupe channel : ",groupChannels, "erreur : ",error)
             guard error == nil else {return}
         })
     }

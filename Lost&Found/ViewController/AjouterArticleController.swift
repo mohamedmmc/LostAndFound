@@ -25,6 +25,11 @@ class AjouterArticleController: UIViewController,UIImagePickerControllerDelegate
             labelTest.text = "Lost"
         }
         Design.BorderButton(titre: ajouterButton, radius: 20, width: 2, Bordercolor: UIColor.init(red: 255, green: 255, blue: 255, alpha: 2))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+          view.addGestureRecognizer(tap)
+    }
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     @IBOutlet weak var labelTest: UILabel!
     @IBOutlet weak var typeArticleSwitch: UISwitch!
@@ -59,38 +64,41 @@ class AjouterArticleController: UIViewController,UIImagePickerControllerDelegate
     
     @IBAction func shosMap(_ sender: Any) {
         performSegue(withIdentifier: "gpsSegue", sender: nil)
-        
-        
-//        let camera = GMSCameraPosition.camera(withLatitude: 36.900115, longitude: 10.187923, zoom: 15.0)
-//                let mapView = GMSMapView.map(withFrame: CGRect(x: 0, y: 0, width: 500, height: 500), camera: camera)
-//                self.view.addSubview(mapView)
-//
-//
-//                // Creates a marker in the center of the map.
-//                let marker = GMSMarker()
-//                marker.position = CLLocationCoordinate2D(latitude: 36.900115, longitude: 10.187923)
-//                marker.title = "Ariana Soghra"
-//                marker.snippet = "Tunisia"
-//                marker.map = mapView
+     
     }
     @IBAction func Ajouter(_ sender: Any) {
+            let alert = UIAlertController(title: nil, message: "Un instant...", preferredStyle: .alert)
+            let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+            loadingIndicator.hidesWhenStopped = true
+            loadingIndicator.style = UIActivityIndicatorView.Style.gray
+            loadingIndicator.startAnimating();
+            alert.view.addSubview(loadingIndicator)
+            present(alert, animated: true, completion: nil)
+            
         if (!nomArticleTextfield.text!.isEmpty){
             let user = User(id: UserDefaults.standard.string(forKey: "_id")!, nom: "", prenom: "", email: "", mdp: "", numtel: "", photoProfil: "", isVerified: false, __v: 0)
             let article = Article(_id: "", nom: nomArticleTextfield.text!, description: descriptionArticleTextarea.text!, addresse: gpsLocation, photo: "2", dateCreation: "3", dateModif: "4",type: type, user: user,__v: 0)
             ArticleService().AjoutArticle(article: article, image: imageArticle.image!) { succes, reponse in
                 if succes, let json = reponse{
-
+                    alert.dismiss(animated: true, completion: nil)
                     let name = Notification.Name("articleAjoute")
                     let notification = Notification(name: name)
                     NotificationCenter.default.post(notification)
                     self.dismiss(animated: true, completion: nil)
                     
                 }
+                else{
+                    alert.dismiss(animated: true, completion: nil)
+
+                }
 
         }
         }
             else{
-                self.propmt(title: "Erreur d'ajout", message: "Impossible d'ajouter")
+                alert.dismiss(animated: true, completion: nil)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.propmt(title: "Erreur d'ajout", message: "Impossible d'ajouter")
+                }
             }
         
     }
@@ -101,6 +109,8 @@ class AjouterArticleController: UIViewController,UIImagePickerControllerDelegate
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
+    
+    
     
     
 }

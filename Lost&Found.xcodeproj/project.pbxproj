@@ -26,6 +26,8 @@
 		85417DE327303088003F59CF /* Lost_Found.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 85417DE127303088003F59CF /* Lost_Found.xcdatamodeld */; };
 		85417DE527303089003F59CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85417DE427303089003F59CF /* Assets.xcassets */; };
 		85417DE827303089003F59CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85417DE627303089003F59CF /* LaunchScreen.storyboard */; };
+		8549F2E9276F7F0300A699E7 /* verificationCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8549F2E8276F7F0300A699E7 /* verificationCodeController.swift */; };
+		8549F2EB276FDD2300A699E7 /* DetailMyStuffController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8549F2EA276FDD2300A699E7 /* DetailMyStuffController.swift */; };
 		855A9EF0275F5E9E00EBBBD5 /* ResetPassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855A9EEF275F5E9E00EBBBD5 /* ResetPassController.swift */; };
 		855C5A22274BFA3300906DE1 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C5A21274BFA3300906DE1 /* ArticleService.swift */; };
 		855C5A24274BFCEF00906DE1 /* ModifierProfilController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C5A23274BFCEF00906DE1 /* ModifierProfilController.swift */; };
@@ -63,6 +65,8 @@
 		85417DE427303089003F59CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85417DE727303089003F59CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85417DE927303089003F59CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8549F2E8276F7F0300A699E7 /* verificationCodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = verificationCodeController.swift; sourceTree = "<group>"; };
+		8549F2EA276FDD2300A699E7 /* DetailMyStuffController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMyStuffController.swift; sourceTree = "<group>"; };
 		855A9EEF275F5E9E00EBBBD5 /* ResetPassController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPassController.swift; sourceTree = "<group>"; };
 		855C5A21274BFA3300906DE1 /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 		855C5A23274BFCEF00906DE1 /* ModifierProfilController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierProfilController.swift; sourceTree = "<group>"; };
@@ -196,6 +200,8 @@
 				85E9B1DE2762C7C400FB94F7 /* ChannelListViewController.swift */,
 				85E9B1E22762D0DE00FB94F7 /* MessagerieController.swift */,
 				853D8AFE27680091009CF076 /* MyStuff.swift */,
+				8549F2E8276F7F0300A699E7 /* verificationCodeController.swift */,
+				8549F2EA276FDD2300A699E7 /* DetailMyStuffController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -363,6 +369,8 @@
 				85417DD927303088003F59CF /* AppDelegate.swift in Sources */,
 				85749BF027582BB400167934 /* ContactProfilController.swift in Sources */,
 				85B5B729273E986C0079E2FE /* User.swift in Sources */,
+				8549F2E9276F7F0300A699E7 /* verificationCodeController.swift in Sources */,
+				8549F2EB276FDD2300A699E7 /* DetailMyStuffController.swift in Sources */,
 				856260C12764C48600633D15 /* SendBirdApi.swift in Sources */,
 				85B745DB274EC77000B18E4F /* Article.swift in Sources */,
 				85417DDB27303088003F59CF /* SceneDelegate.swift in Sources */,
@@ -446,7 +454,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -501,7 +509,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

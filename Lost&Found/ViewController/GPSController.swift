@@ -9,14 +9,8 @@ import Foundation
 import UIKit
 import GoogleMaps
 import GooglePlaces
-class GPSController: UIViewController, CLLocationManagerDelegate,GMSMapViewDelegate, GMSAutocompleteResultsViewControllerDelegate {
-    func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didAutocompleteWith place: GMSPlace) {
-        print(place)
-    }
-    
-    func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didFailAutocompleteWithError error: Error) {
-        print(error)
-    }
+class GPSController: UIViewController, CLLocationManagerDelegate,GMSMapViewDelegate {
+
     
 //    var locationManager: CLLocationManager = CLLocationManager()
 //    var mapView: GMSMapView = GMSMapView()
@@ -34,23 +28,7 @@ class GPSController: UIViewController, CLLocationManagerDelegate,GMSMapViewDeleg
     // The currently selected place.
     var selectedPlace: GMSPlace?
     override func viewDidLoad() {
-        resultsViewController = GMSAutocompleteResultsViewController()
-            resultsViewController?.delegate = self
-
-            searchController = UISearchController(searchResultsController: resultsViewController)
-            searchController?.searchResultsUpdater = resultsViewController
-
-            let subView = UIView(frame: CGRect(x: 0, y: 65.0, width: 350.0, height: 45.0))
-
-            subView.addSubview((searchController?.searchBar)!)
-            view.addSubview(subView)
-            searchController?.searchBar.sizeToFit()
-            searchController?.hidesNavigationBarDuringPresentation = false
-
-            // When UISearchController presents the results view, present it in
-            // this view controller, not one further up the chain.
-            definesPresentationContext = true
-        
+       
         
         
         

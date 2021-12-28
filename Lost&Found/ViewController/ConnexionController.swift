@@ -29,6 +29,10 @@ class ViewController: UIViewController,LoginButtonDelegate {
     func getUserDataFromGoogle (){
         let alert = UIAlertController(title: nil, message: "Un instant...", preferredStyle: .alert)
 
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {
+            action in
+            alert.dismiss(animated: true, completion: nil)
+        }))
         let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
         loadingIndicator.hidesWhenStopped = true
         loadingIndicator.style = UIActivityIndicatorView.Style.gray
@@ -84,28 +88,25 @@ class ViewController: UIViewController,LoginButtonDelegate {
     
     func getUserDataFromFacebook() {
         let alert = UIAlertController(title: nil, message: "Un instant...", preferredStyle: .alert)
-
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {
+            action in
+            alert.dismiss(animated: true, completion: nil)
+        }))
         let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
         loadingIndicator.hidesWhenStopped = true
         loadingIndicator.style = UIActivityIndicatorView.Style.gray
         loadingIndicator.startAnimating();
-
         alert.view.addSubview(loadingIndicator)
         present(alert, animated: true, completion: nil)
-        
         let imageData = NSData()
         GraphRequest(graphPath: "me", parameters: ["fields": "first_name,last_name,  picture.width(480).height(480),email, id"]).start { [self] (connection, result, error) in
-             
                 if let fields = result as? [String:Any],let lastname = fields["last_name"] as? String,let firstName = fields["first_name"] as? String,let email = fields["email"] as? String, let id = fields["id"] as? String {
                     if let profilePictureObj = fields["picture"] as? NSDictionary{
-                        
                         let data = profilePictureObj["data"] as! NSDictionary
                         let pictureUrlString  = data["url"] as! String
                         let pictureUrl = NSURL(string: pictureUrlString)
-                      
                         let imageData = NSData(contentsOf: pictureUrl! as URL)
                         faza = UIImage(data: imageData as! Data)
-                
                     }
                     
                     let user = User(id: "", nom: lastname, prenom: firstName, email: email, mdp: "", numtel: "", photoProfil: "", isVerified: false,__v: 0)
@@ -118,7 +119,6 @@ class ViewController: UIViewController,LoginButtonDelegate {
                             }
                         }
                         else{
-                            
                             UserService().CreationCompteSocial(user: user, image: faza! ) { succes, reponse in
                                 if succes, let json = reponse{
                                     alert.dismiss(animated: true, completion: nil)
@@ -128,15 +128,13 @@ class ViewController: UIViewController,LoginButtonDelegate {
                                 else if (reponse! == "mail existant"){
                                     alert.dismiss(animated: true, completion: nil)
                                     self.propmt(title: "Echec", message: "Mail deja Existant")
-                                    
                                 }
                             }
                         }
-                        
-                        
                     }
                 }
             }
+        alert.dismiss(animated: true, completion: nil)
         }
     
     @IBOutlet weak var Connexin: UIButton!
@@ -167,8 +165,18 @@ class ViewController: UIViewController,LoginButtonDelegate {
         Connexin?.layer.borderColor = UIColor.init(red: 255, green: 255, blue: 255, alpha: 1).cgColor
         username.layer.borderColor = UIColor.init(red: 146, green: 182, blue: 252, alpha: 0).cgColor
         username.layer.cornerRadius = 50
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+
+          //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+          //tap.cancelsTouchesInView = false
+
+          view.addGestureRecognizer(tap)
     }
     
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
     
     
     @IBAction func MdpOublie(_ sender: UIButton) {
@@ -179,7 +187,10 @@ class ViewController: UIViewController,LoginButtonDelegate {
         let email = username.text!
         let pass = password.text!
         let alert = UIAlertController(title: nil, message: "Un instant...", preferredStyle: .alert)
-
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {
+            action in
+            alert.dismiss(animated: true, completion: nil)
+        }))
         let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
         loadingIndicator.hidesWhenStopped = true
         loadingIndicator.style = UIActivityIndicatorView.Style.gray
@@ -189,12 +200,15 @@ class ViewController: UIViewController,LoginButtonDelegate {
         UserService().login(username: email,mdp: pass) { (succes,reponse) in
             if succes, let json = reponse{
                 alert.dismiss(animated: true, completion: nil)
-
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.performSegue(withIdentifier: "connexion", sender: nil)
+                }
             }
             else{
                 alert.dismiss(animated: true, completion: nil)
-                self.propmt(title: "Echec", message: "Email ou mot de passe incorrect")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+
+                    self.propmt(title: "Echec", message: "Email ou mot de passe incorrect")}
             }
         }
     }

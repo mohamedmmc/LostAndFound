@@ -37,7 +37,7 @@ class UserService {
         let params = [
             "email": username
         ]
-        guard let url = URL(string: "http://localhost:3000/user/Auth") else{
+        guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/user/Auth") else{
             return
         }
         var request = URLRequest(url: url)
@@ -85,7 +85,7 @@ class UserService {
             "email": username,
             "password":mdp,
         ]
-        guard let url = URL(string: "http://localhost:3000/user/login") else{
+        guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/user/login") else{
             return
         }
         
@@ -216,7 +216,7 @@ class UserService {
     func CreationCompte(user:User, image :UIImage, callback: @escaping (Bool,String?)->Void){
         
         guard let mediaImage = Media(withImage: image, forKey: "photoProfil") else { return }
-        guard let url = URL(string: "http://localhost:3000/user") else { return }
+        guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/user") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         //create boundary
@@ -307,7 +307,7 @@ class UserService {
     func CreationCompteSocial(user:User, image :UIImage, callback: @escaping (Bool,String?)->Void){
         
         guard let mediaImage = Media(withImage: image, forKey: "photoProfil") else { return }
-        guard let url = URL(string: "http://localhost:3000/user/Social") else { return }
+        guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/user/Social") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         //create boundary
@@ -361,7 +361,7 @@ class UserService {
     
     
     func deleteProfil ( callback: @escaping (Bool,String?)->Void){
-        guard let url = URL(string: "http://localhost:3000/user/"+UserDefaults.standard.string(forKey: "_id")!) else { return }
+        guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/user/"+UserDefaults.standard.string(forKey: "_id")!) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
@@ -397,7 +397,7 @@ class UserService {
     func UpdateProfil(user:User, image :UIImage, callback: @escaping (Bool,String?)->Void){
         
         guard let mediaImage = Media(withImage: image, forKey: "photoProfil") else { return }
-        guard let url = URL(string: "http://localhost:3000/user/"+UserDefaults.standard.string(forKey: "_id")!) else { return }
+        guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/user/"+UserDefaults.standard.string(forKey: "_id")!) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "PATCH"
         //create boundary
@@ -405,7 +405,6 @@ class UserService {
         let boundary = generateBoundary()
         //set content type
         let token = UserDefaults.standard.string(forKey: "tokenConnexion")!
-        print("le token est la ya zebi",token)
         request.setValue( "Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         
@@ -449,11 +448,26 @@ class UserService {
         }.resume()
     }
     
-    
+    func resendConfirmationAccount (email:String,id:String){
+        guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/user/resendConfirmation/"+id) else {return}
+                  
+        var request = URLRequest(url: url)
+        let params = [
+            "email": email
+        ]
+        request.httpMethod = "POST"
+        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+        let session = URLSession.shared.dataTask(with: request){
+            data, response, error in
+            print("data : ",data)
+            print("error : ",error)
+        }.resume()
+    }
     
     func forgotPassword (email:String, callback: @escaping (Bool,Any?)->Void){
         
-        guard let url = URL(string: "http://localhost:3000/user/forgotPassword") else {return}
+        guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/user/forgotPassword") else {return}
         var request = URLRequest(url: url)
         let params = [
             "email": email
@@ -482,7 +496,7 @@ class UserService {
     
     func resetPass(password : String, email:String, code:String , callback: @escaping (Bool,Any?)->Void){
         
-        guard let url = URL(string: "http://localhost:3000/user/resetPassword/"+email+"/"+code) else {return}
+        guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/user/resetPassword/"+email+"/"+code) else {return}
         var request = URLRequest(url: url)
         let params = [
             "Password": password

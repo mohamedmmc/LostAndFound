@@ -32,7 +32,17 @@ class CreateAccount: UIViewController,UIImagePickerControllerDelegate,UINavigati
         let numphoto = UIImage(named: "phone")
         Design.addLeftIcon(txtField: numT, andImage: numphoto!)
         Design.addLeftIcon(txtField: mdpT, andImage: passord!)
-        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+
+          //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+          //tap.cancelsTouchesInView = false
+
+          view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     @IBAction func Parcourir(_ sender: Any) {
@@ -74,19 +84,24 @@ class CreateAccount: UIViewController,UIImagePickerControllerDelegate,UINavigati
                             if (json == "ok"){
                                 SendBirdApi().SendBirdCreateAccount(user_id: UserDefaults.standard.string(forKey: "_id")!, nickname:  UserDefaults.standard.string(forKey: "nom")!, profile_url:  UserDefaults.standard.string(forKey: "photoProfil")!)
                                 alert.dismiss(animated: true, completion: nil)
+                                
                                 self.performSegue(withIdentifier: "connexion", sender: reponse)
                             }
                         }
                         else if (reponse == "mail existant"){
                             alert.dismiss(animated: true, completion: nil)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 
-                            self.propmt(title: "Echec", message: "Mail deja Existant")
+
+                                self.propmt(title: "Echec", message: "Mail deja Existant")}
                             
                         }
                         else if (reponse == "num existant"){
                             alert.dismiss(animated: true, completion: nil)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 
-                            self.propmt(title: "Echec", message: "Numero deja Existant")
+
+                                self.propmt(title: "Echec", message: "Numero deja Existant")}
                             
                             
                         }
@@ -94,15 +109,17 @@ class CreateAccount: UIViewController,UIImagePickerControllerDelegate,UINavigati
                 
             }else{
                 alert.dismiss(animated: true, completion: nil)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 
-                self.propmt(title: "Echec", message: "Numero invalid")
+                    self.propmt(title: "Echec", message: "Numero invalid")}
             }
 
         }
         else{
             alert.dismiss(animated: true, completion: nil)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 
-            self.propmt(title: "Echec", message: "Email incorrect")
+                self.propmt(title: "Echec", message: "Email incorrect")}
         }
         
         

@@ -31,6 +31,20 @@ class MyStuff: UIViewController,UITableViewDelegate,UITableViewDataSource {
         tableauMyStuff?.removeAll()
         loadArticleToTableview(tableau:self.myStuffUITable)
         }
+    @objc func reloadMyStuff(){
+        tableauMyStuff?.removeAll()
+        loadArticleToTableview(tableau:self.myStuffUITable)
+        }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "detailMyStuff", sender: indexPath)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detailMyStuff" {
+            let index = sender as! IndexPath
+            let destination = segue.destination as! DetailMyStuffController
+            destination.test = tableauMyStuff![index.row]
+        }
+    }
     func loadArticleToTableview (tableau:UITableView){
         ArticleService().getArticleByUser(id: UserDefaults.standard.string(forKey: "_id")!) { succes, articles in
            if succes {
@@ -52,5 +66,7 @@ class MyStuff: UIViewController,UITableViewDelegate,UITableViewDataSource {
         super.viewDidLoad()
         let name = Notification.Name("MyStuffAdded")
         NotificationCenter.default.addObserver(self, selector: #selector(loadArticle), name: name, object: nil)
+        let name2 = Notification.Name("updateArticle")
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadMyStuff), name: name2, object: nil)
     }
 }
