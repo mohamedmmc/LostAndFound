@@ -28,6 +28,11 @@ extension MySubclassedTabBarController: UITabBarControllerDelegate  {
             let name = Notification.Name("articleAjoute")
             let notification = Notification(name: name)
             NotificationCenter.default.post(notification)
+            
+            let name2 = Notification.Name("isVerified")
+            let notificationVerified = Notification(name: name2)
+            NotificationCenter.default.post(notificationVerified)
+            
             UIView.transition(from: fromView, to: toView, duration: 0.3, options: [.transitionCrossDissolve], completion: nil)
         }
 

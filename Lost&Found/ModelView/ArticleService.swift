@@ -45,7 +45,7 @@ class ArticleService {
         }.resume()
     }
 
-    func AjoutArticle(article:Article, image :UIImage, callback: @escaping (Bool,Any?)->Void){
+    func AjoutArticle(article:Article, image :UIImage, callback: @escaping (Bool,Article?)->Void){
         
         guard let mediaImage = Media(withImage: image, forKey: "photoProfil") else { return }
         guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/article") else { return }
@@ -70,10 +70,10 @@ class ArticleService {
                         callback(true,test)
                     }catch{
                         print("erreur de decodage (add): ",error)
-                        callback(false,"erreur decodage")
+                        callback(false,nil)
                     }
                 } else{
-                    callback(false,"no data")
+                    callback(false,nil)
                 }
             }
         }.resume()

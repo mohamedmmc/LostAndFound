@@ -21,5 +21,6 @@ struct Article: Decodable {
     var dateModif:String
     var type:String
     var user:User
+    var question:Question?
     var __v:Int
 }

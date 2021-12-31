@@ -71,7 +71,7 @@ class DetailMyStuffController: UIViewController ,UIImagePickerControllerDelegate
         loadingIndicator.startAnimating();
         alert.view.addSubview(loadingIndicator)
         present(alert, animated: true, completion: nil)
-        let articleModifier = Article(_id: test!._id, nom: nomTextfield.text, description: textArea.text, addresse: test?.addresse, photo: "", dateCreation: test!.dateCreation, dateModif: test!.dateModif, type: type, user: test!.user, __v: 0)
+        let articleModifier = Article(_id: test!._id, nom: nomTextfield.text, description: textArea.text, addresse: test?.addresse, photo: "", dateCreation: test!.dateCreation, dateModif: test!.dateModif, type: type, user: test!.user, question: test!.question, __v: 0)
         ArticleService().modifierArticle(article: articleModifier, image: imageMyStuff.image!) { succes, reponseArticle in
             if succes{
                 let name = Notification.Name("updateArticle")

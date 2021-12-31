@@ -270,6 +270,32 @@ class UserService {
         }.resume()
     }
     
+    func getVerifiedUser(callback: @escaping (Bool)->Void){
+        guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/user/oyoy/"+UserDefaults.standard.string(forKey: "_id")!) else{
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        let session = URLSession.shared.dataTask(with: request){
+            data, response, error in
+            DispatchQueue.main.async {
+                if error != nil{
+                    print("there is error")
+                }else {
+                    if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Bool]{
+                        if jsonRes["isVerified"]!{
+                            UserDefaults.standard.setValue(true, forKey: "isVerified")
+                            callback(true)
+                        }
+                        else{
+                            callback(false)
+                        }
+                    }
+                }
+            }
+        }.resume()
+    }
 
     
     func getUser(token:String,callback: @escaping (Bool,Any?)->Void){
@@ -448,7 +474,7 @@ class UserService {
         }.resume()
     }
     
-    func resendConfirmationAccount (email:String,id:String){
+    func resendConfirmationAccount (email:String,id:String,callback:  @escaping (Bool,String?)->Void){
         guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/user/resendConfirmation/"+id) else {return}
                   
         var request = URLRequest(url: url)

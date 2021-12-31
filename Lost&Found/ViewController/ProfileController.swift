@@ -49,6 +49,10 @@ class ProfileController: UIViewController {
             }
         }
     }
+    
+    
+ 
+    
     func propmt(title:String, message:String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .destructive , handler: nil)
@@ -56,6 +60,9 @@ class ProfileController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     override func viewDidLoad() {
+        let name2 = Notification.Name("isVerified")
+        let notificationVerified = Notification(name: name2)
+        NotificationCenter.default.post(notificationVerified)
         super.viewDidLoad()
        
         dropDown.anchorView = settingsUIbutton // UIView or UIBarButtonItem
@@ -67,11 +74,17 @@ class ProfileController: UIViewController {
         profilPic.contentMode = UIView.ContentMode.scaleAspectFit
         
         profilPic.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "photoProfil")!)
-        print(UserDefaults.standard.string(forKey: "photoProfil")!) 
         Design.RadiusImage(titre: profilPic!, radius: 5,width: 2,Bordercolor: .white)
         
         let name = Notification.Name("updateProfil")
         NotificationCenter.default.addObserver(self, selector: #selector(profileUpdated), name: name, object: nil)
+        
+        
+        
+        let name3 = Notification.Name("isVerified")
+        NotificationCenter.default.addObserver(self, selector: #selector(verifiedUpdated), name: name3, object: nil)
+        
+        
         if (UserDefaults.standard.bool(forKey: "isVerified")){
             verifierbuttonState.isHidden = true
         }
@@ -151,7 +164,14 @@ class ProfileController: UIViewController {
     
     
     @IBAction func verifyButton(_ sender: Any) {
-        UserService().resendConfirmationAccount(email: UserDefaults.standard.string(forKey: "email")!, id: UserDefaults.standard.string(forKey: "_id")!)
+        UserService().resendConfirmationAccount(email: UserDefaults.standard.string(forKey: "email")!, id: UserDefaults.standard.string(forKey: "_id")!) { succes, reponse in
+            if succes{
+                print(reponse)
+            }
+            else{
+                print(reponse)
+            }
+        }
     }
     
     
@@ -169,7 +189,18 @@ class ProfileController: UIViewController {
         UserDefaults.standard.synchronize()
     }
     
-    
+    @objc func verifiedUpdated(){
+        UserService().getVerifiedUser { [self] succes in
+            if succes{
+                verifierbuttonState.isHidden = true
+
+            }
+            else{
+                verifierbuttonState.isHidden = false
+            }
+        }
+
+    }
 
     
     @objc func profileUpdated(){

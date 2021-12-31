@@ -26,11 +26,15 @@
 		85417DE327303088003F59CF /* Lost_Found.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 85417DE127303088003F59CF /* Lost_Found.xcdatamodeld */; };
 		85417DE527303089003F59CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85417DE427303089003F59CF /* Assets.xcassets */; };
 		85417DE827303089003F59CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85417DE627303089003F59CF /* LaunchScreen.storyboard */; };
+		85428DF0277CCD7E004C783B /* QuestionReponseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85428DEF277CCD7E004C783B /* QuestionReponseService.swift */; };
+		85428DF2277CCFB6004C783B /* AjoutQuestionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85428DF1277CCFB6004C783B /* AjoutQuestionController.swift */; };
+		85428DF4277CD226004C783B /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85428DF3277CD226004C783B /* Question.swift */; };
 		8549F2E9276F7F0300A699E7 /* verificationCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8549F2E8276F7F0300A699E7 /* verificationCodeController.swift */; };
 		8549F2EB276FDD2300A699E7 /* DetailMyStuffController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8549F2EA276FDD2300A699E7 /* DetailMyStuffController.swift */; };
 		855A9EF0275F5E9E00EBBBD5 /* ResetPassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855A9EEF275F5E9E00EBBBD5 /* ResetPassController.swift */; };
 		855C5A22274BFA3300906DE1 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C5A21274BFA3300906DE1 /* ArticleService.swift */; };
 		855C5A24274BFCEF00906DE1 /* ModifierProfilController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C5A23274BFCEF00906DE1 /* ModifierProfilController.swift */; };
+		85615CC5277F3849002A0150 /* Reponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85615CC4277F3849002A0150 /* Reponse.swift */; };
 		856260C12764C48600633D15 /* SendBirdApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856260C02764C48600633D15 /* SendBirdApi.swift */; };
 		85749BEA2750670400167934 /* AjouterArticleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85749BE92750670400167934 /* AjouterArticleController.swift */; };
 		85749BEC2752DEC900167934 /* DetailArticleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85749BEB2752DEC800167934 /* DetailArticleController.swift */; };
@@ -65,11 +69,15 @@
 		85417DE427303089003F59CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85417DE727303089003F59CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85417DE927303089003F59CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85428DEF277CCD7E004C783B /* QuestionReponseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionReponseService.swift; sourceTree = "<group>"; };
+		85428DF1277CCFB6004C783B /* AjoutQuestionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjoutQuestionController.swift; sourceTree = "<group>"; };
+		85428DF3277CD226004C783B /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		8549F2E8276F7F0300A699E7 /* verificationCodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = verificationCodeController.swift; sourceTree = "<group>"; };
 		8549F2EA276FDD2300A699E7 /* DetailMyStuffController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMyStuffController.swift; sourceTree = "<group>"; };
 		855A9EEF275F5E9E00EBBBD5 /* ResetPassController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPassController.swift; sourceTree = "<group>"; };
 		855C5A21274BFA3300906DE1 /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 		855C5A23274BFCEF00906DE1 /* ModifierProfilController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierProfilController.swift; sourceTree = "<group>"; };
+		85615CC4277F3849002A0150 /* Reponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reponse.swift; sourceTree = "<group>"; };
 		856260C02764C48600633D15 /* SendBirdApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendBirdApi.swift; sourceTree = "<group>"; };
 		85749BE92750670400167934 /* AjouterArticleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjouterArticleController.swift; sourceTree = "<group>"; };
 		85749BEB2752DEC800167934 /* DetailArticleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailArticleController.swift; sourceTree = "<group>"; };
@@ -117,20 +125,14 @@
 		851AB3B5274142A5005606AC /* ModelView */ = {
 			isa = PBXGroup;
 			children = (
-			);
-			path = ModelView;
-			sourceTree = "<group>";
-		};
-		851AB3B827414DC2005606AC /* Services */ = {
-			isa = PBXGroup;
-			children = (
 				85B223F1275AA040003D6553 /* GoogleMapsHelper.swift */,
 				851AB3B6274142B9005606AC /* UserService.swift */,
 				851AB3BB2741920B005606AC /* Utilis.swift */,
 				855C5A21274BFA3300906DE1 /* ArticleService.swift */,
 				856260C02764C48600633D15 /* SendBirdApi.swift */,
+				85428DEF277CCD7E004C783B /* QuestionReponseService.swift */,
 			);
-			path = Services;
+			path = ModelView;
 			sourceTree = "<group>";
 		};
 		85417DCC27303087003F59CF = {
@@ -154,7 +156,6 @@
 		85417DD727303088003F59CF /* Lost&Found */ = {
 			isa = PBXGroup;
 			children = (
-				851AB3B827414DC2005606AC /* Services */,
 				851AB3B5274142A5005606AC /* ModelView */,
 				851AB3A8274017CE005606AC /* Design */,
 				85B5B72B273E98830079E2FE /* ViewController */,
@@ -175,6 +176,8 @@
 			children = (
 				85B5B728273E986C0079E2FE /* User.swift */,
 				85B745DA274EC76F00B18E4F /* Article.swift */,
+				85428DF3277CD226004C783B /* Question.swift */,
+				85615CC4277F3849002A0150 /* Reponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				853D8AFE27680091009CF076 /* MyStuff.swift */,
 				8549F2E8276F7F0300A699E7 /* verificationCodeController.swift */,
 				8549F2EA276FDD2300A699E7 /* DetailMyStuffController.swift */,
+				85428DF1277CCFB6004C783B /* AjoutQuestionController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -348,8 +352,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				85E9B1DF2762C7C400FB94F7 /* ChannelListViewController.swift in Sources */,
+				85615CC5277F3849002A0150 /* Reponse.swift in Sources */,
 				851AB3BC2741920B005606AC /* Utilis.swift in Sources */,
 				85417DE327303088003F59CF /* Lost_Found.xcdatamodeld in Sources */,
+				85428DF4277CD226004C783B /* Question.swift in Sources */,
 				851AB3AE27402ED3005606AC /* AssociationsController.swift in Sources */,
 				85749BEC2752DEC900167934 /* DetailArticleController.swift in Sources */,
 				85749BEE2754E25600167934 /* OptionsController.swift in Sources */,
@@ -368,6 +374,7 @@
 				851AB3AC27402EC4005606AC /* ProfileController.swift in Sources */,
 				85417DD927303088003F59CF /* AppDelegate.swift in Sources */,
 				85749BF027582BB400167934 /* ContactProfilController.swift in Sources */,
+				85428DF2277CCFB6004C783B /* AjoutQuestionController.swift in Sources */,
 				85B5B729273E986C0079E2FE /* User.swift in Sources */,
 				8549F2E9276F7F0300A699E7 /* verificationCodeController.swift in Sources */,
 				8549F2EB276FDD2300A699E7 /* DetailMyStuffController.swift in Sources */,
@@ -375,6 +382,7 @@
 				85B745DB274EC77000B18E4F /* Article.swift in Sources */,
 				85417DDB27303088003F59CF /* SceneDelegate.swift in Sources */,
 				853D8AFF27680091009CF076 /* MyStuff.swift in Sources */,
+				85428DF0277CCD7E004C783B /* QuestionReponseService.swift in Sources */,
 				851AB3B427410C2D005606AC /* MySubclassedTabBarController.swift in Sources */,
 				85749BEA2750670400167934 /* AjouterArticleController.swift in Sources */,
 				85B223F2275AA041003D6553 /* GoogleMapsHelper.swift in Sources */,
