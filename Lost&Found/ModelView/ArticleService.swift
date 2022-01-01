@@ -35,7 +35,7 @@ class ArticleService {
                         let test = try decoder.decode(Article.self, from: data)
                         callback(true,test)
                     }catch{
-                        print("erreur de decodage (add): ",error)
+                        print("erreur de decodage (modifier): ",error)
                         callback(false,"erreur decodage")
                     }
                 } else{
@@ -180,10 +180,9 @@ class ArticleService {
                     let decoder = JSONDecoder()
                     do {
                         let test = try decoder.decode(Articles.self, from: data)
-                        print(test)
                         callback(true,test)
                     }catch{
-                        print("erreur de decodage (add): ",error)
+                        print("erreur de decodage (getBYuser): ",error)
                         callback(false,nil)
                     }
                 }

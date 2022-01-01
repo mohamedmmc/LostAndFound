@@ -36,6 +36,9 @@
 		855C5A24274BFCEF00906DE1 /* ModifierProfilController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C5A23274BFCEF00906DE1 /* ModifierProfilController.swift */; };
 		85615CC5277F3849002A0150 /* Reponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85615CC4277F3849002A0150 /* Reponse.swift */; };
 		856260C12764C48600633D15 /* SendBirdApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856260C02764C48600633D15 /* SendBirdApi.swift */; };
+		8574341927809F5900C5FE7A /* reponsesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8574341827809F5900C5FE7A /* reponsesController.swift */; };
+		8574341C2780C87400C5FE7A /* ReponseQuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8574341A2780C87400C5FE7A /* ReponseQuestionCell.swift */; };
+		8574341D2780C87400C5FE7A /* ReponseQuestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8574341B2780C87400C5FE7A /* ReponseQuestionCell.xib */; };
 		85749BEA2750670400167934 /* AjouterArticleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85749BE92750670400167934 /* AjouterArticleController.swift */; };
 		85749BEC2752DEC900167934 /* DetailArticleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85749BEB2752DEC800167934 /* DetailArticleController.swift */; };
 		85749BEE2754E25600167934 /* OptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85749BED2754E25600167934 /* OptionsController.swift */; };
@@ -79,6 +82,9 @@
 		855C5A23274BFCEF00906DE1 /* ModifierProfilController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierProfilController.swift; sourceTree = "<group>"; };
 		85615CC4277F3849002A0150 /* Reponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reponse.swift; sourceTree = "<group>"; };
 		856260C02764C48600633D15 /* SendBirdApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendBirdApi.swift; sourceTree = "<group>"; };
+		8574341827809F5900C5FE7A /* reponsesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reponsesController.swift; sourceTree = "<group>"; };
+		8574341A2780C87400C5FE7A /* ReponseQuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReponseQuestionCell.swift; sourceTree = "<group>"; };
+		8574341B2780C87400C5FE7A /* ReponseQuestionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReponseQuestionCell.xib; sourceTree = "<group>"; };
 		85749BE92750670400167934 /* AjouterArticleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjouterArticleController.swift; sourceTree = "<group>"; };
 		85749BEB2752DEC800167934 /* DetailArticleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailArticleController.swift; sourceTree = "<group>"; };
 		85749BED2754E25600167934 /* OptionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsController.swift; sourceTree = "<group>"; };
@@ -206,6 +212,9 @@
 				8549F2E8276F7F0300A699E7 /* verificationCodeController.swift */,
 				8549F2EA276FDD2300A699E7 /* DetailMyStuffController.swift */,
 				85428DF1277CCFB6004C783B /* AjoutQuestionController.swift */,
+				8574341827809F5900C5FE7A /* reponsesController.swift */,
+				8574341A2780C87400C5FE7A /* ReponseQuestionCell.swift */,
+				8574341B2780C87400C5FE7A /* ReponseQuestionCell.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -279,6 +288,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8574341D2780C87400C5FE7A /* ReponseQuestionCell.xib in Resources */,
 				85417DE827303089003F59CF /* LaunchScreen.storyboard in Resources */,
 				85417DE527303089003F59CF /* Assets.xcassets in Resources */,
 				85417DE027303088003F59CF /* Main.storyboard in Resources */,
@@ -365,6 +375,7 @@
 				855C5A24274BFCEF00906DE1 /* ModifierProfilController.swift in Sources */,
 				851AB3AA274017E9005606AC /* DesignUi.swift in Sources */,
 				85B5B72D273E993E0079E2FE /* CreateAccount.swift in Sources */,
+				8574341927809F5900C5FE7A /* reponsesController.swift in Sources */,
 				851AB3B227402EEA005606AC /* LostAndFoundController.swift in Sources */,
 				851AB3A6273FDAA1005606AC /* MotDePasseOublieController.swift in Sources */,
 				850FBD58275AD997005DF862 /* PlacesViewController.swift in Sources */,
@@ -377,6 +388,7 @@
 				85428DF2277CCFB6004C783B /* AjoutQuestionController.swift in Sources */,
 				85B5B729273E986C0079E2FE /* User.swift in Sources */,
 				8549F2E9276F7F0300A699E7 /* verificationCodeController.swift in Sources */,
+				8574341C2780C87400C5FE7A /* ReponseQuestionCell.swift in Sources */,
 				8549F2EB276FDD2300A699E7 /* DetailMyStuffController.swift in Sources */,
 				856260C12764C48600633D15 /* SendBirdApi.swift in Sources */,
 				85B745DB274EC77000B18E4F /* Article.swift in Sources */,

@@ -28,11 +28,9 @@ class SendBirdApi  {
             data, response, error in
             DispatchQueue.main.async {
                 if error != nil{
-                    print("error")
+                    print(error)
                 }else {
                     if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
-                        print(jsonRes)
-                           
                             
                         }
                         
@@ -62,12 +60,9 @@ class SendBirdApi  {
             data, response, error in
             DispatchQueue.main.async {
                 if error != nil{
-                    print("error")
+                    print(error)
                 }else {
                     if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
-                        print(jsonRes)
-                           
-                            
                         }
                         
                     }
@@ -95,7 +90,7 @@ class SendBirdApi  {
             data, response, error in
             DispatchQueue.main.async {
                 if error != nil{
-                    print("error")
+                    print(error)
                 }else {
                     if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
                         print(jsonRes["channel_url"])
@@ -125,11 +120,9 @@ class SendBirdApi  {
             data, response, error in
             DispatchQueue.main.async {
                 if error != nil{
-                    print("error")
+                    print(error)
                 }else {
-                    if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
-                        print(jsonRes)
-                            
+                    if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{  
                         }
                         
                     }

@@ -8,7 +8,7 @@
 import Foundation
 
 class Question: Decodable {
-    var reponse:[Reponse]?
+    var reponse:[String]?
     var _id:String?
     var titre:String?
     var article:String?

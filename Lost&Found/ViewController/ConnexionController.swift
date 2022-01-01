@@ -143,10 +143,15 @@ class ViewController: UIViewController,LoginButtonDelegate {
     
     
     override func viewDidAppear(_ animated: Bool) {
-       
+        if !( UserDefaults.standard.string(forKey: "_id") ?? "").isEmpty{
+            performSegue(withIdentifier: "connexion", sender: "yes")
+        }
+        
         if let token = AccessToken.current, !token.isExpired{
             performSegue(withIdentifier: "connexion", sender: "yes")
         }
+        
+       
         
         //print(UserDefaults.standard.dictionaryRepresentation())
 
@@ -158,6 +163,7 @@ class ViewController: UIViewController,LoginButtonDelegate {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+       
         facebookLoginButton.delegate = self
         facebookLoginButton.isHidden = true
         Connexin?.layer.cornerRadius = 10

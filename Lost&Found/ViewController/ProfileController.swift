@@ -15,6 +15,7 @@ import SendBirdUIKit
 class ProfileController: UIViewController {
     var darkTheme = false
     let dropDown = DropDown()
+  
     let Design = DesignUi()
     let myStuffTableau = [Article]()
     @IBOutlet weak var mapView: MKMapView!
@@ -36,8 +37,22 @@ class ProfileController: UIViewController {
     
         }
     
+    
+    @IBAction func questionArticleButton(_ sender: Any) {
+        ArticleService().getArticleByUser(id: UserDefaults.standard.string(forKey: "_id")!) { succes, articles in
+            if (articles?.articles!.count)! > 0{
+                for question in articles!.articles! {
+                    print(question.question?.article)
+                }
+            }
+        }
+    }
+    
+    
     @IBAction func MyStuff(_ sender: Any) {
         ArticleService().getArticleByUser(id: UserDefaults.standard.string(forKey: "_id")!) { succes, articles in
+            if succes{
+                print(articles)
             if (articles?.articles!.count)! > 0{
                 let name = Notification.Name("MyStuffAdded")
                 let notification = Notification(name: name)
@@ -47,6 +62,7 @@ class ProfileController: UIViewController {
             else{
                 self.propmt(title: "Vous n'avez rien ajouté pour le moment", message: "Essayez d'ajouter un article avant de voir")
             }
+        }
         }
     }
     
@@ -60,6 +76,7 @@ class ProfileController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     override func viewDidLoad() {
+        
         let name2 = Notification.Name("isVerified")
         let notificationVerified = Notification(name: name2)
         NotificationCenter.default.post(notificationVerified)

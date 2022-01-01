@@ -48,7 +48,7 @@ class UserService {
             data, response, error in
             DispatchQueue.main.async {
                 if error != nil{
-                    print("error")
+                    print(error)
                 }else {
                     //print("++++++++++++",data)
                     if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
@@ -99,7 +99,7 @@ class UserService {
             data, response, error in
             DispatchQueue.main.async {
                 if error != nil{
-                    print("error")
+                    print(error)
                 }else {
                     
                     if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
@@ -281,7 +281,7 @@ class UserService {
             data, response, error in
             DispatchQueue.main.async {
                 if error != nil{
-                    print("there is error")
+                    print(error)
                 }else {
                     if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Bool]{
                         if jsonRes["isVerified"]!{
@@ -310,7 +310,7 @@ class UserService {
             data, response, error in
             DispatchQueue.main.async {
                 if error != nil{
-                    print("there is error")
+                    print(error)
                 }else {
                     if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
                         if var reponse = jsonRes["user"] as? String{
@@ -359,8 +359,6 @@ class UserService {
                                 }
                                 else{
                                     if let connexionToken = json["token"] as? String{
-                                        print("Connexion social et ceci est token ",connexionToken)
-                                        
                                         UserDefaults.standard.setValue(connexionToken, forKey: "tokenConnexion")
                                       
                                     }
@@ -396,7 +394,7 @@ class UserService {
             data, response, error in
             DispatchQueue.main.async {
                 if error != nil{
-                    print("there is error")
+                    print(error)
                 }else {
                     if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
                         if var reponse = jsonRes["reponse"] as? String{
@@ -447,7 +445,6 @@ class UserService {
                 if let data = data {
                     do {
                         if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]{
-                            print("json",json)
                             if let reponse = json["reponse"] as? String{
                                // print(json)
                                 if (reponse.contains("updated")){
@@ -486,8 +483,6 @@ class UserService {
         request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
         let session = URLSession.shared.dataTask(with: request){
             data, response, error in
-            print("data : ",data)
-            print("error : ",error)
         }.resume()
     }
     

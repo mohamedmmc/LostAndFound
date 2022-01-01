@@ -58,12 +58,16 @@ class DetailArticleController: UIViewController {
             let questionEcrite = alertController.textFields![0].text
             QuestionReponseService().ReponseQuestion(reponse: questionEcrite!, idQuestion: (article!.question?._id)!) { succes, reponse in
                 if succes{
-
                     alertController.dismiss(animated: true, completion: nil)
                     repondreQuestion.isHidden = true
                     //contactButtonn.isHidden = false
                 }else{
-                    self.propmt(title: "Echec !", message: "Oups")
+                    if reponse as? String == "existe" {
+                        self.propmt(title: "Vous avez deja repondu !", message: "Vous avez deja repondu a la question, veuillez attendre la reponse de " + (article?.user.nom)!)
+                    }
+                    else{
+                        self.propmt(title: "Echec !", message: "Oups")
+                    }
                 }
             }
 
@@ -82,12 +86,14 @@ class DetailArticleController: UIViewController {
     @IBAction func contactButton(_ sender: Any) {
         performSegue(withIdentifier: "contactProfil", sender: nil)
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "contactProfil" {
             let destination = segue.destination as! ConstactProfilController
             destination.user = article?.user
         }
     }
+    
     
     func propmt(title:String, message:String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)

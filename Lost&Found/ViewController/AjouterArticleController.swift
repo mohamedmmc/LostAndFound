@@ -101,7 +101,8 @@ class AjouterArticleController: UIViewController,UIImagePickerControllerDelegate
             
         if (!nomArticleTextfield.text!.isEmpty && !descriptionArticleTextarea.text!.isEmpty){
             let user = User(id: UserDefaults.standard.string(forKey: "_id")!, nom: "", prenom: "", email: "", mdp: "", numtel: "", photoProfil: "", isVerified: false, __v: 0)
-            let article = Article(_id: "", nom: nomArticleTextfield.text!, description: descriptionArticleTextarea.text!, addresse: gpsLocation, photo: "2", dateCreation: "3", dateModif: "4",type: type, user: user, __v: 0)
+            let question = Question()
+            let article = Article(_id: "", nom: nomArticleTextfield.text!, description: descriptionArticleTextarea.text!, addresse: gpsLocation, photo: "2", dateCreation: "3", dateModif: "4",type: type, user: user, question: question, __v: 0)
             ArticleService().AjoutArticle(article: article, image: imageArticle.image!) { succes, reponse in
                 if succes{
                     if !(self.question.titre ?? "").isEmpty {

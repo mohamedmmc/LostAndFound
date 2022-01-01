@@ -28,7 +28,11 @@ class QuestionReponseService {
                 }else {
                     if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
                         if let question  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
-                                callback(true,question)}
+
+                                callback(true,question)
+                            
+                            }
+                            
                         else{
                             callback(false,"question non ajoute")
                         }
@@ -61,10 +65,48 @@ class QuestionReponseService {
                 }else {
                     if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
                         if let reponse  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
-                                callback(true,reponse)}
+                            if let reponse = jsonRes["message"] as? String{
+                                if (reponse.contains("duplicate")){
+                                    callback(false,"existe")
+                                }
+                            }
+                                callback(true,reponse)
+                            
+                        }
                         else{
                             callback(false,"reponse non ajoute")
                         }
+                    }
+                }
+            }
+        }.resume()
+    }
+    
+    
+    
+    
+    
+    func getReponsesParArticle (idArticle:String,callback: @escaping (Bool,Reponses?)->Void){
+        
+        guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/reponse/"+idArticle) else{
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        let session = URLSession.shared.dataTask(with: request){
+            data, response, error in
+            DispatchQueue.main.async {
+                if error != nil{
+                    print(error)
+                }else {
+                    let decoder = JSONDecoder()
+                    do {
+                        let test = try decoder.decode(Reponses.self, from: data!)
+                        callback(true,test)
+                    }catch{
+                        print("erreur de decodage (add): ",error)
+                        callback(false,nil)
                     }
                 }
             }

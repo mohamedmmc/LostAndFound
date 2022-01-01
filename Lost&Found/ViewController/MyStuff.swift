@@ -12,20 +12,94 @@ import UIKit
 class MyStuff: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     var tableauMyStuff : [Article]?
+    var tableauReponse :[Data]?
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("le tableau de myStuff contient",tableauMyStuff!.count)
         return tableauMyStuff!.count
     }
     
     @IBOutlet weak var myStuffUITable: UITableView!
+    
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
         let cv = cell?.contentView
         let image = cv?.viewWithTag(6) as! UIImageView
         let label = cv?.viewWithTag(7) as! UILabel
+        let questionButton = cv?.viewWithTag(20) as! UIButton
         image.imageFromServerURL(urlString: tableauMyStuff![indexPath.row].photo!)
         label.text = tableauMyStuff![indexPath.row].nom!
-        return cell!
+        if (tableauMyStuff![indexPath.row].question?.reponse?.count == nil)  {
+            questionButton.isHidden = true
+        }
+
+       return cell!
+    }
+
+    
+    func tableView(_ tableView: UITableView,
+                   leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .normal,
+                                        title: "Favourite") { [weak self] (action, view, completionHandler) in
+                                            self?.handleMarkAsFavourite()
+                                            completionHandler(true)
+        }
+        action.backgroundColor = .systemBlue
+        return UISwipeActionsConfiguration(actions: [action])
+
+    }
+    private func handleMarkAsFavourite() {
+        print("Marked as favourite")
+    }
+    func tableView(_ tableView: UITableView,
+                   editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        
+        return .none
+    }
+    
+    func tableView(_ tableView: UITableView,
+                       trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        var archive = UIContextualAction()
+        if (tableauMyStuff![indexPath.row].question?.reponse?.count == nil)  {
+            archive = UIContextualAction(style: .normal,
+                                             title: "Pas de reponse") { [weak self] (action, view, completionHandler) in
+                self?.handleMoveToArchive(indexPath: indexPath)
+                                                completionHandler(true)
+            }
+            archive.backgroundColor = .systemGray
+        }
+        else{
+            archive = UIContextualAction(style: .normal,
+                                             title: "Voir reponses") { [weak self] (action, view, completionHandler) in
+                self?.handleMoveToArchive(indexPath: indexPath)
+                                                completionHandler(true)
+            }
+            archive.backgroundColor = .systemGreen
+        }
+        
+        let configuration = UISwipeActionsConfiguration(actions: [archive])
+
+        return configuration
+    }
+    private func handleMoveToArchive(indexPath:IndexPath) {
+        if (tableauMyStuff![indexPath.row].question != nil){
+            if (tableauMyStuff![indexPath.row].question?.reponse) != nil {
+                performSegue(withIdentifier: "reponseSegue", sender: indexPath)
+            }
+            else{
+                self.propmt(title: "Vide", message: "Cet article n'as recu de reponse")
+            }
+        }
+        else{
+            self.propmt(title: "Vide", message: "Cet article n'as pas de question")
+        }
+    }
+    func propmt(title:String, message:String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .destructive , handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
     @objc func loadArticle(){
         tableauMyStuff?.removeAll()
@@ -35,7 +109,10 @@ class MyStuff: UIViewController,UITableViewDelegate,UITableViewDataSource {
         tableauMyStuff?.removeAll()
         loadArticleToTableview(tableau:self.myStuffUITable)
         }
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         performSegue(withIdentifier: "detailMyStuff", sender: indexPath)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -44,7 +121,19 @@ class MyStuff: UIViewController,UITableViewDelegate,UITableViewDataSource {
             let destination = segue.destination as! DetailMyStuffController
             destination.test = tableauMyStuff![index.row]
         }
+        else if segue.identifier == "reponseSegue" {
+            let index = sender as! IndexPath
+            let destination = segue.destination as! reponsesController
+            destination.idArticle = tableauMyStuff![index.row]._id
+            print("les donnes envoyees : ",tableauMyStuff![index.row].question?.reponse)
+            destination.tableReponses = tableauMyStuff![index.row].question?.reponse
+        }
+        
     }
+    
+    
+    
+    
     func loadArticleToTableview (tableau:UITableView){
         ArticleService().getArticleByUser(id: UserDefaults.standard.string(forKey: "_id")!) { succes, articles in
            if succes {
@@ -68,5 +157,11 @@ class MyStuff: UIViewController,UITableViewDelegate,UITableViewDataSource {
         NotificationCenter.default.addObserver(self, selector: #selector(loadArticle), name: name, object: nil)
         let name2 = Notification.Name("updateArticle")
         NotificationCenter.default.addObserver(self, selector: #selector(reloadMyStuff), name: name2, object: nil)
+        let name3 = Notification.Name("reponseAjoute")
+        let notification = Notification(name: name3)
+        NotificationCenter.default.post(notification)
+        
     }
 }
+
+

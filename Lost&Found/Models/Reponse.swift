@@ -7,6 +7,13 @@
 
 import Foundation
 
+class Reponses: Decodable {
+    var reponses : [Reponse]?
+}
+
 class Reponse: Decodable {
-    
+    var __v:Int?
+    var _id:String?
+    var description:String?
+    var user:User?
 }
