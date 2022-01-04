@@ -13,5 +13,6 @@ pod 'DropDown'
  pod 'GoogleMaps' 
     pod 'GooglePlaces'
     pod 'SendBirdUIKit' 
+ pod 'AppCenter'
 
 end

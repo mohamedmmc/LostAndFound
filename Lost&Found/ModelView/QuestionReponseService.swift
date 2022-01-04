@@ -112,4 +112,34 @@ class QuestionReponseService {
             }
         }.resume()
     }
+    
+    
+    
+    
+    func deleteReponse (idArticle:String,callback: @escaping (Bool,String)->Void){
+        
+        guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/reponse/"+idArticle) else{
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        let session = URLSession.shared.dataTask(with: request){
+            data, response, error in
+            DispatchQueue.main.async {
+                if error != nil{
+                    print(error)
+                }else {
+                    if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
+                        if jsonRes["message"] as! String == "on supprime"{
+                            callback(true,jsonRes["message"] as! String)
+                        }
+                        else{
+                            callback(false,"erreur suppression reponse")
+                        }
+                    }
+                }
+            }
+        }.resume()
+    }
 }

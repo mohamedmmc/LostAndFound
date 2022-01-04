@@ -7,6 +7,9 @@
 
 import UIKit
 import FBSDKCoreKit
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 

@@ -31,6 +31,7 @@ class SendBirdApi  {
                     print(error)
                 }else {
                     if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
+                        print(jsonRes)
                             
                         }
                         
@@ -63,6 +64,7 @@ class SendBirdApi  {
                     print(error)
                 }else {
                     if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
+                        print(jsonRes)
                         }
                         
                     }

@@ -7,9 +7,14 @@
 
 import Foundation
 import UIKit
+import SendBirdUIKit
 
 class reponsesController: UIViewController,UITableViewDelegate,UITableViewDataSource {
-    
+    var params = SBDUserMessageParams(message: "Bonjour je vous reponds concernant votre reponse")
+    var usersSB:[SBUUser]?
+    var channelURL = ""
+
+    var user1,user2,userMod: SBUUser?
     var tableReponses : [String]?
     var idArticle : String?
     var reponseTab = [Reponse]()
@@ -42,7 +47,7 @@ class reponsesController: UIViewController,UITableViewDelegate,UITableViewDataSo
                    leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .normal,
                                         title: "Repondre") { [weak self] (action, view, completionHandler) in
-                                            self?.handleMarkAsFavourite()
+                                            self?.handleMarkAsFavourite(indexPath: indexPath)
                                             completionHandler(true)
         }
         action.backgroundColor = .systemBlue
@@ -51,16 +56,61 @@ class reponsesController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == UITableViewCell.EditingStyle.delete {
-        tableReponses?.remove(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+        let refreshAlert = UIAlertController(title: "Supprimer reponse", message: "Etes vous sure de vouloir supprimer cette reponse ?", preferredStyle: UIAlertController.Style.alert)
+
+        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .destructive, handler: { (action: UIAlertAction!) in
+            QuestionReponseService().deleteReponse(idArticle: self.reponseTab[indexPath.row]._id!) { succes, reponse in
+                if succes{
+                    print(reponse)
+                }else{
+                    print(reponse)
+                }
+            }
+            self.tableReponses?.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+            
+          }))
+
+        refreshAlert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: { (action: UIAlertAction!) in
+            refreshAlert.dismiss(animated: true) {
+                
+            }
+        }))
+
+        present(refreshAlert, animated: true, completion: nil)
+       
     }
 }
     
-    private func handleMarkAsFavourite() {
-        print("Marked as favourite")
+    private func handleMarkAsFavourite(indexPath :IndexPath) {
+        user1 = SBUUser(userId: reponseTab[indexPath.row].user!._id, nickname: reponseTab[indexPath.row].user?.prenom, profileUrl: reponseTab[indexPath.row].user?.photoProfil)
+        SBDMain.connect(withUserId: UserDefaults.standard.string(forKey: "_id")!, completionHandler: { (user, error) in
+            guard error == nil else {
+                print("erreur function : ",error)
+                return
+            }
+        })
+            SBDGroupChannel.createChannel(withUserIds: Array(arrayLiteral: self.user2!.userId,self.user1!.userId), isDistinct: true) { data, error in
+                
+                self.channelURL = data!.channelUrl
+                print("Created channel url : ",self.channelURL)
+            }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            SBDGroupChannel.getWithUrl(self.channelURL) { openChannel, error in
+                print("Entering channel url",self.channelURL)
+                print("open channel : ",openChannel,"erreur : ", error)
+                guard let openChannel = openChannel, error == nil else {
+                    return // Handle error.
+                }
+                openChannel.sendUserMessage("Bonjour je vous reponds concernant votre reponse") { reponse, error in
+                }
+        }
+    }
+
     }
     
     override func viewDidLoad() {
+        user2 = SBUUser(userId: UserDefaults.standard.string(forKey: "_id")!, nickname: UserDefaults.standard.string(forKey: "nom")!, profileUrl: UserDefaults.standard.string(forKey: "photoProfil")!)
         reponseTab.removeAll()
         loadReponsesToTableView(tableau: self.UiTableView)
         super.viewDidLoad()

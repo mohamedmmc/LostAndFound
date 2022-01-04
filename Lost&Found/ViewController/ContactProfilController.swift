@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SendBirdUIKit
 class ConstactProfilController: UIViewController {
-    var params = SBDUserMessageParams(message: "text")
+    var params = SBDUserMessageParams(message: "Bonjour je vous contact concernant le produit que vous avez posté")
 
     var channelURL = ""
     var user:User?
@@ -36,31 +36,22 @@ class ConstactProfilController: UIViewController {
                 print("erreur function : ",error)
                 return
             }
-                        
         })
-       
             SBDGroupChannel.createChannel(withUserIds: Array(arrayLiteral: self.user2!.userId,self.user1!.userId), isDistinct: true) { data, error in
                 
                 self.channelURL = data!.channelUrl
                 print("Created channel url : ",self.channelURL)
             }
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            
             SBDGroupChannel.getWithUrl(self.channelURL) { openChannel, error in
                 print("Entering channel url",self.channelURL)
                 print("open channel : ",openChannel,"erreur : ", error)
                 guard let openChannel = openChannel, error == nil else {
                     return // Handle error.
                 }
-                openChannel.sendUserMessage("text") { reponse, error in
+                openChannel.sendUserMessage("Bonjour je vous contact concernant le produit que vous avez posté") { reponse, error in
                 }
-  
         }
-        
     }
-        
-//        performSegue(withIdentifier: "showChat", sender: nil)
-    
     }
 }

@@ -4,6 +4,14 @@ PODS:
     - AppAuth/ExternalUserAgent (= 1.4.0)
   - AppAuth/Core (1.4.0)
   - AppAuth/ExternalUserAgent (1.4.0)
+  - AppCenter (4.4.1):
+    - AppCenter/Analytics (= 4.4.1)
+    - AppCenter/Crashes (= 4.4.1)
+  - AppCenter/Analytics (4.4.1):
+    - AppCenter/Core
+  - AppCenter/Core (4.4.1)
+  - AppCenter/Crashes (4.4.1):
+    - AppCenter/Core
   - DropDown (2.3.13)
   - FBAEMKit (12.1.0):
     - FBSDKCoreKit_Basics (= 12.1.0)
@@ -32,6 +40,7 @@ PODS:
     - SendBirdSDK (~> 3.1.1)
 
 DEPENDENCIES:
+  - AppCenter
   - DropDown
   - FBSDKLoginKit
   - GoogleMaps
@@ -42,6 +51,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AppAuth
+    - AppCenter
     - DropDown
     - FBAEMKit
     - FBSDKCoreKit
@@ -57,6 +67,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
+  AppCenter: b0b6f1190215b5f983c42934db718f3b46fff3c0
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   FBAEMKit: 56c0bb9b42e3747cd82b67934f0c2b19325382ea
   FBSDKCoreKit: 75368765d9c2303073145a7925dfaa9d60bcd77b
@@ -70,6 +81,6 @@ SPEC CHECKSUMS:
   SendBirdSDK: f698cf686d732889d79854756aba6bbc20062a00
   SendBirdUIKit: 19f911839f10908e58db91900d33b6758ad47744
 
-PODFILE CHECKSUM: 13892f2cfbfd0c50b51d408fc8bb82aaa40ac7c9
+PODFILE CHECKSUM: 1b3def2c69022ed0b0bf51f7d9d887a06d69467b
 
 COCOAPODS: 1.11.2

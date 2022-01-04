@@ -11,6 +11,9 @@ import GoogleMaps
 import GooglePlaces
 import SendBirdUIKit
 import FBSDKLoginKit
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -28,8 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Case 1: USER_ID only
            
 
-            // Case 2: Specify all fields
-            
+        AppCenter.start(withAppSecret: "897643aa-42c4-4244-ba0b-25c7c33d2f23", services:[
+          Analytics.self,
+          Crashes.self
+        ])
            
         let facebook = ApplicationDelegate.shared.application(
             application,

@@ -38,20 +38,7 @@ class MyStuff: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
 
     
-    func tableView(_ tableView: UITableView,
-                   leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let action = UIContextualAction(style: .normal,
-                                        title: "Favourite") { [weak self] (action, view, completionHandler) in
-                                            self?.handleMarkAsFavourite()
-                                            completionHandler(true)
-        }
-        action.backgroundColor = .systemBlue
-        return UISwipeActionsConfiguration(actions: [action])
 
-    }
-    private func handleMarkAsFavourite() {
-        print("Marked as favourite")
-    }
     func tableView(_ tableView: UITableView,
                    editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         
