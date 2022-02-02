@@ -144,10 +144,12 @@ class ViewController: UIViewController,LoginButtonDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         if !( UserDefaults.standard.string(forKey: "_id") ?? "").isEmpty{
+            SBUGlobals.CurrentUser = SBUUser(userId: UserDefaults.standard.string(forKey: "_id")!)
             performSegue(withIdentifier: "connexion", sender: "yes")
         }
         
         if let token = AccessToken.current, !token.isExpired{
+            SBUGlobals.CurrentUser = SBUUser(userId: UserDefaults.standard.string(forKey: "_id")!)
             performSegue(withIdentifier: "connexion", sender: "yes")
         }
         
