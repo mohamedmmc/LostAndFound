@@ -13,7 +13,7 @@ class QuestionReponseService {
             "titre": titreQuestion,
             "article": idArticle
         ]
-        guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/question") else{
+        guard let url = URL(string: "http://lost-and-found-back.herokuapp.com/question") else{
             return
         }
         var request = URLRequest(url: url)
@@ -49,7 +49,7 @@ class QuestionReponseService {
             "description": reponse,
             "user": UserDefaults.standard.string(forKey: "_id")!
         ]
-        guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/reponse/"+idQuestion) else{
+        guard let url = URL(string: "http://lost-and-found-back.herokuapp.com/reponse/"+idQuestion) else{
             return
         }
         print(url)
@@ -88,7 +88,7 @@ class QuestionReponseService {
     
     func getReponsesParArticle (idArticle:String,callback: @escaping (Bool,Reponses?)->Void){
         
-        guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/reponse/"+idArticle) else{
+        guard let url = URL(string: "http://lost-and-found-back.herokuapp.com/reponse/"+idArticle) else{
             return
         }
         var request = URLRequest(url: url)
@@ -118,7 +118,7 @@ class QuestionReponseService {
     
     func deleteReponse (idArticle:String,callback: @escaping (Bool,String)->Void){
         
-        guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/reponse/"+idArticle) else{
+        guard let url = URL(string: "http://lost-and-found-back.herokuapp.com/reponse/"+idArticle) else{
             return
         }
         var request = URLRequest(url: url)

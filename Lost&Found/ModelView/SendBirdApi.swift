@@ -16,13 +16,13 @@ class SendBirdApi  {
             "nickname": nickname,
             "profile_url": profile_url
         ]
-        guard let url = URL(string: "https://api-6FF6BD6D-A86D-47C0-BE32-22C7C6C8A337.sendbird.com/v3/users/"+user_id) else{
+        guard let url = URL(string: "https://api-C2B86342-5275-4183-9F0C-28EF1E4B3014.sendbird.com/v3/users/"+user_id) else{
             return
         }
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue( "d7caed23ca80f876b49dfb6ec8663e7be64748cd", forHTTPHeaderField: "Api-Token")
+        request.setValue( "9838c32272965383009ace17937bb8565e108d38", forHTTPHeaderField: "Api-Token")
         request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
         let session = URLSession.shared.dataTask(with: request){
             data, response, error in
@@ -49,13 +49,13 @@ class SendBirdApi  {
             "nickname": nickname,
             "profile_url": profile_url
         ]
-        guard let url = URL(string: "https://api-6FF6BD6D-A86D-47C0-BE32-22C7C6C8A337.sendbird.com/v3/users") else{
+        guard let url = URL(string: "https://api-C2B86342-5275-4183-9F0C-28EF1E4B3014.sendbird.com/v3/users") else{
             return
         }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue( "d7caed23ca80f876b49dfb6ec8663e7be64748cd", forHTTPHeaderField: "Api-Token")
+        request.setValue( "9838c32272965383009ace17937bb8565e108d38", forHTTPHeaderField: "Api-Token")
         request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
         let session = URLSession.shared.dataTask(with: request){
             data, response, error in
@@ -80,13 +80,13 @@ class SendBirdApi  {
         let params = [
             "name": name
         ]
-        guard let url = URL(string: "https://api-6FF6BD6D-A86D-47C0-BE32-22C7C6C8A337.sendbird.com/v3/open_channels") else{
+        guard let url = URL(string: "https://api-C2B86342-5275-4183-9F0C-28EF1E4B3014.sendbird.com/v3/open_channels") else{
             return
         }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue( "d7caed23ca80f876b49dfb6ec8663e7be64748cd", forHTTPHeaderField: "Api-Token")
+        request.setValue( "9838c32272965383009ace17937bb8565e108d38", forHTTPHeaderField: "Api-Token")
         request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
         let session = URLSession.shared.dataTask(with: request){
             data, response, error in
@@ -111,13 +111,13 @@ class SendBirdApi  {
     }
     func deleteUser (id:String){
         
-        guard let url = URL(string: "https://api-6FF6BD6D-A86D-47C0-BE32-22C7C6C8A337.sendbird.com/v3/users/"+id) else{
+        guard let url = URL(string: "https://api-C2B86342-5275-4183-9F0C-28EF1E4B3014.sendbird.com/v3/users/"+id) else{
             return
         }
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue( "d7caed23ca80f876b49dfb6ec8663e7be64748cd", forHTTPHeaderField: "Api-Token")
+        request.setValue( "9838c32272965383009ace17937bb8565e108d38", forHTTPHeaderField: "Api-Token")
         let session = URLSession.shared.dataTask(with: request){
             data, response, error in
             DispatchQueue.main.async {

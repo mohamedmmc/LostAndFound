@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let APP_ID = "6FF6BD6D-A86D-47C0-BE32-22C7C6C8A337"  // Specify your Sendbird application ID.
+        let APP_ID = "C2B86342-5275-4183-9F0C-28EF1E4B3014"  // Specify your Sendbird application ID.
         SBUMain.initialize(applicationId: APP_ID) {
             // DB migration has started.
         } completionHandler: { error in
@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Case 1: USER_ID only
            
 
-        AppCenter.start(withAppSecret: "897643aa-42c4-4244-ba0b-25c7c33d2f23", services:[
+        AppCenter.start(withAppSecret: "2a9a5c1f-0823-4756-a2c6-efd3170ee51c", services:[
           Analytics.self,
           Crashes.self
         ])
@@ -53,8 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        UserDefaults.standard.removeObject(forKey: "password")
 //        UserDefaults.standard.removeObject(forKey: "photoProfil")
 //        UserDefaults.standard.synchronize()
-        GMSServices.provideAPIKey("AIzaSyCgv0EmuWrPqGsdcT1CJx-4HEGqiVfUGdg")
-        GMSPlacesClient.provideAPIKey("AIzaSyCgv0EmuWrPqGsdcT1CJx-4HEGqiVfUGdg")
+        GMSServices.provideAPIKey("AIzaSyDVabxT13e2AP7AZkROldYDyXlO0oPdMKI")
+        GMSPlacesClient.provideAPIKey("AIzaSyDVabxT13e2AP7AZkROldYDyXlO0oPdMKI")
         let google = GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
             if error != nil || user == nil {
               // Show the app's signed-out state.

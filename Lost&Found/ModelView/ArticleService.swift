@@ -14,7 +14,7 @@ class ArticleService {
     func modifierArticle(article:Article, image :UIImage, callback: @escaping (Bool,Any?)->Void){
         
         guard let mediaImage = Media(withImage: image, forKey: "photoProfil") else { return }
-        guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/article/"+article._id) else { return }
+        guard let url = URL(string: "http://lost-and-found-back.herokuapp.com/article/"+article._id) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "PATCH"
         //create boundary
@@ -48,7 +48,7 @@ class ArticleService {
     func AjoutArticle(article:Article, image :UIImage, callback: @escaping (Bool,Article?)->Void){
         
         guard let mediaImage = Media(withImage: image, forKey: "photoProfil") else { return }
-        guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/article") else { return }
+        guard let url = URL(string: "http://lost-and-found-back.herokuapp.com/article") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         //create boundary
@@ -131,7 +131,7 @@ class ArticleService {
     
     func getArticle( callback: @escaping (Bool,Articles?)->Void){
        
-        guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/article") else{
+        guard let url = URL(string: "http://lost-and-found-back.herokuapp.com/article") else{
             return
         }
         var request = URLRequest(url: url)
@@ -168,7 +168,7 @@ class ArticleService {
     
     func getArticleByUser(id:String,callback: @escaping (Bool,Articles?)->Void){
        
-        guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/article/myArticles/"+id) else{
+        guard let url = URL(string: "http://lost-and-found-back.herokuapp.com/article/myArticles/"+id) else{
             return
         }
         var request = URLRequest(url: url)
