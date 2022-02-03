@@ -57,9 +57,14 @@ class ViewController: UIViewController,LoginButtonDelegate {
                 if succes, let json = reponse as? String{
                     alert.dismiss(animated: true, completion: nil)
                     self.performSegue(withIdentifier: "connexion", sender: reponse)
-                    if json == "pas inscrit" {
-                        print("pas inscrit avec facebook")
-                    }
+                    
+                }
+                else if (reponse as! String == "no connexion"){
+                    alert.dismiss(animated: true, completion: nil)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+
+                        self.propmt(title: "Echec", message: "Probleme de connexion")}
+                    
                 }
                 else{
                     UserService().CreationCompteSocial(user: user, image: faza! ) { succes, reponse in
@@ -73,6 +78,13 @@ class ViewController: UIViewController,LoginButtonDelegate {
                         else if (reponse as! String == "mail existant"){
                             alert.dismiss(animated: true, completion: nil)
                             self.propmt(title: "Echec", message: "Mail deja Existant")
+                            
+                        }
+                        else if (reponse as! String == "no connexion"){
+                            alert.dismiss(animated: true, completion: nil)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+
+                                self.propmt(title: "Echec", message: "Probleme de connexion")}
                             
                         }
                     }
@@ -117,6 +129,12 @@ class ViewController: UIViewController,LoginButtonDelegate {
                             if json == "pas inscrit" {
                                 print("pas inscrit avec facebook")
                             }
+                        } else if (reponse as! String == "no connexion"){
+                            alert.dismiss(animated: true, completion: nil)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+
+                                self.propmt(title: "Echec", message: "Probleme de connexion")}
+                            
                         }
                         else{
                             UserService().CreationCompteSocial(user: user, image: faza! ) { succes, reponse in
@@ -129,6 +147,14 @@ class ViewController: UIViewController,LoginButtonDelegate {
                                     alert.dismiss(animated: true, completion: nil)
                                     self.propmt(title: "Echec", message: "Mail deja Existant")
                                 }
+                                else if (reponse as! String == "no connexion"){
+                                    alert.dismiss(animated: true, completion: nil)
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+
+                                        self.propmt(title: "Echec", message: "Probleme de connexion")}
+                                    
+                                }
+                                
                             }
                         }
                     }
@@ -210,6 +236,13 @@ class ViewController: UIViewController,LoginButtonDelegate {
                 alert.dismiss(animated: true, completion: nil)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.performSegue(withIdentifier: "connexion", sender: nil)
+                }
+            }
+            else if (reponse as! String == "no connexion"){
+                alert.dismiss(animated: true, completion: nil)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+
+                self.propmt(title: "Echec", message: "Probleme de connexion")
                 }
             }
             else{

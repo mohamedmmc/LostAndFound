@@ -48,6 +48,7 @@ class UserService {
             data, response, error in
             DispatchQueue.main.async {
                 if error != nil{
+                    callback(false,"no connexion")
                     print(error)
                 }else {
                     //print("++++++++++++",data)
@@ -99,6 +100,7 @@ class UserService {
             data, response, error in
             DispatchQueue.main.async {
                 if error != nil{
+                    callback(false,"no connexion")
                     print(error)
                 }else {
                     
@@ -231,8 +233,10 @@ class UserService {
         session.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
                 
-                if let response = response {
-                }
+                if error != nil{
+                    callback(false,"no connexion")
+                    print(error)
+                }else {
                 if let data = data {
                     do {
                         
@@ -266,7 +270,7 @@ class UserService {
                         callback(false,nil)
                     }
                 }else{
-                    callback(false,nil)}}
+                    callback(false,nil)}}}
         }.resume()
     }
     
@@ -281,6 +285,7 @@ class UserService {
             data, response, error in
             DispatchQueue.main.async {
                 if error != nil{
+                    callback(false)
                     print(error)
                 }else {
                     if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Bool]{
@@ -299,7 +304,7 @@ class UserService {
 
     
     func getUser(token:String,callback: @escaping (Bool,Any?)->Void){
-        guard let url = URL(string: "http://192.168.1.7:3000/user/login") else{
+        guard let url = URL(string: "https://lost-and-found-back.herokuapp.com/user/"+UserDefaults.standard.string(forKey: "_id")!) else{
             return
         }
         var request = URLRequest(url: url)
@@ -310,6 +315,7 @@ class UserService {
             data, response, error in
             DispatchQueue.main.async {
                 if error != nil{
+                    callback(false,"no connexion")
                     print(error)
                 }else {
                     if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
@@ -349,6 +355,10 @@ class UserService {
         let session = URLSession.shared
         session.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
+                if error != nil{
+                    callback(false,"no connexion")
+                    print(error)
+                }else {
                 if let data = data {
                     do {
                        // print("data lenna ",data)
@@ -379,7 +389,7 @@ class UserService {
                 }else{
                     callback(false,nil)}
                 
-            }
+                }}
         }.resume()
     }
     
@@ -394,6 +404,7 @@ class UserService {
             data, response, error in
             DispatchQueue.main.async {
                 if error != nil{
+                    callback(false,"no connexion")
                     print(error)
                 }else {
                     if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
@@ -440,8 +451,10 @@ class UserService {
         let session = URLSession.shared
         session.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
-                if let response = response {
-                }
+                if error != nil{
+                    callback(false,"no connexion")
+                    print(error)
+                }else {
                 if let data = data {
                     do {
                         if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]{
@@ -467,7 +480,7 @@ class UserService {
                         callback(false,nil)
                     }
                 }else{
-                    callback(false,nil)}}
+                    callback(false,nil)}}}
         }.resume()
     }
     
@@ -483,6 +496,10 @@ class UserService {
         request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
         let session = URLSession.shared.dataTask(with: request){
             data, response, error in
+            if error != nil{
+                callback(false,"no connexion")
+                print(error)
+            }
         }.resume()
     }
     
@@ -499,6 +516,10 @@ class UserService {
         let session = URLSession.shared.dataTask(with: request){
             data, response, error in
             DispatchQueue.main.async {
+                if error != nil{
+                    callback(false,"no connexion")
+                    print(error)
+                }
                 if let json = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]{
                    
                     if (json["succes"] as? Int == 1){
@@ -528,6 +549,10 @@ class UserService {
         request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
         let session = URLSession.shared.dataTask(with: request){
             data, response, error in
+            if error != nil{
+                callback(false,"no connexion")
+                print(error)
+            }else {
             if let json = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]{
                 if json["reponse"] as! String == "Your password has been successfully reset"{
                     callback(true,"reset done")
@@ -535,7 +560,7 @@ class UserService {
                 else{
                     callback(false,json)
                 }
-            }
+            }}
         }.resume()
 }
 

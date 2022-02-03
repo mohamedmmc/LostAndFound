@@ -67,8 +67,9 @@ class ModiferProfilController: UIViewController,UIImagePickerControllerDelegate,
             }
                 let pictureUrl = NSURL(string: UserDefaults.standard.string(forKey: "photoProfil")!)
             print(user!)
-                let imageData = NSData(contentsOf: pictureUrl! as URL)
+            if let imageData = NSData(contentsOf: pictureUrl! as URL){
                 let faza = UIImage(data: imageData as! Data)
+            }
             UserService().UpdateProfil(user: user!, image: photoDeProfilImageView.image!) { succes, reponse in
                         if succes, let json = reponse{
                             print("id : ",UserDefaults.standard.string(forKey: "_id")!)
@@ -80,11 +81,17 @@ class ModiferProfilController: UIViewController,UIImagePickerControllerDelegate,
                             let notification = Notification(name: name)
                             NotificationCenter.default.post(notification)
                             self.dismiss(animated: true)
-                        }
-                        else{
+                        }else if (reponse as! String == "no connexion"){
                             alert.dismiss(animated: true, completion: nil)
-                            print(reponse)
-                        }
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+
+                                self.propmt(title: "Echec", message: "Probleme de connexion")}
+                            
+                        }else{
+                            alert.dismiss(animated: true, completion: nil)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+
+                                self.propmt(title: "Echec", message: "Probleme, veuillez ressayer")}                        }
                     }
         }else{
             alert.dismiss(animated: true, completion: nil)
