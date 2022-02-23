@@ -15,7 +15,7 @@ class ModiferProfilController: UIViewController,UIImagePickerControllerDelegate,
         numT.text = UserDefaults.standard.string(forKey: "numt")
         usernameT.text = UserDefaults.standard.string(forKey: "email")
         nom.text = UserDefaults.standard.string(forKey: "nom")
-        prenom.text = UserDefaults.standard.string(forKey: "prenom")
+        
         if (UserDefaults.standard.string(forKey: "numt") != nil ){
             numT.text = UserDefaults.standard.string(forKey: "numt")
         }
@@ -24,7 +24,17 @@ class ModiferProfilController: UIViewController,UIImagePickerControllerDelegate,
 
         photoDeProfilImageView.contentMode = UIView.ContentMode.scaleAspectFit
         Design.BorderButton(titre: valider, radius: 20, width: 2, Bordercolor: UIColor.init(red: 255, green: 255, blue: 255, alpha: 2))
-        photoDeProfilImageView.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "photoProfil")!)
+        if (!(UserDefaults.standard.string(forKey: "photoProfil") ?? "").isEmpty){
+            photoDeProfilImageView.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "photoProfil")!)
+        }else{
+            photoDeProfilImageView.image = UIImage(named: "apple")
+        }
+        if (!(UserDefaults.standard.string(forKey: "prenom") ?? "").isEmpty){
+            prenom.text = UserDefaults.standard.string(forKey: "prenom")
+            
+        }else{
+            prenom.text = " "
+        }
         Design.RadiusImage(titre: photoDeProfilImageView!, radius: 5,width: 2,Bordercolor: .white)
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))

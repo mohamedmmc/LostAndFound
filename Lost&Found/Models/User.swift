@@ -10,11 +10,11 @@ import Foundation
 struct User: Codable {
     var _id:String
     var nom:String
-    var prenom:String
+    var prenom:String?
     var email:String
     var mdp:String?
     var numT:String?
-    var photoProfil:String
+    var photoProfil:String?
     var isVerified:Bool
     var __v:Int
 

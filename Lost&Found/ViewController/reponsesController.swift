@@ -34,7 +34,14 @@ class reponsesController: UIViewController,UITableViewDelegate,UITableViewDataSo
         let label = cv?.viewWithTag(2) as! UILabel
         
         if reponseTab.count > 0 {
-            image.imageFromServerURL(urlString: reponseTab[indexPath.row].user!.photoProfil)
+            if((reponseTab[indexPath.row].user?.photoProfil) ?? "").isEmpty{
+                image.image = UIImage(named: "apple")
+
+            }else{
+                image.imageFromServerURL(urlString: reponseTab[indexPath.row].user!.photoProfil!)
+
+
+            }
             label.text = reponseTab[indexPath.row].description
         }
        

@@ -81,9 +81,9 @@ class LostAndFoundController: UIViewController,UICollectionViewDelegate,UICollec
     var dernierTableau = [Article]()
     var tableauFiltre = [Article]()
     
- 
-    
+     
     override func viewDidLoad() {
+        
         initSearchController()
         super.viewDidLoad()
         loadArticleToTableview(tableau:self.tableArticle)
@@ -93,7 +93,8 @@ class LostAndFoundController: UIViewController,UICollectionViewDelegate,UICollec
         
        
     }
-
+    @IBOutlet weak var backgroundElement: UIView!
+    
     @IBOutlet weak var addbutton: UIButton!
 
     @objc func loadArticle(){

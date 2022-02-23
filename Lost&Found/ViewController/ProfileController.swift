@@ -92,7 +92,6 @@ class ProfileController: UIViewController {
         profileUpdated()
         profilPic.contentMode = UIView.ContentMode.scaleAspectFit
         
-        profilPic.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "photoProfil")!)
         Design.RadiusImage(titre: profilPic!, radius: 5,width: 2,Bordercolor: .white)
         
         let name = Notification.Name("updateProfil")
@@ -164,6 +163,7 @@ class ProfileController: UIViewController {
                                 if success {
                                     UserService().deleteProfil { succes, reponse in
                                         if succes{
+                                            UserDefaults.standard.removeObject(forKey: "apple")
                                             SendBirdApi().deleteUser(id: UserDefaults.standard.string(forKey: "_id")!)
                                             let alert = UIAlertController(title: nil, message: "Un instant...", preferredStyle: .alert)
                                             let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
@@ -218,6 +218,7 @@ class ProfileController: UIViewController {
     func clearData(){
         let loginManager = LoginManager()
         loginManager.logOut()
+        
         UserDefaults.standard.removeObject(forKey: "_id")
         UserDefaults.standard.removeObject(forKey: "tokenConnexion")
         UserDefaults.standard.removeObject(forKey: "nom")
@@ -244,8 +245,16 @@ class ProfileController: UIViewController {
 
     
     @objc func profileUpdated(){
-        profilPic.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "photoProfil")!)
-        Name.text = UserDefaults.standard.string(forKey: "nom")!.uppercased() + " " + UserDefaults.standard.string(forKey: "prenom")!
+        if (!(UserDefaults.standard.string(forKey: "photoProfil") ?? "").isEmpty){
+            profilPic.imageFromServerURL(urlString: UserDefaults.standard.string(forKey: "photoProfil")!)
+        }else{
+            profilPic.image = UIImage(named: "apple")
+        }
+        if (!(UserDefaults.standard.string(forKey: "prenom") ?? "").isEmpty){
+            Name.text = UserDefaults.standard.string(forKey: "nom")!.uppercased() + " " + UserDefaults.standard.string(forKey: "prenom")!
+        }else{
+            Name.text = UserDefaults.standard.string(forKey: "nom")!.uppercased()
+        }
     }
     
     @IBAction func deconnexion(_ sender: Any) {

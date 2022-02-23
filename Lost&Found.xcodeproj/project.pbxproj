@@ -35,11 +35,13 @@
 		855C5A24274BFCEF00906DE1 /* ModifierProfilController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C5A23274BFCEF00906DE1 /* ModifierProfilController.swift */; };
 		85615CC5277F3849002A0150 /* Reponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85615CC4277F3849002A0150 /* Reponse.swift */; };
 		856260C12764C48600633D15 /* SendBirdApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856260C02764C48600633D15 /* SendBirdApi.swift */; };
+		856459BA27C4F4030040459C /* MyAuthorizationAppleIDButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856459B927C4F4030040459C /* MyAuthorizationAppleIDButton.swift */; };
 		8574341927809F5900C5FE7A /* reponsesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8574341827809F5900C5FE7A /* reponsesController.swift */; };
 		85749BEA2750670400167934 /* AjouterArticleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85749BE92750670400167934 /* AjouterArticleController.swift */; };
 		85749BEC2752DEC900167934 /* DetailArticleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85749BEB2752DEC800167934 /* DetailArticleController.swift */; };
 		85749BEE2754E25600167934 /* OptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85749BED2754E25600167934 /* OptionsController.swift */; };
 		85749BF027582BB400167934 /* ContactProfilController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85749BEF27582BB300167934 /* ContactProfilController.swift */; };
+		8596894327B409F0001D789F /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8596894227B409F0001D789F /* Onboarding.storyboard */; };
 		85B223F2275AA041003D6553 /* GoogleMapsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B223F1275AA040003D6553 /* GoogleMapsHelper.swift */; };
 		85B5B729273E986C0079E2FE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5B728273E986C0079E2FE /* User.swift */; };
 		85B5B72D273E993E0079E2FE /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5B72C273E993E0079E2FE /* CreateAccount.swift */; };
@@ -81,11 +83,14 @@
 		855C5A23274BFCEF00906DE1 /* ModifierProfilController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierProfilController.swift; sourceTree = "<group>"; };
 		85615CC4277F3849002A0150 /* Reponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reponse.swift; sourceTree = "<group>"; };
 		856260C02764C48600633D15 /* SendBirdApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendBirdApi.swift; sourceTree = "<group>"; };
+		856459B827C2DDFF0040459C /* Lost&Found.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lost&Found.entitlements"; sourceTree = "<group>"; };
+		856459B927C4F4030040459C /* MyAuthorizationAppleIDButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAuthorizationAppleIDButton.swift; sourceTree = "<group>"; };
 		8574341827809F5900C5FE7A /* reponsesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reponsesController.swift; sourceTree = "<group>"; };
 		85749BE92750670400167934 /* AjouterArticleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjouterArticleController.swift; sourceTree = "<group>"; };
 		85749BEB2752DEC800167934 /* DetailArticleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailArticleController.swift; sourceTree = "<group>"; };
 		85749BED2754E25600167934 /* OptionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsController.swift; sourceTree = "<group>"; };
 		85749BEF27582BB300167934 /* ContactProfilController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactProfilController.swift; sourceTree = "<group>"; };
+		8596894227B409F0001D789F /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		85B223F1275AA040003D6553 /* GoogleMapsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsHelper.swift; sourceTree = "<group>"; };
 		85B5B728273E986C0079E2FE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		85B5B72C273E993E0079E2FE /* CreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
@@ -133,6 +138,7 @@
 				855C5A21274BFA3300906DE1 /* ArticleService.swift */,
 				856260C02764C48600633D15 /* SendBirdApi.swift */,
 				85428DEF277CCD7E004C783B /* QuestionReponseService.swift */,
+				856459B927C4F4030040459C /* MyAuthorizationAppleIDButton.swift */,
 			);
 			path = ModelView;
 			sourceTree = "<group>";
@@ -140,6 +146,7 @@
 		85417DCC27303087003F59CF = {
 			isa = PBXGroup;
 			children = (
+				8596894227B409F0001D789F /* Onboarding.storyboard */,
 				85417DD727303088003F59CF /* Lost&Found */,
 				85417DD627303088003F59CF /* Products */,
 				DAB7420912F5C635BBD8456E /* Pods */,
@@ -158,6 +165,7 @@
 		85417DD727303088003F59CF /* Lost&Found */ = {
 			isa = PBXGroup;
 			children = (
+				856459B827C2DDFF0040459C /* Lost&Found.entitlements */,
 				851AB3B5274142A5005606AC /* ModelView */,
 				851AB3A8274017CE005606AC /* Design */,
 				85B5B72B273E98830079E2FE /* ViewController */,
@@ -285,6 +293,7 @@
 				85417DE827303089003F59CF /* LaunchScreen.storyboard in Resources */,
 				85417DE527303089003F59CF /* Assets.xcassets in Resources */,
 				85417DE027303088003F59CF /* Main.storyboard in Resources */,
+				8596894327B409F0001D789F /* Onboarding.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +379,7 @@
 				85B5B72D273E993E0079E2FE /* CreateAccount.swift in Sources */,
 				8574341927809F5900C5FE7A /* reponsesController.swift in Sources */,
 				851AB3B227402EEA005606AC /* LostAndFoundController.swift in Sources */,
+				856459BA27C4F4030040459C /* MyAuthorizationAppleIDButton.swift in Sources */,
 				851AB3A6273FDAA1005606AC /* MotDePasseOublieController.swift in Sources */,
 				850FBD58275AD997005DF862 /* PlacesViewController.swift in Sources */,
 				85417DDD27303088003F59CF /* ConnexionController.swift in Sources */,
@@ -537,17 +547,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Lost&Found/Lost&Found.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QX7NM37CF4;
+				DEVELOPMENT_TEAM = G96V29LG5G;
 				INFOPLIST_FILE = "Lost&Found/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "MMC.Lost-Found";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -557,17 +569,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Lost&Found/Lost&Found.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QX7NM37CF4;
+				DEVELOPMENT_TEAM = G96V29LG5G;
 				INFOPLIST_FILE = "Lost&Found/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "MMC.Lost-Found";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

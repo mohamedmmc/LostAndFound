@@ -166,6 +166,21 @@ class ArticleService {
         }.resume()
     }
     
+    func deleteArticle(id:String){
+       
+        guard let url = URL(string: "http://lost-and-found-back.herokuapp.com/article/"+id) else{
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        let session = URLSession.shared.dataTask(with: request){
+            data, response, error in
+            DispatchQueue.main.async {
+                print("efface avec succes")
+            }
+        }.resume()
+    }
+    
     func getArticleByUser(id:String,callback: @escaping (Bool,Articles?)->Void){
        
         guard let url = URL(string: "http://lost-and-found-back.herokuapp.com/article/myArticles/"+id) else{

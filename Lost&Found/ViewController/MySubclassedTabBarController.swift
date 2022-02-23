@@ -7,11 +7,13 @@
 
 import Foundation
 import UIKit
+import SendBirdUIKit
 class MySubclassedTabBarController: UITabBarController {
-    var test = 1
     override func viewDidLoad() {
       super.viewDidLoad()
       delegate = self
+        DesignUi().getTheme()
+
     }
 }
 
@@ -25,9 +27,9 @@ extension MySubclassedTabBarController: UITabBarControllerDelegate  {
 
         if fromView != toView {
             
-            let name = Notification.Name("articleAjoute")
-            let notification = Notification(name: name)
-            NotificationCenter.default.post(notification)
+//            let name = Notification.Name("articleAjoute")
+//            let notification = Notification(name: name)
+//            NotificationCenter.default.post(notification)
             
             let name2 = Notification.Name("isVerified")
             let notificationVerified = Notification(name: name2)

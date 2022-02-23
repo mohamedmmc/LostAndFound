@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import SendBirdUIKit
 import UIKit
 
-class DesignUi {
+class DesignUi:UIViewController {
     
     public func addLeftIcon(txtField: UITextField, andImage img: UIImage){
         let leftImageView = UIImageView(frame: CGRect(x: 3.0, y: 0.0, width: img.size.width, height: img.size.height))
@@ -33,5 +34,18 @@ class DesignUi {
         titre?.layer.borderWidth = width
         titre?.layer.borderColor = Bordercolor.cgColor
 
+    }
+    
+    public func getTheme(){
+        if traitCollection.userInterfaceStyle == .light {
+            UIApplication.shared.windows.forEach { window in
+                SBUTheme.set(theme: .light)
+            }
+        }
+        else{
+            UIApplication.shared.windows.forEach { window in
+                SBUTheme.set(theme: .dark)
+            }
+        }
     }
 }

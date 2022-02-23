@@ -38,37 +38,52 @@ class MyStuff: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
 
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+       if editingStyle == UITableViewCell.EditingStyle.delete {
+           let refreshAlert = UIAlertController(title: "Supprimer reponse", message: "Etes vous sure de vouloir supprimer cet article ?", preferredStyle: UIAlertController.Style.alert)
 
-    func tableView(_ tableView: UITableView,
-                   editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        
-        return .none
-    }
+           refreshAlert.addAction(UIAlertAction(title: "Ok", style: .destructive, handler: { (action: UIAlertAction!) in
+            ArticleService().deleteArticle(id: self.tableauMyStuff![indexPath.row]._id)
+               self.tableauMyStuff?.remove(at: indexPath.row)
+               tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+
+             }))
+
+           refreshAlert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: { (action: UIAlertAction!) in
+               refreshAlert.dismiss(animated: true) {
+
+               }
+           }))
+
+           present(refreshAlert, animated: true, completion: nil)
+
+       }
+   }
     
     func tableView(_ tableView: UITableView,
-                       trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+                   leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         var archive = UIContextualAction()
-        if (tableauMyStuff![indexPath.row].question?.reponse?.count == nil)  {
-            archive = UIContextualAction(style: .normal,
-                                             title: "Pas de reponse") { [weak self] (action, view, completionHandler) in
-                self?.handleMoveToArchive(indexPath: indexPath)
-                                                completionHandler(true)
-            }
-            archive.backgroundColor = .systemGray
-        }
-        else{
-            archive = UIContextualAction(style: .normal,
-                                             title: "Voir reponses") { [weak self] (action, view, completionHandler) in
-                self?.handleMoveToArchive(indexPath: indexPath)
-                                                completionHandler(true)
-            }
-            archive.backgroundColor = .systemGreen
-        }
-        
+                if (tableauMyStuff![indexPath.row].question?.reponse?.count == nil)  {
+                    archive = UIContextualAction(style: .normal,
+                                                     title: "Pas de reponse") { [weak self] (action, view, completionHandler) in
+                        self?.handleMoveToArchive(indexPath: indexPath)
+                                                        completionHandler(true)
+                    }
+                    archive.backgroundColor = .systemGray
+                }
+                else{
+                    archive = UIContextualAction(style: .normal,
+                                                     title: "Voir reponses") { [weak self] (action, view, completionHandler) in
+                        self?.handleMoveToArchive(indexPath: indexPath)
+                                                        completionHandler(true)
+                    }
+                    archive.backgroundColor = .systemGreen
+                }
         let configuration = UISwipeActionsConfiguration(actions: [archive])
-
-        return configuration
+       
+               return configuration
     }
+
     private func handleMoveToArchive(indexPath:IndexPath) {
         if (tableauMyStuff![indexPath.row].question != nil){
             if (tableauMyStuff![indexPath.row].question?.reponse) != nil {

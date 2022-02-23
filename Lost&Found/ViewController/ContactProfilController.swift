@@ -14,19 +14,30 @@ class ConstactProfilController: UIViewController {
     var channelURL = ""
     var user:User?
     var usersSB:[SBUUser]?
-    var user1,user2,userMod: SBUUser?
+    var user1,user2: SBUUser?
     @IBOutlet weak var nomLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
-    
-    
+    var prenom = " "
+    var photo = " "
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        nomLabel.text = user!.nom + user!.prenom
-        photoImageView.imageFromServerURL(urlString: user!.photoProfil)
-        user1 = SBUUser(userId: user!._id, nickname: user!.nom, profileUrl: user!.photoProfil)
-        user2 = SBUUser(userId: UserDefaults.standard.string(forKey: "_id")!, nickname: UserDefaults.standard.string(forKey: "nom")!, profileUrl: UserDefaults.standard.string(forKey: "photoProfil")!)
-        userMod = SBUUser(userId: "357862", nickname: "mod", profileUrl: "")
+        if (!(UserDefaults.standard.string(forKey: "prenom") ?? "").isEmpty){
+            prenom = UserDefaults.standard.string(forKey: "prenom")!
+            
+        }
+        nomLabel.text = user!.nom + user!.prenom!
+        if !(user!.photoProfil ?? "").isEmpty{
+            photoImageView.imageFromServerURL(urlString: user!.photoProfil!)
+            photo = user!.photoProfil!
+        }else{
+            photoImageView.image = UIImage(named: "apple")
+        }
+        user1 = SBUUser(userId: user!._id, nickname: user!.nom, profileUrl: photo)
+        if !(UserDefaults.standard.string(forKey: "photoProfil") ?? "").isEmpty{
+            photo = UserDefaults.standard.string(forKey: "photoProfil")!
+        }
+        user2 = SBUUser(userId: UserDefaults.standard.string(forKey: "_id")!, nickname: UserDefaults.standard.string(forKey: "nom")!, profileUrl: photo)
         
     }
     

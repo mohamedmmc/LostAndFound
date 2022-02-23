@@ -10,9 +10,125 @@ import FBSDKLoginKit
 import GoogleSignIn
 import GoogleMaps
 import SendBirdUIKit
-class ViewController: UIViewController,LoginButtonDelegate {
+import AuthenticationServices
+class ViewController: UIViewController,LoginButtonDelegate, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
     
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return view.window!
+    }
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print("authorization error")
+                guard let error = error as? ASAuthorizationError else {
+                    return
+                }
+                switch error.code {
+                case .canceled:
+                    // user press "cancel" during the login prompt
+                    print("Canceled")
+                case .unknown:
+                    // user didn't login their Apple ID on the device
+                    print("Unknown")
+                case .invalidResponse:
+                    // invalid response received from the login
+                    print("Invalid Respone")
+                case .notHandled:
+                    // authorization request not handled, maybe internet failure during login
+                    print("Not handled")
+                case .failed:
+                    // authorization failed
+                    print("Failed")
+                @unknown default:
+                    print("Default")
+                }
+    }
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+
+        switch authorization.credential {
+        case let credentials as ASAuthorizationAppleIDCredential:
+            let userIdentifier = credentials.user
+            print("hedha houwa :",userIdentifier)
+            let email = credentials.email
+            if (!( email ?? "").isEmpty){
+                UserDefaults.standard.setValue(userIdentifier, forKey: "appleId")
+                UserDefaults.standard.setValue(email, forKey: "emailId")
+
+                let fullName = credentials.fullName
+                
+                let formatter = PersonNameComponentsFormatter()
+                let name = formatter.string(from: credentials.fullName!)
+                let user = User(id: "", nom: name, prenom: ".", email: credentials.email!, mdp: "", numtel: "", photoProfil: "",isVerified: false,__v: 0)
+                
+                faza = UIImage(named: "apple")
+                UserService().apple(password: ".", email: email!, nom: name) { succes, reponse in
+                
+                    if succes, let json = reponse{
+                        if (json as! String == "ok"){
+                            print("apple boy cree")
+                            SendBirdApi().SendBirdCreateAccount(user_id: UserDefaults.standard.string(forKey: "_id")!, nickname:  UserDefaults.standard.string(forKey: "nom")!, profile_url:  UserDefaults.standard.string(forKey: "photoProfil")!)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+
+                            self.performSegue(withIdentifier: "connexion", sender: reponse)
+                            }
+                        }
+                    }
+                    else if (reponse as! String == "mail existant"){
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+
+                        self.propmt(title: "Echec", message: "Mail deja Existant")
+                        }
+                    }
+                    else if (reponse as! String == "no connexion"){
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+
+                            self.propmt(title: "Echec", message: "Probleme de connexion")}
+                        
+                    }
+                }
+            }else{
+                UserService().loginSocialMedia(username: UserDefaults.standard.string(forKey: "emailId")!) { succes, reponse in
+                    if succes, let json = reponse as? String{
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+
+                        self.performSegue(withIdentifier: "connexion", sender: reponse)
+                        }
+                    }
+                    else if (reponse as! String == "no connexion"){
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+
+                            self.propmt(title: "Echec", message: "Probleme de connexion")
+                            
+                        }
+            }
+            
+            
+        }
+            }
+            
+        break
+        default:
+            break
+            }
+        }
+
+    
+    
+    private let applebutton = ASAuthorizationAppleIDButton()
+   
     var faza = UIImage(named: "")
+
+    
+    @IBAction func appleButtonTap(_ sender: Any) {
+        
+        let provider = ASAuthorizationAppleIDProvider()
+            let request = provider.createRequest()
+            request.requestedScopes = [.fullName,.email]
+            let controller =  ASAuthorizationController(authorizationRequests: [request])
+            controller.delegate = self
+            controller.presentationContextProvider = self
+            controller.performRequests()
+      
+    
+    }
 
     
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
@@ -168,30 +284,21 @@ class ViewController: UIViewController,LoginButtonDelegate {
     @IBOutlet weak var password: UITextField!
     
     
+    
     override func viewDidAppear(_ animated: Bool) {
-        if !( UserDefaults.standard.string(forKey: "_id") ?? "").isEmpty{
-            SBUGlobals.CurrentUser = SBUUser(userId: UserDefaults.standard.string(forKey: "_id")!)
-            performSegue(withIdentifier: "connexion", sender: "yes")
-        }
         
         if let token = AccessToken.current, !token.isExpired{
             SBUGlobals.CurrentUser = SBUUser(userId: UserDefaults.standard.string(forKey: "_id")!)
             performSegue(withIdentifier: "connexion", sender: "yes")
-        }
-        
-       
-        
-        //print(UserDefaults.standard.dictionaryRepresentation())
-
-       
-
-        
+        }  
     }
     
+  
     override func viewDidLoad() {
+
         
         super.viewDidLoad()
-       
+        DesignUi().getTheme()
         facebookLoginButton.delegate = self
         facebookLoginButton.isHidden = true
         Connexin?.layer.cornerRadius = 10
@@ -205,6 +312,7 @@ class ViewController: UIViewController,LoginButtonDelegate {
           //tap.cancelsTouchesInView = false
 
           view.addGestureRecognizer(tap)
+        
     }
     
     @objc func dismissKeyboard() {
@@ -232,13 +340,13 @@ class ViewController: UIViewController,LoginButtonDelegate {
         alert.view.addSubview(loadingIndicator)
         present(alert, animated: true, completion: nil)
         UserService().login(username: email,mdp: pass) { (succes,reponse) in
-            if succes, let json = reponse{
+            if succes{
                 alert.dismiss(animated: true, completion: nil)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.performSegue(withIdentifier: "connexion", sender: nil)
                 }
             }
-            else if (reponse as! String == "no connexion"){
+            else if (reponse  == "no connexion"){
                 alert.dismiss(animated: true, completion: nil)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 
@@ -268,7 +376,10 @@ class ViewController: UIViewController,LoginButtonDelegate {
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
+    
+    
 }
+
 
 
 

@@ -10,7 +10,8 @@ import FBSDKCoreKit
 import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
-
+import SendBirdSDK
+import SendBirdUIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -21,7 +22,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        self.loadBaseController()
+        
+
     
+    }
+    func loadBaseController() {
+       let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+       guard let window = self.window else { return }
+       window.makeKeyAndVisible()
+        if !( UserDefaults.standard.string(forKey: "_id") ?? "").isEmpty {
+            SBUGlobals.CurrentUser = SBUUser(userId: UserDefaults.standard.string(forKey: "_id")!)
+            let name = Notification.Name("articleAjoute")
+            let notification = Notification(name: name)
+            NotificationCenter.default.post(notification)
+            let homeVC: MySubclassedTabBarController = storyboard.instantiateViewController(withIdentifier: "connexion") as! MySubclassedTabBarController
+                self.window?.rootViewController = homeVC
+        }
+        self.window?.makeKeyAndVisible()
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

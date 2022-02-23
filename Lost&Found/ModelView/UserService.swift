@@ -51,10 +51,9 @@ class UserService {
                     callback(false,"no connexion")
                     print(error)
                 }else {
-                    //print("++++++++++++",data)
                     if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
                         if jsonRes["token"] != nil {
-                           
+                           print("connexion auth reponse: ",jsonRes)
                             
                             UserDefaults.standard.setValue(jsonRes["token"], forKey: "tokenConnexion")
                         }
@@ -67,9 +66,13 @@ class UserService {
                             callback(true,"good")
                             
                         }else{
+                            print("connexion auth reponse: ",jsonRes)
+
                             callback(false,"pas inscrit")
                         }
                     }else{
+                        print(data?.base64EncodedString())
+
                         callback(false,nil)
                     }
                 }
@@ -81,7 +84,7 @@ class UserService {
     
     
     
-    func login(username: String,mdp: String,callback: @escaping (Bool,Any?)->Void){
+    func login(username: String,mdp: String,callback: @escaping (Bool,String)->Void){
         let params = [
             "email": username,
             "password":mdp,
@@ -122,7 +125,7 @@ class UserService {
                             callback(true,"good")
                             
                         }else{
-                            callback(false,jsonRes)
+                            callback(false,"erreur ici")
                         }
                     }else{
                         callback(false,"erreur ici")
@@ -145,7 +148,7 @@ class UserService {
         
         body.append("--\(boundary + lineBreak)")
         body.append("Content-Disposition: form-data; name=\"prenom\"\(lineBreak + lineBreak)")
-        body.append("\(user.prenom + lineBreak)")
+        body.append("\(user.prenom! + lineBreak)")
         
         
         body.append("--\(boundary + lineBreak)")
@@ -177,7 +180,7 @@ class UserService {
         
         body.append("--\(boundary + lineBreak)")
         body.append("Content-Disposition: form-data; name=\"prenom\"\(lineBreak + lineBreak)")
-        body.append("\(user.prenom + lineBreak)")
+        body.append("\(user.prenom! + lineBreak)")
         
         
         body.append("--\(boundary + lineBreak)")
@@ -363,6 +366,7 @@ class UserService {
                     do {
                        // print("data lenna ",data)
                         if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]{
+                            print("social reponse : ", json)
                             if let reponse = json["reponse"] as? String{
                                 if (reponse.contains("email")){
                                     callback(false,"mail existant")
@@ -387,6 +391,7 @@ class UserService {
                         callback(false,nil)
                     }
                 }else{
+                    
                     callback(false,nil)}
                 
                 }}
@@ -564,6 +569,44 @@ class UserService {
         }.resume()
 }
 
+    
+    func apple(password : String, email:String, nom:String , callback: @escaping (Bool,Any?)->Void){
+        
+        guard let url = URL(string: "http://lost-and-found-back.herokuapp.com/user/apple") else {return}
+        var request = URLRequest(url: url)
+        let params = [
+            "nom": nom,
+            "email": email,
+            "prenom":password
+        ]
+        
+        request.httpMethod = "POST"
+        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+        let session = URLSession.shared.dataTask(with: request){
+            data, response, error in
+            if error != nil{
+                callback(false,"no connexion")
+                print(error)
+            }else {
+            if let jsonRes = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]{
+                if jsonRes["token"] != nil {
+                   print("connexion auth reponse: ",jsonRes)
+                    
+                    UserDefaults.standard.setValue(jsonRes["token"], forKey: "tokenConnexion")
+                }
+                if let reponse = jsonRes["user"] as? [String: Any]{
+                    for (key,value) in reponse{
+                        UserDefaults.standard.setValue(value, forKey: key)
+                    }
+                    UserDefaults.standard.setValue("", forKey: "password")
+                    SBUGlobals.CurrentUser = SBUUser(userId: UserDefaults.standard.string(forKey: "_id")!)
+                    callback(true,"good")
+                    
+                }
+            }}
+        }.resume()
+}
 
 
 }
