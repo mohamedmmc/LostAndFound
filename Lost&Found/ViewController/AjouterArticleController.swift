@@ -20,12 +20,12 @@ class AjouterArticleController: UIViewController,UIImagePickerControllerDelegate
         super.viewDidLoad()
         if typeArticleSwitch.isOn{
             type = "Found"
-            labelTest.text = "Found"
+            labelTest.text = "Vous avez trouvé un objet"
         }else{
             type = "Lost"
             labelTest.text = "Lost"
         }
-        Design.BorderButton(titre: ajouterButton, radius: 20, width: 2, Bordercolor: UIColor.init(red: 255, green: 255, blue: 255, alpha: 2))
+        Design.BorderButton(titre: ajouterButton, radius: 15, width: 2, Bordercolor: UIColor.init(red: 255, green: 255, blue: 255, alpha: 2))
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
           view.addGestureRecognizer(tap)
     }

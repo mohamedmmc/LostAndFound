@@ -244,7 +244,7 @@ class UserService {
                     do {
                         
                         if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]{
-                            
+                            print(json)
                             if let reponse = json["reponse"] as? String{
                                 if (reponse.contains("email")){
                                     callback(false,"mail existant")
