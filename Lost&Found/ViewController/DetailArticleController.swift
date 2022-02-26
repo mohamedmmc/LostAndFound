@@ -44,6 +44,31 @@ class DetailArticleController: UIViewController {
         }
         
     }
+    
+    @IBAction func ReportButton(_ sender: Any) {
+
+        UserService().Report(user: UserDefaults.standard.string(forKey: "_id")!, article: article!._id) { succes, reponse in
+        if succes{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                let name = Notification.Name("articleAjoute")
+                let notification = Notification(name: name)
+                NotificationCenter.default.post(notification)
+                self.dismiss(animated: true, completion: nil)
+                self.propmt(title: "Signaler", message: "Signaler avec succes !")
+            }
+        }else{
+            if reponse == "same user" {
+                self.propmt(title: "Deja signalé", message: "Vous avez deja signalé cet article")
+            }else if reponse == "spam"{
+                self.propmt(title: "Suppression en cours", message: "L'article a recu assez de vote pour etre supprime")
+
+            }
+            }
+        }
+        
+                
+    }
+    
     var article :Article?
     var nom ,desc,image:String?
 

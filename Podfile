@@ -5,10 +5,6 @@ target 'Lost&Found' do
   use_frameworks!
 
 
-
-    pod 'FBSDKLoginKit'
-
-pod 'GoogleSignIn'
 pod 'DropDown'
  pod 'GoogleMaps' 
     pod 'GooglePlaces'

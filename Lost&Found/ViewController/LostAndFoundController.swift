@@ -94,6 +94,7 @@ class LostAndFoundController: UIViewController,UICollectionViewDelegate,UICollec
        
     }
     @IBOutlet weak var backgroundElement: UIView!
+ 
     
     @IBOutlet weak var addbutton: UIButton!
 
@@ -123,7 +124,14 @@ class LostAndFoundController: UIViewController,UICollectionViewDelegate,UICollec
         else if segue.identifier == "detailArticle" {
             let index = sender as! IndexPath
             let destination = segue.destination as! DetailArticleController
-            destination.article = dernierTableau[index.row]
+            if searchController.isActive{
+                destination.article = tableauFiltre[index.row]
+                
+            }
+            else{
+                destination.article = dernierTableau[index.row]
+
+            }
         }
      
     }

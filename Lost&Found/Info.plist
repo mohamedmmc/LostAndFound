@@ -34,7 +34,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FacebookAppID</key>
 	<string>452341799846276</string>
 	<key>FacebookClientToken</key>
@@ -75,9 +75,9 @@
 	<key>NSFaceIDUsageDescription</key>
 	<string>Please allow to continue with face id</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Use Location</string>
+	<string>Cet application utilise la location pour garantir une precision de recherche de vos objets </string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app uses images</string>
+	<string>Cette application utilise des images</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

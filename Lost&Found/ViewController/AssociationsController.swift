@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import FBSDKLoginKit
 
 class AssociationsController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     let tableauAssociation = ["unicef","tunespoir"]

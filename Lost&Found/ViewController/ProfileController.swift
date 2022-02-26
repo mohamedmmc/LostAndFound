@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import FBSDKLoginKit
 import DropDown
 import MapKit
 import SendBirdSDK
@@ -216,8 +215,7 @@ class ProfileController: UIViewController {
     
     
     func clearData(){
-        let loginManager = LoginManager()
-        loginManager.logOut()
+
         
         UserDefaults.standard.removeObject(forKey: "_id")
         UserDefaults.standard.removeObject(forKey: "tokenConnexion")

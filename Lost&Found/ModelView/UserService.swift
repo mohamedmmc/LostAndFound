@@ -608,7 +608,46 @@ class UserService {
         }.resume()
 }
 
-
+    func Report(user: String,article: String,callback: @escaping (Bool,String)->Void){
+        let params = [
+            "user": user,
+            "article":article,
+        ]
+        guard let url = URL(string: "http://lost-and-found-back.herokuapp.com/report/") else{
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+        
+        let session = URLSession.shared.dataTask(with: request){
+            data, response, error in
+            DispatchQueue.main.async {
+                if error != nil{
+                    callback(false,"no connexion")
+                    print(error)
+                }else {
+                    
+                    if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: String]{
+                        if jsonRes["message"] == "spam" {
+                            callback(false,"spam")
+                        }else if jsonRes["message"] == "same user" {
+                            callback(false,"same user")
+                        }else{
+                            callback(true,"good")
+                        }
+                    }else{
+                        callback(false,"erreur ici")
+                    }
+                }
+            }
+            
+        }.resume()
+        
+    }
 }
 
 
@@ -631,6 +670,6 @@ extension UIImageView {
         }).resume()
     }
     
-    
+   
     
 }
