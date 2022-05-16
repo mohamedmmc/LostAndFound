@@ -108,6 +108,7 @@ class UserService {
                 }else {
                     
                     if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: Any]{
+                        print(jsonRes)
                         if jsonRes["token"] != nil {
                            
                             
@@ -616,13 +617,10 @@ class UserService {
         guard let url = URL(string: "http://lost-and-found-back.herokuapp.com/report/") else{
             return
         }
-        
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
-        
         request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
-        
         let session = URLSession.shared.dataTask(with: request){
             data, response, error in
             DispatchQueue.main.async {
@@ -630,7 +628,46 @@ class UserService {
                     callback(false,"no connexion")
                     print(error)
                 }else {
-                    
+                    if let urlResponse = response as? HTTPURLResponse {
+                        let status = urlResponse.statusCode
+                        if(status == 200){
+                            callback(true,"good")
+                        }else if(status == 300){
+                            callback(false,"spam")
+                        }else if(status == 400){
+                            callback(false,"same user")
+                        }
+                        else {
+                            callback(false,"erreur ici")
+                        }
+
+                    }
+                  
+                }
+            }
+        }.resume()
+    }
+    
+    
+    func ReportUser(userDelte: String,user: String,callback: @escaping (Bool,String)->Void){
+        let params = [
+            "userReport": userDelte,
+            "user":user,
+        ]
+        guard let url = URL(string: "http://lost-and-found-back.herokuapp.com/reportUser/") else{
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+        let session = URLSession.shared.dataTask(with: request){
+            data, response, error in
+            DispatchQueue.main.async {
+                if error != nil{
+                    callback(false,"no connexion")
+                    print(error)
+                }else {
                     if let jsonRes  = try? JSONSerialization.jsonObject(with: data!, options:[] ) as? [String: String]{
                         if jsonRes["message"] == "spam" {
                             callback(false,"spam")
@@ -644,9 +681,7 @@ class UserService {
                     }
                 }
             }
-            
         }.resume()
-        
     }
 }
 

@@ -146,7 +146,11 @@ class ArticleService {
                         let decoder = JSONDecoder()
                         do {
                             let test = try decoder.decode(Articles.self, from: data!)
-                            callback(true,test)
+                            if test.articles?.count == 0{
+                                callback(false,nil)
+                            }else{
+                                callback(true,test)
+                            }
                         } catch  {
                             print(error)
                             callback(false,nil)

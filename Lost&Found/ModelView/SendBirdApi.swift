@@ -16,7 +16,7 @@ class SendBirdApi  {
             "nickname": nickname,
             "profile_url": profile_url
         ]
-        guard let url = URL(string: "https://api-C2B86342-5275-4183-9F0C-28EF1E4B3014.sendbird.com/v3/users/"+user_id) else{
+        guard let url = URL(string: "https://api-C2B86342-5275-4183-9F0C-28EF1E4B3014.sendbird.com/v3/users"+user_id) else{
             return
         }
         var request = URLRequest(url: url)
@@ -80,7 +80,7 @@ class SendBirdApi  {
         let params = [
             "name": name
         ]
-        guard let url = URL(string: "https://api-C2B86342-5275-4183-9F0C-28EF1E4B3014.sendbird.com/v3/open_channels") else{
+        guard let url = URL(string: "https://api-C2B86342-5275-4183-9F0C-28EF1E4B3014.sendbird.sendbird.com/v3/open_channels") else{
             return
         }
         var request = URLRequest(url: url)

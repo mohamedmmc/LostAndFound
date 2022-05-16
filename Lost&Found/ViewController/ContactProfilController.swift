@@ -19,6 +19,28 @@ class ConstactProfilController: UIViewController {
     @IBOutlet weak var photoImageView: UIImageView!
     var prenom = " "
     var photo = " "
+    @IBAction func signalerUser(_ sender: Any) {
+        
+        UserService().ReportUser(userDelte: user!._id, user: UserDefaults.standard.string(forKey: "_id")!) { succes, reponse in
+            
+            if succes{
+                if(reponse == "good"){
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
+                }
+                
+            }else{
+                if reponse == "same user" {
+                    self.propmt(title: "Deja signalé", message: "Vous avez deja signalé cet utilisateur")
+                }else if reponse == "spam"{
+                    self.propmt(title: "Suppression en cours", message: "L'utilisateur a recu assez de vote pour etre supprime")
+
+                }
+                }
+            }
+        
+    }
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -40,7 +62,12 @@ class ConstactProfilController: UIViewController {
         user2 = SBUUser(userId: UserDefaults.standard.string(forKey: "_id")!, nickname: UserDefaults.standard.string(forKey: "nom")!, profileUrl: photo)
         
     }
-    
+    func propmt(title:String, message:String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .destructive , handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
     @IBAction func envoyerMessage(_ sender: Any) {
         SBDMain.connect(withUserId: UserDefaults.standard.string(forKey: "_id")!, completionHandler: { (user, error) in
             guard error == nil else {

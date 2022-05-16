@@ -106,12 +106,16 @@ class LostAndFoundController: UIViewController,UICollectionViewDelegate,UICollec
      func loadArticleToTableview (tableau:UICollectionView){
         ArticleService().getArticle { succes, reponse in
             if succes {
+                
                 for article in reponse!.articles!{
                     self.dernierTableau.append(article)
                     DispatchQueue.main.async {
                         tableau.reloadData()
                                 }
                 }
+            }else{
+                self.dernierTableau.removeAll()
+                self.tableArticle.reloadData()
             }
         }
     }

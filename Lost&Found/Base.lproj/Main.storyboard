@@ -635,7 +635,6 @@
         <!--Privacy View Controller-->
         <scene sceneID="6dC-mO-3S5">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1Uw-LS-XtI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="X6c-yB-TYS" customClass="privacyViewController" customModule="Lost_Found" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hFm-6i-Gr8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
@@ -652,14 +651,14 @@
                                 <rect key="frame" x="20" y="69" width="374" height="640"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">Aider les gens à retrouver leurs objets disparus en communiquant sur notre application.
+                                <string key="text">Aider les gens à retrouver leurs objets disparus en communiquant sur notre application.
 Notre majeur objectif est de cultiver un environnement agréable, inclusif et sûr. Pour cela, nous utilisons les ressources que nous disposons en vue d’assurer la sécurité de notre plateforme. 
 Nous avons créé et mis en relief des outils et des services dédiés aux membres de notre communauté afin de rendre leurs expériences agréables, même en ayant besoin de l’aide. 
 Nous avons également mobilisé des comités et des protocoles pour faire face aux abus, aux violations de nos conditions politiques, et aux activités nuisibles et trompeuses. 
 Les informations relatives aux abus ou aux contenus dangereux peuvent également être partagées avec d'autres sociétés telle que Meta ou avec les forces de l'ordre.
 •	L'affichage de substances illicites comme objets perdus ou trouvés sur notre application est interdit et entraînera le bannissement définitif de l'utilisateur.
 •	Chaque utilisateur doit respecter les orientations sexuelles et religieuses des autres utilisateurs. Toute forme de racisme, de misogynie ou de comportement discriminatoire est strictement interdite et entraînera un bannissement définitif.
-•	Tout utilisateur revendiquant la propriété d'un certain objet doit en fournir la preuve à la fois à l'utilisateur qui a trouvé cet objet et au comité de décision de notre application.</mutableString>
+•	Tout utilisateur revendiquant la propriété d'un certain objet doit en fournir la preuve à la fois à l'utilisateur qui a trouvé cet objet et au comité de décision de notre application.</string>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -700,6 +699,7 @@ Les informations relatives aux abus ou aux contenus dangereux peuvent également
                         <outlet property="Switch" destination="1tt-AV-iZc" id="DTz-et-FNX"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Uw-LS-XtI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4697" y="-241"/>
         </scene>
@@ -1317,6 +1317,16 @@ Les informations relatives aux abus ou aux contenus dangereux peuvent également
                                     <action selector="ReportButton:" destination="1fG-vx-aIk" eventType="touchUpInside" id="4gj-ua-qIg"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zPB-q0-CgW">
+                                <rect key="frame" x="154" y="711" width="106" height="22"/>
+                                <state key="normal" title="Supprimer" image="delete.right.fill" catalog="system">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="ReportButton:" destination="1fG-vx-aIk" eventType="touchUpInside" id="fNY-Gu-20y"/>
+                                    <action selector="deleteAdmin:" destination="1fG-vx-aIk" eventType="touchUpInside" id="Ql5-rj-vYI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6ma-Ch-NFp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1327,6 +1337,8 @@ Les informations relatives aux abus ou aux contenus dangereux peuvent également
                             <constraint firstItem="6ma-Ch-NFp" firstAttribute="bottom" secondItem="8Aq-ls-emo" secondAttribute="bottom" constant="20" id="4tg-MO-mdA"/>
                             <constraint firstItem="5B3-hd-Y6W" firstAttribute="centerX" secondItem="ybK-b1-3iO" secondAttribute="centerX" id="8ge-ah-pRH"/>
                             <constraint firstItem="AaJ-6E-cbU" firstAttribute="centerX" secondItem="5B3-hd-Y6W" secondAttribute="centerX" id="Cif-wa-AdD"/>
+                            <constraint firstItem="6ma-Ch-NFp" firstAttribute="bottom" secondItem="zPB-q0-CgW" secondAttribute="bottom" constant="80" id="DQp-WV-hiI"/>
+                            <constraint firstItem="zPB-q0-CgW" firstAttribute="top" secondItem="7aL-5X-71b" secondAttribute="bottom" constant="44" id="JE9-zO-hnZ"/>
                             <constraint firstItem="5B3-hd-Y6W" firstAttribute="leading" secondItem="6ma-Ch-NFp" secondAttribute="leading" constant="40" id="LFe-H5-dnT"/>
                             <constraint firstItem="6ma-Ch-NFp" firstAttribute="trailing" secondItem="AaJ-6E-cbU" secondAttribute="trailing" constant="20" id="LYF-yE-Q3c"/>
                             <constraint firstItem="7aL-5X-71b" firstAttribute="centerX" secondItem="ybK-b1-3iO" secondAttribute="centerX" id="RMi-6t-gMd"/>
@@ -1343,6 +1355,7 @@ Les informations relatives aux abus ou aux contenus dangereux peuvent également
                             <constraint firstItem="6ma-Ch-NFp" firstAttribute="trailing" secondItem="TvA-Kw-tGN" secondAttribute="trailing" constant="85" id="oeC-fA-xo2"/>
                             <constraint firstItem="6ma-Ch-NFp" firstAttribute="trailing" secondItem="7aL-5X-71b" secondAttribute="trailing" constant="40" id="otO-BR-51W"/>
                             <constraint firstItem="8Aq-ls-emo" firstAttribute="centerX" secondItem="ybK-b1-3iO" secondAttribute="centerX" id="rBx-KF-NWz"/>
+                            <constraint firstItem="zPB-q0-CgW" firstAttribute="centerX" secondItem="ybK-b1-3iO" secondAttribute="centerX" id="rHd-t7-F8h"/>
                             <constraint firstItem="5B3-hd-Y6W" firstAttribute="top" secondItem="G11-b5-I0m" secondAttribute="bottom" constant="10" id="rXq-z8-8Mv"/>
                             <constraint firstItem="AaJ-6E-cbU" firstAttribute="centerX" secondItem="ybK-b1-3iO" secondAttribute="centerX" id="svm-O1-ZGP"/>
                             <constraint firstItem="z2U-RW-5o3" firstAttribute="centerX" secondItem="ybK-b1-3iO" secondAttribute="centerX" id="tWH-tF-hqg"/>
@@ -1356,6 +1369,8 @@ Les informations relatives aux abus ou aux contenus dangereux peuvent également
                         <outlet property="descriptionArticleLabel" destination="5B3-hd-Y6W" id="8x7-E2-C7R"/>
                         <outlet property="nomArticleLabel" destination="G11-b5-I0m" id="CwR-Wt-42G"/>
                         <outlet property="repondreQuestion" destination="z2U-RW-5o3" id="wkv-a6-cSF"/>
+                        <outlet property="signalerButton" destination="6fh-XZ-kd3" id="gYp-04-N02"/>
+                        <outlet property="supprimerAdminButton" destination="zPB-q0-CgW" id="O0h-d2-kdr"/>
                         <outlet property="testGps" destination="7aL-5X-71b" id="ukZ-vW-adk"/>
                         <segue destination="qRd-Bg-eci" kind="show" identifier="contactProfil" id="Fl1-rU-x9T"/>
                     </connections>
@@ -1417,12 +1432,23 @@ Les informations relatives aux abus ou aux contenus dangereux peuvent également
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWD-Qo-FtK">
+                                <rect key="frame" x="123" y="731" width="168.5" height="22"/>
+                                <state key="normal" title="Signaler utilisateur" image="flag.fill" catalog="system">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="signalerUser:" destination="qRd-Bg-eci" eventType="touchUpInside" id="4jf-oI-x5x"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2gr-pW-sDr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="WWD-Qo-FtK" firstAttribute="centerX" secondItem="GuN-kH-iMx" secondAttribute="centerX" id="3ZS-yv-OCc"/>
                             <constraint firstItem="HMz-EJ-3Yf" firstAttribute="centerX" secondItem="GuN-kH-iMx" secondAttribute="centerX" id="4VK-QM-QRz"/>
                             <constraint firstItem="2dy-yP-Q8v" firstAttribute="centerX" secondItem="GuN-kH-iMx" secondAttribute="centerX" id="7D0-Zq-Dav"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="WWD-Qo-FtK" secondAttribute="bottom" constant="60" id="ABC-IC-8pY"/>
                             <constraint firstItem="ICF-ed-83k" firstAttribute="trailing" secondItem="2gr-pW-sDr" secondAttribute="trailing" id="F7e-pP-mJi"/>
                             <constraint firstItem="2dy-yP-Q8v" firstAttribute="top" secondItem="HMz-EJ-3Yf" secondAttribute="bottom" constant="43" id="RhQ-or-s10"/>
                             <constraint firstItem="2dy-yP-Q8v" firstAttribute="leading" secondItem="2gr-pW-sDr" secondAttribute="leading" constant="20" id="VBh-56-r6c"/>
@@ -1901,7 +1927,7 @@ Les informations relatives aux abus ou aux contenus dangereux peuvent également
     <inferredMetricsTieBreakers>
         <segue reference="fhj-g6-sc1"/>
         <segue reference="gEK-GI-QWP"/>
-        <segue reference="eio-ck-OA0"/>
+        <segue reference="ZfF-5W-kZ1"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.backward" catalog="system" width="128" height="98"/>
@@ -1909,6 +1935,7 @@ Les informations relatives aux abus ou aux contenus dangereux peuvent également
         <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="camera.metering.center.weighted" catalog="system" width="128" height="93"/>
         <image name="check" width="512" height="512"/>
+        <image name="delete.right.fill" catalog="system" width="128" height="104"/>
         <image name="flag.fill" catalog="system" width="128" height="121"/>
         <image name="folder.fill" catalog="system" width="128" height="97"/>
         <image name="gearshape.fill" catalog="system" width="128" height="121"/>

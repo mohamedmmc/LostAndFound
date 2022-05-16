@@ -47,7 +47,7 @@ class QuestionReponseService {
     func ReponseQuestion (reponse:String,idQuestion:String,callback: @escaping (Bool,Any?)->Void){
         let params = [
             "description": reponse,
-            "user": UserDefaults.standard.string(forKey: "_id")!
+            "userr": UserDefaults.standard.string(forKey: "_id")!
         ]
         guard let url = URL(string: "http://lost-and-found-back.herokuapp.com/reponse/"+idQuestion) else{
             return

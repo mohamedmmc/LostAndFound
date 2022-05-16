@@ -10,6 +10,8 @@ import UIKit
 import GoogleMaps
 class DetailArticleController: UIViewController {
     
+    @IBOutlet weak var signalerButton: UIButton!
+    @IBOutlet weak var supprimerAdminButton: UIButton!
     @IBOutlet weak var testGps: GMSMapView!
     @IBOutlet weak var repondreQuestion: UIButton!
     override func viewDidLoad() {
@@ -25,6 +27,11 @@ class DetailArticleController: UIViewController {
         }
         else{
             contactButtonn.isHidden = true
+        }
+        if UserDefaults.standard.string(forKey: "email")! == "chicco631@gmail.com" {
+            signalerButton.isHidden = true
+        }else{
+            supprimerAdminButton.isHidden = true
         }
         articleImageView.imageFromServerURL(urlString: article!.photo!)
         nomArticleLabel.text = article!.nom
@@ -44,6 +51,26 @@ class DetailArticleController: UIViewController {
         }
         
     }
+    @IBAction func deleteAdmin(_ sender: Any) {
+        let refreshAlert = UIAlertController(title: "Confrimer", message: "Etes vous sure de vouloir supprimer cet article?", preferredStyle: UIAlertController.Style.alert)
+
+        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+            ArticleService().deleteArticle(id: self.article!._id)
+            let name = Notification.Name("articleAjoute")
+            let notification = Notification(name: name)
+            NotificationCenter.default.post(notification)
+            self.navigationController?.popToRootViewController(animated: true)
+
+        }))
+        refreshAlert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: { (action: UIAlertAction!) in
+            refreshAlert.dismiss(animated: true) {
+            }
+        }))
+        present(refreshAlert, animated: true, completion: nil)
+
+    }
+        
+    
     
     @IBAction func ReportButton(_ sender: Any) {
 
